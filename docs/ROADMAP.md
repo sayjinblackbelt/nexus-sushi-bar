@@ -127,11 +127,22 @@ Save integrity, ingredient restocking, settings, control preferences, reduced mo
 - Reduced-motion preference persists and suppresses CSS animation/transition motion.
 - Audio initialization is lazy and failure-safe; gameplay never depends on sound.
 
-### V1.9 — Economy and regression polish (planned)
-Balance review, save migration checks and full regression coverage.
+### V1.9 — Economy and regression polish (implemented; device QA pending)
+- Save normalization is exported and tested for legacy, malformed and out-of-range values.
+- Automated balance checks cover fish rarity, recipe durations, station references and catch-quality multipliers.
+- CI syntax checks include the audio module and balance test suite.
+- Economy values and acceptance thresholds are documented for release review.
 
 ### V2.0 — Complete core experience
 Dive, collect ingredients, return, manage stock, open the Zen cyberpunk sushi and tea bar, fulfill orders, earn revenue, improve equipment and restaurant, unlock content and repeat.
+
+## V1.9 acceptance criteria
+
+- [x] Legacy save data normalizes to the current schema.
+- [x] Invalid and negative progression values are clamped safely.
+- [x] Every menu recipe duration matches its stage durations.
+- [x] All recipes reference valid kitchen stations.
+- [x] Rarity and catch-quality balance rules are regression-tested.
 
 ## V1.8 acceptance criteria
 

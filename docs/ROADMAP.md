@@ -70,8 +70,11 @@ Save integrity, ingredient restocking, settings, control preferences, reduced mo
 - Ingredient stock is consumed only after the full recipe is completed.
 - Wrong stations are rejected; patience continues during preparation.
 
-### V0.9 — Restaurant operations (planned)
-Ingredient quality, VIP/customer events, décor effects and service analytics.
+### V0.9 — Restaurant operations (implemented; device QA pending)
+- VIP night event every fifth in-game day, with longer patience and premium tips.
+- Décor upgrades across three levels; higher décor improves guest patience and changes the scene.
+- Shift analytics: guests served, walkouts, base revenue and tips.
+- Save schema v5 adds persistent décor progression.
 
 ### V1.0 — Complete exploration baseline
 Tutorial, underwater objectives, balanced catch economy, persistent inventory and mobile/desktop quality gates.
@@ -87,6 +90,14 @@ More biomes, recipes, teas and customers; seasonal events; audio; economy balanc
 
 ### V2.0 — Complete core experience
 Dive, collect ingredients, return, manage stock, open the Zen cyberpunk sushi and tea bar, fulfill orders, earn revenue, improve equipment and restaurant, unlock content and repeat.
+
+## V0.9 acceptance criteria
+
+- [x] VIP event appears on every fifth night.
+- [x] VIP customers award premium tips.
+- [x] Décor upgrades enforce costs and persist across reloads.
+- [x] Décor level affects customer patience and scene details.
+- [x] Shift analytics distinguish revenue, tips, served guests and walkouts.
 
 ## V0.8 acceptance criteria
 

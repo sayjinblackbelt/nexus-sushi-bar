@@ -47,3 +47,22 @@ test("restaurant disables service when a required ingredient is missing", () => 
   assert.equal(restaurant.closed, true);
   assert.equal(restaurant.order, null);
 });
+
+test("tea stock can be restocked with coins and reopens an exhausted shift", () => {
+  writeProgress({
+    coins: 30,
+    bestCatch: 0,
+    fishStock: {},
+    teaStock: { matcha: 0, hojicha: 0, lotus: 0 },
+    reputation: 0,
+    day: 1
+  });
+  const restaurant = new RestaurantManager();
+  restaurant.beginShift([]);
+  assert.equal(restaurant.closed, true);
+  assert.equal(restaurant.restockTea(), true);
+  assert.equal(restaurant.progress.coins, 0);
+  assert.equal(restaurant.progress.teaStock.matcha, 3);
+  assert.equal(restaurant.closed, false);
+  assert.ok(restaurant.order);
+});

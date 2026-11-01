@@ -28,7 +28,12 @@ export class BarRenderer {
     for(let x=285;x<700;x+=82){c.fillStyle="#f4e8cc";c.fillRect(x,285,38,17);c.fillStyle="#e98c65";c.fillRect(x+7,278,24,9);c.fillStyle="#1d263f";c.fillRect(x+13,279,11,7);}
     // Customer silhouettes at the counter.
     const customerColors=["#244c72","#7d3e75","#356a63","#a05d45"];
-    customerColors.forEach((color,i)=>{const x=265+i*145;c.fillStyle="#11162c";c.fillRect(x-24,305,48,53);c.fillStyle=color;c.fillRect(x-20,319,40,36);c.fillStyle="#e7c7a1";c.fillRect(x-13,284,27,27);c.fillStyle="#11162c";c.fillRect(x-13,282,28,9);c.fillStyle="#37e6e0";c.fillRect(x-7,294,5,3);c.fillRect(x+5,294,5,3);});
+    customerColors.concat(["#536b9b","#8b7045","#4f7f8d","#8a5270"]).slice(0,Math.min(8,2+state.barLevel*1.2)).forEach((color,i)=>{const x=170+i*88;c.fillStyle="#11162c";c.fillRect(x-24,305,48,53);c.fillStyle=color;c.fillRect(x-20,319,40,36);c.fillStyle="#e7c7a1";c.fillRect(x-13,284,27,27);c.fillStyle="#11162c";c.fillRect(x-13,282,28,9);c.fillStyle="#37e6e0";c.fillRect(x-7,294,5,3);c.fillRect(x+5,294,5,3);});
+    // Higher tiers physically expand the guest area with extra neon booths.
+    if(state.barLevel>=2){c.fillStyle="#282044";c.fillRect(22,410,130,92);c.fillStyle="#37e6e0";c.fillRect(22,408,130,3);c.fillStyle="#ff4fa3";c.fillRect(32,430,110,4);}
+    if(state.barLevel>=3){c.fillStyle="#34213d";c.fillRect(808,405,130,97);c.fillStyle="#37e6e0";c.fillRect(808,403,130,3);c.fillStyle="#ffb86b";c.fillRect(825,425,96,4);}
+    if(state.barLevel>=4){c.fillStyle="#65c18c";c.fillRect(42,300,24,30);c.fillRect(894,300,24,30);}
+    if(state.barLevel>=5){c.fillStyle="#9b5de5";c.fillRect(430,190,100,4);c.fillStyle="#37e6e0";c.fillRect(440,198,80,3);}
     // Floor reflection and calm water-garden accent.
     c.fillStyle="rgba(55,230,224,.13)";c.fillRect(0,530,W,3);c.fillStyle="#65c18c";c.fillRect(28,345,5,18);c.fillRect(20,350,20,3);
   }

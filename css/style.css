@@ -188,3 +188,6 @@ button{ -webkit-user-select:none; user-select:none; }
  .hud-number{font-size:16px}
  .meter{height:7px}
 }
+
+/* Character selection and progression */
+.character-picker{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:14px 0 8px}.character-option{display:grid;justify-items:center;gap:3px;padding:10px 6px;border:1px solid #6eaaa566;border-radius:10px;background:#0d3044;color:#f4e8cc;cursor:pointer}.character-option.selected{border-color:#ffb86b;background:#19465a;box-shadow:0 0 0 2px #ffb86b33,0 0 18px #37e6e033}.character-avatar{font-size:29px}.character-option strong{font-size:14px}.character-option small{font-size:9px;color:#a8c9c9}.character-note{min-height:16px!important;color:#9df2d6!important;font-size:10px!important}.bar-level-label{margin:5px 0 0;color:#37e6e0;font:9px "DM Mono",monospace;letter-spacing:1.2px}.secondary-button:disabled{opacity:.4;cursor:not-allowed}@media(max-width:680px){.character-picker{gap:6px;margin:8px 0 4px}.character-option{padding:6px 4px}.character-avatar{font-size:24px}}

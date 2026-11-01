@@ -1,10 +1,29 @@
 const SAVE_KEY = "nexus-save";
-const SAVE_VERSION = 1;
-let memorySave = { version: SAVE_VERSION, coins: 0, bestCatch: 0 };
+const SAVE_VERSION = 2;
+const EMPTY_TEA_STOCK = { matcha: 5, hojicha: 5, lotus: 3 };
+let memorySave = {
+  version: SAVE_VERSION, coins: 0, bestCatch: 0, fishStock: {},
+  teaStock: { ...EMPTY_TEA_STOCK }, reputation: 0, day: 1
+};
 
 function safeCount(value) {
   const number = Number(value);
   return Number.isFinite(number) ? Math.max(0, Math.floor(number)) : 0;
+}
+function safeStock(value, fallback = {}) {
+  const source = value && typeof value === "object" ? value : fallback;
+  return Object.fromEntries(Object.entries(source).map(([key, count]) => [key, safeCount(count)]));
+}
+function normalizeProgress(data = {}) {
+  return {
+    version: SAVE_VERSION,
+    coins: safeCount(data.coins),
+    bestCatch: safeCount(data.bestCatch),
+    fishStock: safeStock(data.fishStock),
+    teaStock: safeStock(data.teaStock, EMPTY_TEA_STOCK),
+    reputation: safeCount(data.reputation),
+    day: Math.max(1, safeCount(data.day) || 1)
+  };
 }
 
 export function readProgress() {
@@ -12,37 +31,30 @@ export function readProgress() {
     const raw = window.localStorage.getItem(SAVE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
-      if (parsed && parsed.version === SAVE_VERSION) {
-        memorySave = {
-          version: SAVE_VERSION,
-          coins: safeCount(parsed.coins),
-          bestCatch: safeCount(parsed.bestCatch)
-        };
-        return { coins: memorySave.coins, bestCatch: memorySave.bestCatch };
+      if (parsed && parsed.version >= 1 && parsed.version <= SAVE_VERSION) {
+        memorySave = normalizeProgress(parsed);
+        writeProgress(memorySave);
+        return { ...memorySave, fishStock: { ...memorySave.fishStock }, teaStock: { ...memorySave.teaStock } };
       }
     }
-
-    // Migrate values saved by the first prototype without losing player progress.
     const legacy = {
       coins: safeCount(window.localStorage.getItem("nexus-coins")),
       bestCatch: safeCount(window.localStorage.getItem("nexus-best-catch"))
     };
-    writeProgress(legacy);
-    return legacy;
+    memorySave = normalizeProgress(legacy);
+    writeProgress(memorySave);
+    return { ...memorySave, fishStock: {}, teaStock: { ...EMPTY_TEA_STOCK } };
   } catch {
-    return { coins: memorySave.coins, bestCatch: memorySave.bestCatch };
+    return { ...memorySave, fishStock: { ...memorySave.fishStock }, teaStock: { ...memorySave.teaStock } };
   }
 }
 
-export function writeProgress(progress) {
-  memorySave = {
-    version: SAVE_VERSION,
-    coins: safeCount(progress.coins),
-    bestCatch: safeCount(progress.bestCatch)
-  };
+export function writeProgress(progress = {}) {
+  memorySave = normalizeProgress({ ...memorySave, ...progress });
   try {
     window.localStorage.setItem(SAVE_KEY, JSON.stringify(memorySave));
   } catch {
     // The current session remains playable when persistent storage is blocked.
   }
+  return { ...memorySave, fishStock: { ...memorySave.fishStock }, teaStock: { ...memorySave.teaStock } };
 }

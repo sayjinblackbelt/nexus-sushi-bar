@@ -45,9 +45,10 @@ export class RestaurantManager {
   }
 
   availableItems() {
-    return RESTAURANT_MENU.filter(item => item.category === "tea"
+    const fishingLevel = Math.min(5, Math.floor(this.progress.fishingXP / 100) + 1);
+    return RESTAURANT_MENU.filter(item => (!item.unlockLevel || fishingLevel >= item.unlockLevel) && (!item.barUnlockLevel || this.progress.barLevel >= item.barUnlockLevel) && (item.category === "tea"
       ? (this.progress.teaStock[item.teaId] || 0) > 0
-      : (this.progress.fishStock[item.fishId] || 0) > 0);
+      : (this.progress.fishStock[item.fishId] || 0) > 0));
   }
 
   nextOrder() {
@@ -223,7 +224,7 @@ export class RestaurantManager {
 
   getState() {
     return {
-      coins: this.progress.coins, canRestockTea: this.progress.coins >= 30,
+      coins: this.progress.coins, fishingLevel: Math.min(5, Math.floor(this.progress.fishingXP / 100) + 1), canRestockTea: this.progress.coins >= 30,
       canUpgradeBar: this.progress.barLevel < 5 && this.progress.coins >= this.barUpgradeCost(),
       canUpgradeGear: this.progress.equipmentLevel < 5 && this.progress.coins >= this.gearUpgradeCost(),
       canUpgradeDecor: this.progress.decorLevel < 3 && this.progress.coins >= this.decorUpgradeCost(),

@@ -7,12 +7,14 @@ export class RestaurantManager {
     this.progress = readProgress();
     this.order = null;
     this.served = 0;
-    this.shiftTarget = 5;
+    this.shiftTarget = 5 + (this.progress.barLevel - 1) * 2;
     this.message = "Bem-vindo ao Nexus Sushi Bar.";
     this.closed = true;
   }
 
   beginShift(caughtFish = []) {
+    this.progress = readProgress();
+    this.shiftTarget = 5 + (this.progress.barLevel - 1) * 2;
     caughtFish.forEach(fish => {
       const id = fish.id;
       this.progress.fishStock[id] = (this.progress.fishStock[id] || 0) + 1;
@@ -66,6 +68,7 @@ export class RestaurantManager {
     this.progress.coins += item.price;
     this.progress.reputation += 1;
     this.served += 1;
+    this.progress.customersServed += 1;
     this.message = `Pedido servido! +${item.price} moedas · ${item.name}`;
     this.save();
     if (this.served >= this.shiftTarget) {
@@ -77,6 +80,29 @@ export class RestaurantManager {
     }
     this.emit();
     return true;
+  }
+
+  barUpgradeCost() { return 100 * this.progress.barLevel; }
+
+  gearUpgradeCost() { return 80 * this.progress.equipmentLevel; }
+
+  upgradeBar() {
+    const cost = this.barUpgradeCost();
+    if (this.progress.barLevel >= 5 || this.progress.coins < cost) return false;
+    this.progress.coins -= cost;
+    this.progress.barLevel += 1;
+    this.shiftTarget = 5 + (this.progress.barLevel - 1) * 2;
+    this.message = `O bar subiu para o nível ${this.progress.barLevel}! Mais clientes chegarão à casa.`;
+    this.save(); this.emit(); return true;
+  }
+
+  upgradeGear() {
+    const cost = this.gearUpgradeCost();
+    if (this.progress.equipmentLevel >= 5 || this.progress.coins < cost) return false;
+    this.progress.coins -= cost;
+    this.progress.equipmentLevel += 1;
+    this.message = `Equipamento de pesca nível ${this.progress.equipmentLevel}! Mais autonomia e capacidade.`;
+    this.save(); this.emit(); return true;
   }
 
   restockTea() {
@@ -109,6 +135,12 @@ export class RestaurantManager {
     return {
       coins: this.progress.coins,
       canRestockTea: this.progress.coins >= 30,
+      canUpgradeBar: this.progress.barLevel < 5 && this.progress.coins >= this.barUpgradeCost(),
+      canUpgradeGear: this.progress.equipmentLevel < 5 && this.progress.coins >= this.gearUpgradeCost(),
+      barUpgradeCost: this.barUpgradeCost(),
+      gearUpgradeCost: this.gearUpgradeCost(),
+      barLevel: this.progress.barLevel,
+      equipmentLevel: this.progress.equipmentLevel,
       reputation: this.progress.reputation,
       day: this.progress.day,
       fishStock: { ...this.progress.fishStock },

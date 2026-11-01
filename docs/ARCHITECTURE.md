@@ -9,7 +9,8 @@ The game is a static web application. GitHub Pages serves the HTML, CSS and nati
 - `index.html`: semantic page structure and game overlays.
 - `css/style.css`: visual system, responsive layout and touch target sizing.
 - `js/main.js`: DOM integration, HUD updates and screen transitions.
-- `js/game.js`: game loop, world update, rules and Canvas drawing.
+- `js/game.js`: game loop, world simulation, rules and game lifecycle.
+- `js/core/renderer.js`: Canvas rendering for the underwater world and game entities.
 - `js/core/input.js`: keyboard and pointer input lifecycle.
 - `js/core/storage.js`: guarded persistence access and session fallback.
 - `js/core/canvas.js`: logical canvas dimensions, device-pixel-ratio scaling and pixel-art smoothing.

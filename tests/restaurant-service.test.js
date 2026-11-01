@@ -150,3 +150,16 @@ test("specialty menu unlocks follow fishing and bar progression", () => {
   assert.ok(ids.includes("koi-signature"));
   assert.ok(ids.includes("yuzu-tea"));
 });
+
+
+test("customer satisfaction rating reflects successful service and walkouts", () => {
+  const manager = setup();
+  let state = manager.getState();
+  assert.equal(state.satisfaction, 100);
+  assert.equal(state.rating, 5);
+  manager.shiftStats.served = 3;
+  manager.shiftStats.lost = 1;
+  state = manager.getState();
+  assert.equal(state.satisfaction, 75);
+  assert.equal(state.rating, 4);
+});

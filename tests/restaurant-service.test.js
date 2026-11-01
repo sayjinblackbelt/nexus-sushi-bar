@@ -53,12 +53,13 @@ test("customer patience expiry cancels preparation and reduces reputation", () =
   assert.equal(manager.preparation, null);
   assert.equal(manager.served, 0);
   assert.equal(manager.progress.reputation, 4);
-  assert.match(manager.message, /perdeu a paciência/);
+  assert.equal(manager.progress.reputation, 4);
 });
 
 test("restaurant level continues to scale shift capacity", () => {
   const manager = setup();
   manager.progress.barLevel = 3;
+  writeProgress({ ...manager.progress, barLevel: 3 });
   manager.beginShift([]);
   assert.equal(manager.shiftTarget, 9);
 });

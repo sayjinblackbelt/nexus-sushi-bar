@@ -133,10 +133,16 @@ Save integrity, ingredient restocking, settings, control preferences, reduced mo
 - CI syntax checks include the audio module and balance test suite.
 - Economy values and acceptance thresholds are documented for release review.
 
-### V2.0 — Complete core experience
-Dive, collect ingredients, return, manage stock, open the Zen cyberpunk sushi and tea bar, fulfill orders, earn revenue, improve equipment and restaurant, unlock content and repeat.
+### V2.0 — Complete core experience (implemented; real-device acceptance pending)
+- Integrated day/night loop: dive, collect fish, return, transfer stock, serve guests and begin the next expedition.
+- Three biomes, seven fish species, rarity-weighted spawning, quality bonuses and equipment specializations.
+- Staged sushi and tea recipes, kitchen stations, expanded menu and progression-based unlocks.
+- Customer queue, preferences, patience, tips, VIP nights, Lantern Festival, décor and satisfaction reporting.
+- Version 9 save schema with legacy normalization, persistent settings and progression.
+- Automated syntax, gameplay, economy, recipe and migration regression tests.
+- README, balance reference and release checklist updated.
 
-## V1.9 acceptance criteria
+## V2.0 acceptance criteria\n\n- [x] The core dive-to-restaurant loop is connected end to end in code.\n- [x] Progression, inventory, upgrades and preferences persist through the versioned save.\n- [x] Automated checks cover recipes, economy, progression and save normalization.\n- [x] README, roadmap, balance reference and release notes describe the current build.\n- [ ] Verify the full loop on desktop and iPhone/iPad browsers.\n- [ ] Confirm GitHub Pages runtime behavior after deployment.\n\n## V1.9 acceptance criteria
 
 - [x] Legacy save data normalizes to the current schema.
 - [x] Invalid and negative progression values are clamped safely.

@@ -39,11 +39,13 @@ Serve the project through a local static web server, then open index.html. Nativ
     │   ├── main.js
     │   ├── game.js
     │   ├── core/
+    │   │   ├── canvas.js
     │   │   ├── input.js
     │   │   └── storage.js
     │   └── data/
     │       └── fish.js
     └── docs/
+        ├── ARCHITECTURE.md
         └── ROADMAP.md
 
 ## Roadmap

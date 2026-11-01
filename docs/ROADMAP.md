@@ -82,8 +82,16 @@ Save integrity, ingredient restocking, settings, control preferences, reduced mo
 - Three-fish mission and species journal connect exploration to restaurant supply.
 - Save schema v6 preserves backward migration and tutorial state.
 
-### V1.1–V1.3 — Fishing progression
-Fish rarity and habitats, ingredient quality, recipe requirements, equipment upgrades and exploration objectives.
+### V1.1 — Rarity-weighted marine life (implemented; device QA pending)
+- Species now spawn according to rarity weights instead of cycling evenly.
+- Legendary species are meaningfully rarer than common species.
+- Fishing XP rewards scale with catch rarity: 10 / 15 / 22 / 32 / 45.
+
+### V1.2 — Catch quality and supply chain (planned)
+Freshness, catch condition and quality-aware ingredient stock.
+
+### V1.3 — Advanced expedition progression (planned)
+Equipment specializations, biome challenges and mastery objectives.
 
 ### V1.4–V1.6 — Full sushi and tea restaurant
 Complete day/night transition, recipe preparation, customer queue, preferences, tea ritual, restaurant upgrades, décor, reputation and daily reports.
@@ -93,6 +101,12 @@ More biomes, recipes, teas and customers; seasonal events; audio; economy balanc
 
 ### V2.0 — Complete core experience
 Dive, collect ingredients, return, manage stock, open the Zen cyberpunk sushi and tea bar, fulfill orders, earn revenue, improve equipment and restaurant, unlock content and repeat.
+
+## V1.1 acceptance criteria
+
+- [x] Fish spawn probabilities respect rarity weights.
+- [x] Legendary fish are rarer than common species.
+- [x] Fishing XP scales with rarity.
 
 ## V1.0 acceptance criteria
 

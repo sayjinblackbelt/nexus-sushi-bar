@@ -129,3 +129,22 @@ test("expanded menu includes rare-fish dishes and additional teas", () => {
   for (const id of ["puffer-tempura", "moonfish-sashimi", "lantern-nigiri", "koi-signature", "genmaicha", "yuzu-tea"]) assert.ok(ids.includes(id));
   assert.ok((manager.progress.teaStock.genmaicha || 0) >= 0);
 });
+
+
+test("specialty menu unlocks follow fishing and bar progression", () => {
+  const manager = setup();
+  let ids = manager.availableItems().map(item => item.id);
+  assert.ok(!ids.includes("moonfish-sashimi"));
+  assert.ok(!ids.includes("genmaicha"));
+  manager.progress.fishingXP = 200;
+  manager.progress.barLevel = 2;
+  ids = manager.availableItems().map(item => item.id);
+  assert.ok(ids.includes("moonfish-sashimi"));
+  assert.ok(ids.includes("genmaicha"));
+  assert.ok(!ids.includes("koi-signature"));
+  manager.progress.fishingXP = 400;
+  manager.progress.barLevel = 3;
+  ids = manager.availableItems().map(item => item.id);
+  assert.ok(ids.includes("koi-signature"));
+  assert.ok(ids.includes("yuzu-tea"));
+});

@@ -1,8 +1,9 @@
+import{configureCanvas}from"./core/canvas.js";
 import{createSchool}from"./data/fish.js";
 import{readNumber,writeNumber}from"./core/storage.js";
 const W=960,H=540,MAX_CATCH=8,SPEED=190;
 export class OceanGame{
-constructor(canvas,callbacks={}){this.canvas=canvas;this.ctx=canvas.getContext("2d");this.callbacks=callbacks;this.keys=new Set();this.running=false;this.player={x:105,y:270,facing:1,bob:0};this.oxygen=100;this.coins=readNumber("nexus-coins",0);this.bestCatch=readNumber("nexus-best-catch",0);this.catch=[];this.fish=createSchool(W,H);this.lastTime=0;this.elapsed=0;this.nearbyFish=null;this.render();this.updateHud();}
+constructor(canvas,callbacks={}){this.canvas=canvas;this.ctx=configureCanvas(canvas,W,H);this.callbacks=callbacks;this.keys=new Set();this.running=false;this.player={x:105,y:270,facing:1,bob:0};this.oxygen=100;this.coins=readNumber("nexus-coins",0);this.bestCatch=readNumber("nexus-best-catch",0);this.catch=[];this.fish=createSchool(W,H);this.lastTime=0;this.elapsed=0;this.nearbyFish=null;this.render();this.updateHud();}
 resetDive(){if(this.running)return;this.oxygen=100;this.catch=[];this.fish.forEach(f=>{f.caught=false;});this.player.x=105;this.player.y=270;this.player.facing=1;this.nearbyFish=null;this.keys.clear();this.render();this.updateHud();}
 start(){if(this.running)return;this.running=true;this.lastTime=performance.now();this.callbacks.onStart?.();requestAnimationFrame(t=>this.loop(t));}
 loop(t){if(!this.running)return;const dt=Math.max(0,Math.min((t-this.lastTime)/1000,.04));this.lastTime=t;this.elapsed+=dt;this.update(dt);this.render();requestAnimationFrame(n=>this.loop(n));}

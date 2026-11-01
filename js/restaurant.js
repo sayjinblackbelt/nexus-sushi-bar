@@ -1,4 +1,4 @@
-import { RESTAURANT_MENU, TEA_STOCK_START, CUSTOMER_NAMES } from "./data/menu.js";
+import { RESTAURANT_MENU, CUSTOMER_NAMES } from "./data/menu.js";
 import { readProgress, writeProgress } from "./core/storage.js";
 
 export class RestaurantManager {
@@ -17,9 +17,6 @@ export class RestaurantManager {
       const id = fish.id;
       this.progress.fishStock[id] = (this.progress.fishStock[id] || 0) + 1;
     });
-    if (!Object.values(this.progress.teaStock).some(Boolean)) {
-      this.progress.teaStock = { ...TEA_STOCK_START };
-    }
     this.served = 0;
     this.closed = false;
     this.nextOrder();

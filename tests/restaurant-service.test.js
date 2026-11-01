@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { RestaurantManager } from "../js/restaurant.js";
-import { writeProgress } from "../js/core/storage.js";
+import { readProgress, writeProgress } from "../js/core/storage.js";
 
 function setup() {
   writeProgress({ coins: 0, bestCatch: 0, fishStock: { sardine: 4, clownfish: 2, "blue-tang": 2 }, teaStock: { matcha: 4, hojicha: 4, lotus: 4 }, reputation: 5, day: 1, barLevel: 1, customersServed: 0 });
@@ -96,4 +96,28 @@ test("recipe ingredients are not consumed before all stations finish", () => {
   assert.equal(manager.chooseStation("sushi"), true);
   manager.tick(1.8);
   assert.equal(manager.progress.fishStock.sardine, stockBefore - 1);
+});
+
+
+test("every fifth night opens a VIP event with a premium tip", () => {
+  const manager = setup();
+  manager.progress.day = 5;
+  writeProgress(manager.progress);
+  manager.beginShift([]);
+  assert.equal(manager.order.vip, true);
+  manager.order = { itemId: "matcha", customer: "Visitante VIP", itemName: "Matcha Sereno", favorites: ["matcha"], vip: true };
+  manager.patienceMax = 40; manager.patience = 40;
+  manager.serve("matcha");
+  assert.equal(manager.progress.coins, 20);
+  assert.equal(manager.shiftStats.served, 1);
+  assert.equal(manager.shiftStats.tips, 8);
+});
+
+test("décor upgrade costs coins and persists its level", () => {
+  const manager = setup();
+  manager.progress.coins = 120;
+  assert.equal(manager.upgradeDecor(), true);
+  assert.equal(manager.progress.decorLevel, 2);
+  assert.equal(manager.progress.coins, 0);
+  assert.equal(readProgress().decorLevel, 2);
 });

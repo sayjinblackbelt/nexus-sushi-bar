@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { fishingLevel, fishingRank, barShiftTarget, equipmentStats, CHARACTERS } from "../js/progression.js";
 import { RestaurantManager } from "../js/restaurant.js";
 import { writeProgress } from "../js/core/storage.js";
+import { chooseFishSpecies, FISH_SPECIES } from "../js/data/fish.js";
 
 test("fishing progression unlocks five ranks at 100 XP intervals", () => {
   assert.equal(fishingLevel(0), 1);
@@ -51,4 +52,24 @@ test("first-dive tutorial completion is persisted without resetting progression"
   assert.equal(readProgress().tutorialComplete, true);
   assert.equal(readProgress().coins, 45);
   assert.equal(readProgress().decorLevel, 2);
+});
+
+
+test("fish rarity weights make legendary species substantially less common", () => {
+  const pool = FISH_SPECIES.filter(species => species.biomes.includes("abyss"));
+  const common = pool.find(species => species.rarity === "rare");
+  const legendary = pool.find(species => species.rarity === "legendary");
+  const total = pool.reduce((sum, species) => sum + species.spawnWeight, 0);
+  const threshold = (common.spawnWeight + pool.slice(0, pool.indexOf(common)).reduce((sum, species) => sum + species.spawnWeight, 0)) / total;
+  assert.equal(chooseFishSpecies(pool, () => 0), pool[0]);
+  assert.equal(chooseFishSpecies(pool, () => .999), legendary);
+  assert.ok(legendary.spawnWeight < common.spawnWeight);
+  assert.ok(threshold > 0);
+});
+
+test("rare catches award more fishing experience than common catches", () => {
+  const commonXP = { common: 10, uncommon: 15, rare: 22, epic: 32, legendary: 45 };
+  assert.ok(commonXP.legendary > commonXP.epic);
+  assert.ok(commonXP.epic > commonXP.rare);
+  assert.ok(commonXP.rare > commonXP.common);
 });

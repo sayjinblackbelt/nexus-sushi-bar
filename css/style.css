@@ -101,3 +101,71 @@ button{ -webkit-user-select:none; user-select:none; }
   .action-controls .catch-button,.action-controls .surface-button{min-height:32px;font-size:9px}
   .hud-card{padding:3px 6px}
 }
+
+
+/* Restaurant phase — Zen hospitality in a neon city */
+.restaurant-panel{margin-top:16px;padding:clamp(12px,2vw,22px);border:1px solid rgba(255,79,163,.35);border-radius:18px;background:linear-gradient(145deg,#11152fef,#20183bef);box-shadow:0 20px 65px rgba(4,7,24,.5)}
+.restaurant-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.restaurant-heading h1{font-size:clamp(22px,3.6vw,32px)}
+.restaurant-balance{padding:9px 13px;border:1px solid #37e6e066;border-radius:99px;color:#b7fff8;font:11px "DM Mono",monospace;white-space:nowrap}
+.restaurant-balance span{color:#ffb86b}
+.restaurant-scene{position:relative;overflow:hidden;border:2px solid #9b5de5;border-radius:12px;background:#090d22;box-shadow:0 0 24px #9b5de522}
+.restaurant-scene canvas{display:block;width:100%;height:auto;image-rendering:pixelated}
+.scene-caption{position:absolute;left:12px;bottom:10px;padding:5px 9px;border:1px solid #37e6e066;border-radius:6px;background:#090d22d9;color:#b8f7f0;font:9px "DM Mono",monospace}
+.restaurant-workspace{display:grid;grid-template-columns:minmax(180px,1fr) minmax(300px,1.5fr) minmax(170px,.8fr);gap:12px;margin-top:12px}
+.order-card,.menu-card,.stock-card{padding:14px;border:1px solid #9b5de566;border-radius:11px;background:#11152fe8;min-width:0}
+.order-card h2,.menu-card h2{margin:2px 0 8px;font-size:18px}
+.order-card>p:not(.eyebrow){font-size:13px;color:#e4dafa;line-height:1.45}
+.restaurant-feedback{min-height:38px;color:#8ce8d9!important;font-size:11px!important}
+.shift-progress{height:6px;border-radius:99px;background:#282548;overflow:hidden;margin:10px 0 5px}
+.shift-progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,#37e6e0,#ff4fa3);transition:width .25s}
+.order-card small,.stock-card{font:10px "DM Mono",monospace;color:#b8b5d9}
+.menu-heading{display:flex;align-items:center;justify-content:space-between}
+.zen-mark{display:grid;place-items:center;width:34px;height:34px;border:1px solid #ff4fa3;border-radius:50%;color:#ff80bd;font-size:21px;box-shadow:0 0 13px #ff4fa344}
+.menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.menu-item{display:flex;align-items:center;justify-content:space-between;gap:6px;min-height:45px;padding:7px 9px;border:1px solid #37e6e066;border-radius:8px;background:#192247;color:#f4e8cc;text-align:left;cursor:pointer;touch-action:manipulation}
+.menu-item strong{display:block;font-size:11px}
+.menu-item small{display:block;margin-top:3px;color:#93b9c7;font:9px "DM Mono",monospace}
+.menu-item b{color:#ffb86b;font:11px "DM Mono",monospace;white-space:nowrap}
+.menu-item:disabled{opacity:.38;filter:grayscale(.7);cursor:not-allowed}
+.menu-item:not(:disabled):active{transform:scale(.98);border-color:#ff4fa3}
+.stock-card #restaurant-stock{display:grid;gap:8px;margin:10px 0}
+.stock-row{display:flex;justify-content:space-between;gap:6px;color:#d8d4ed}
+.stock-row span:last-child{color:#37e6e0}
+.stock-footer{display:flex;justify-content:space-between;padding-top:9px;border-top:1px solid #9b5de544;color:#b8b5d9}
+.stock-footer strong{color:#ffb86b}
+.secondary-button{width:100%;margin-top:8px;padding:10px;border:1px solid #37e6e0;border-radius:8px;background:#192247;color:#d9fffa;font-size:11px;font-weight:800;cursor:pointer}
+.next-dive-button{margin-top:12px;background:#ff4fa3;color:#170d25;box-shadow:0 3px 0 #9d386f;font-size:11px;padding:10px}
+#open-bar-button{margin-top:10px;background:linear-gradient(90deg,#37e6e0,#ff4fa3);color:#10132b;box-shadow:0 4px 0 #6b427d}
+#continue-button{font-size:11px}
+@media(max-width:760px){
+ .restaurant-workspace{grid-template-columns:1fr 1fr}
+ .menu-card{grid-column:1/-1;grid-row:1}
+ .order-card{grid-column:1;grid-row:2}
+ .stock-card{grid-column:2;grid-row:2}
+}
+@media(max-width:480px){
+ .restaurant-panel{padding:10px;border-radius:13px}
+ .restaurant-heading h1{font-size:20px}
+ .restaurant-balance{font-size:9px;padding:7px 9px}
+ .restaurant-workspace{grid-template-columns:1fr;gap:8px}
+ .menu-card,.order-card,.stock-card{grid-column:1;grid-row:auto;padding:11px}
+ .menu-grid{grid-template-columns:1fr 1fr}
+ .menu-item{min-height:48px;padding:6px}
+ .menu-item strong{font-size:10px}
+ .scene-caption{font-size:8px}
+}
+@media(orientation:landscape) and (max-height:600px) and (pointer:coarse){
+ .restaurant-panel{padding:8px;margin-top:6px}
+ .restaurant-heading{margin-bottom:6px}
+ .restaurant-heading h1{font-size:18px}
+ .restaurant-scene canvas{height:min(42dvh,210px);width:auto;max-width:100%;margin:auto}
+ .restaurant-workspace{grid-template-columns:minmax(150px,1fr) minmax(260px,1.6fr) minmax(130px,.8fr);gap:7px;margin-top:7px}
+ .order-card,.menu-card,.stock-card{padding:8px}
+ .order-card h2,.menu-card h2{font-size:14px}
+ .menu-grid{gap:4px}
+ .menu-item{min-height:35px;padding:4px 6px}
+ .menu-item strong{font-size:9px}
+ .menu-item small,.menu-item b{font-size:8px}
+ .stock-card{font-size:8px}
+}

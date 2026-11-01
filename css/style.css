@@ -226,3 +226,7 @@ button{ -webkit-user-select:none; user-select:none; }
 .station-button{min-height:38px;padding:7px;border:1px solid #37e6e077;border-radius:7px;background:#102f46;color:#d8f7ed;font-size:9px;cursor:pointer}
 .station-button.station-required{border-color:#ffb86b;background:#3c3040;color:#fff1d7;box-shadow:0 0 12px #ffb86b33}
 .station-button:disabled{opacity:.35;cursor:not-allowed}
+
+/* V0.9 — hospitality events, décor progression and shift analytics */
+.shift-analytics{margin:9px 0;padding:8px;border:1px solid #9b5de555;border-radius:7px;background:#171b3d;color:#b9d7df;font:9px/1.5 "DM Mono",monospace}
+#upgrade-decor-button:disabled{opacity:.4;cursor:not-allowed}

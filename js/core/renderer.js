@@ -13,18 +13,18 @@ export class OceanRenderer {
     this.elapsed = game.elapsed;
     const c = this.ctx;
     c.clearRect(0, 0, this.width, this.height);
-    this.drawOcean(c);
+    this.drawOcean(c,game.biome);
     this.drawDecor(c, game.elapsed);
     game.fish.forEach(f => { if (!f.caught) this.drawFish(c, f, game.elapsed); });
     this.drawParticles(c, game.particles);
     this.drawPlayer(c, game.player, game.elapsed, game.character);
     if (game.nearbyFish && game.running) this.drawPrompt(c, game.player);
-    this.drawSurfaceHint(c);
+    this.drawSurfaceHint(c,game.biome);
   }
 
-  drawOcean(c){
-    const g=c.createLinearGradient(0,0,0,H);
-    g.addColorStop(0,"#55b7b5");g.addColorStop(.2,"#217f91");g.addColorStop(.58,"#14536f");g.addColorStop(1,"#0b2947");
+  drawOcean(c,biome){
+    const g=c.createLinearGradient(0,0,0,H);const colors=biome?.colors||["#55b7b5","#217f91","#14536f","#0b2947"];
+    g.addColorStop(0,colors[0]);g.addColorStop(.2,colors[1]);g.addColorStop(.58,colors[2]);g.addColorStop(1,colors[3]);
     c.fillStyle=g;c.fillRect(0,0,W,H);
     const glow=c.createRadialGradient(W*.52,0,5,W*.52,0,430);
     glow.addColorStop(0,"rgba(190,255,225,.25)");glow.addColorStop(1,"rgba(30,130,160,0)");
@@ -64,5 +64,5 @@ export class OceanRenderer {
   drawPlayer(c,player,elapsed=0,character="kai"){const p=player;if(this.assets.diver.complete&&this.assets.diver.naturalWidth){const row=p.catchTimer>0?2:(p.moving?1:0);const frame=p.catchTimer>0?Math.min(3,Math.floor((.48-p.catchTimer)/.12)):Math.floor(elapsed*(p.moving?10:3))%4;c.save();c.translate(Math.round(p.x),Math.round(p.y+Math.sin(p.bob)*2));c.scale(p.facing,1);c.drawImage(this.assets.diver,frame*48,row*48,48,48,-24,-24,48,48);if(character==="yuna"){c.fillStyle="#ff4fa3";c.fillRect(-9,-22,13,4);c.fillRect(9,-17,4,8);c.fillStyle="#ffb86b";c.fillRect(-5,-21,4,2);}else{c.fillStyle="#37e6e0";c.fillRect(-8,-22,14,3);c.fillStyle="#f4e8cc";c.fillRect(5,-21,3,2);}c.restore();return;}c.save();c.translate(Math.round(p.x),Math.round(p.y+Math.sin(p.bob)*2));c.scale(p.facing,1);c.fillStyle="#e98c65";c.fillRect(-18,4,10,7);c.fillStyle="#e8c78f";c.fillRect(-8,-9,17,19);c.fillStyle="#f4e8cc";c.fillRect(0,-14,13,13);c.fillStyle="#74c6c4";c.fillRect(5,-11,8,7);c.fillStyle="#24485b";c.fillRect(9,-9,2,2);c.fillStyle="#e98c65";c.fillRect(-5,9,7,9);c.fillRect(7,9,7,9);c.fillStyle="#f4e8cc";c.fillRect(-7,17,10,4);c.fillRect(6,17,10,4);c.fillStyle="#5b9d9a";c.fillRect(-12,-5,5,12);c.restore();}
   drawPrompt(c,player){c.fillStyle="#102f46";c.fillRect(player.x-76,player.y-49,152,22);c.fillStyle="#f4e8cc";c.font="bold 12px monospace";c.textAlign="center";c.fillText("E  CAPTURAR PEIXE",player.x,player.y-34);}
   drawParticles(c,particles=[]){for(const p of particles){const alpha=Math.max(0,p.life/(p.maxLife||.7));c.globalAlpha=alpha;c.fillStyle="#b9f5ed";c.fillRect(Math.round(p.x),Math.round(p.y),4,4);}c.globalAlpha=1;}
-  drawSurfaceHint(c){c.fillStyle="rgba(8,35,51,.35)";c.fillRect(0,0,W,38);c.fillStyle="#d3eee0";c.font="11px monospace";c.textAlign="left";c.fillText("↓ LAGOA AZUL",18,24);c.textAlign="right";c.fillText("PROFUNDIDADE  ·  12 M",W-18,24);}
+  drawSurfaceHint(c,biome){c.fillStyle="rgba(8,20,42,.48)";c.fillRect(0,0,W,38);c.fillStyle="#d3eee0";c.font="11px monospace";c.textAlign="left";c.fillText(`↓ ${biome?.name?.toUpperCase()||"LAGOA AZUL"}`,18,24);c.textAlign="right";c.fillText(`PROFUNDIDADE  ·  ${biome?.depth||"12 M"}`,W-18,24);}
 }

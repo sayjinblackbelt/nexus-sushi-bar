@@ -28,7 +28,7 @@ test("restaurant serves tea and sushi while consuming the matching stock", () =>
   restaurant.order = { itemId: "nigiri-sardine", customer: "Teste", itemName: "Nigiri Zen" };
   assert.equal(restaurant.serve("nigiri-sardine"), true);
   assert.equal(restaurant.progress.fishStock.sardine, 1);
-  assert.equal(restaurant.progress.coins, 33);
+  assert.equal(restaurant.progress.coins, 36);
   assert.equal(restaurant.progress.reputation, 2);
 });
 

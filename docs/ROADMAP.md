@@ -63,8 +63,15 @@ Save integrity, ingredient restocking, settings, control preferences, reduced mo
 - Patience meter, service tips for fast delivery and reputation loss when a customer leaves.
 - Shift progression and customer service counts remain connected to restaurant level.
 
-### V0.8–V0.9 — Restaurant depth
-More recipes, kitchen stations, ingredient quality, customer events, decorations and service analytics.
+### V0.8 — Kitchen stations and recipes (implemented; device QA pending)
+- Sushi and tea orders use multi-stage recipes.
+- Dedicated rice, sushi, kettle and tea stations.
+- Correct station selection is required before each timed stage.
+- Ingredient stock is consumed only after the full recipe is completed.
+- Wrong stations are rejected; patience continues during preparation.
+
+### V0.9 — Restaurant operations (planned)
+Ingredient quality, VIP/customer events, décor effects and service analytics.
 
 ### V1.0 — Complete exploration baseline
 Tutorial, underwater objectives, balanced catch economy, persistent inventory and mobile/desktop quality gates.
@@ -80,6 +87,14 @@ More biomes, recipes, teas and customers; seasonal events; audio; economy balanc
 
 ### V2.0 — Complete core experience
 Dive, collect ingredients, return, manage stock, open the Zen cyberpunk sushi and tea bar, fulfill orders, earn revenue, improve equipment and restaurant, unlock content and repeat.
+
+## V0.8 acceptance criteria
+
+- [x] Sushi and tea recipes have ordered preparation stages.
+- [x] Each stage requires its matching kitchen station.
+- [x] Wrong stations cannot advance a recipe.
+- [x] Ingredients are consumed only after the final stage.
+- [x] Customer patience remains active during station work.
 
 ## V0.7 acceptance criteria
 

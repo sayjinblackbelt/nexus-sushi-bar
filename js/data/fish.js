@@ -8,6 +8,7 @@ export const FISH_SPECIES=[
 {id:"lanternfish",name:"Lanternfish",value:30,rarity:"epic",spawnWeight:1,biomes:["reef","abyss"],color:"#70e8dc",size:25,speed:46,unlockLevel:4},
 {id:"koi-ray",name:"Koi Ray",value:42,rarity:"legendary",spawnWeight:.35,biomes:["abyss"],color:"#ff9acb",size:34,speed:31,unlockLevel:5}
 ];
+export function catchQuality(oxygen){if(oxygen>70)return {id:"premium",label:"Impecável",multiplier:1.25};if(oxygen>35)return {id:"fresh",label:"Fresco",multiplier:1.1};return {id:"standard",label:"Regular",multiplier:1};}
 export function chooseFishSpecies(pool,random=Math.random){const total=pool.reduce((sum,species)=>sum+(species.spawnWeight||1),0);let roll=random()*total;for(const species of pool){roll-=species.spawnWeight||1;if(roll<0)return species;}return pool[pool.length-1];}
 export function createFish(species,x,y){return {...species,x,y,direction:Math.random()>.5?1:-1,phase:Math.random()*Math.PI*2,caught:false};}
 export function createSchool(width,height,count=17,level=1,biomeId="lagoon"){const unlocked=FISH_SPECIES.filter(species=>(species.unlockLevel||1)<=level&&species.biomes.includes(getBiome(biomeId).id));const pool=unlocked.length?unlocked:[FISH_SPECIES[0]];return Array.from({length:count},()=>createFish(chooseFishSpecies(pool),100+Math.random()*(width-160),110+Math.random()*(height-190)));}

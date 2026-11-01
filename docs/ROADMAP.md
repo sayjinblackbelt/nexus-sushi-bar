@@ -122,14 +122,22 @@ Save integrity, ingredient restocking, settings, control preferences, reduced mo
 - Restaurant scene receives a warmer event lighting treatment.
 - VIP night and festival schedules do not conflict.
 
-### V1.8 — Accessibility and feedback (planned)
-Audio controls, reduced motion and clearer interaction feedback.
+### V1.8 — Accessibility and feedback (implemented; device QA pending)
+- Optional synthesized sound effects with a persistent on/off setting.
+- Reduced-motion preference persists and suppresses CSS animation/transition motion.
+- Audio initialization is lazy and failure-safe; gameplay never depends on sound.
 
 ### V1.9 — Economy and regression polish (planned)
 Balance review, save migration checks and full regression coverage.
 
 ### V2.0 — Complete core experience
 Dive, collect ingredients, return, manage stock, open the Zen cyberpunk sushi and tea bar, fulfill orders, earn revenue, improve equipment and restaurant, unlock content and repeat.
+
+## V1.8 acceptance criteria
+
+- [x] Sound can be enabled or disabled and the choice persists.
+- [x] Reduced-motion preference persists and applies globally to UI motion.
+- [x] Audio failure or browser restrictions never block gameplay.
 
 ## V1.7 acceptance criteria
 

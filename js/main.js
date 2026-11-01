@@ -7,7 +7,7 @@ const $=s=>document.querySelector(s),oxygenValue=$("#oxygen-value"),oxygenBar=$(
 function showToast(message){toast.textContent=message;toast.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove("show"),1800);}
 const restaurantPanel=$("#restaurant-panel"),gamePanel=document.querySelector(".game-panel"),barCanvas=$("#restaurant-scene"),barContext=configureCanvas(barCanvas,960,540),barRenderer=new BarRenderer(barContext,960,540);
 function renderRestaurantUI(state){
-  $("#restaurant-coins").textContent=state.coins;$("#restaurant-reputation").textContent=state.reputation;
+  $("#restaurant-coins").textContent=state.coins;$("#restaurant-reputation").textContent=state.reputation;$("#restaurant-night").textContent=`NOITE ${String(state.day).padStart(2,"0")} · HOSPITALIDADE ZEN`;$("#restock-tea-button").disabled=!state.canRestockTea;
   $("#customer-name").textContent=state.order?state.order.customer:"Turno encerrado";
   $("#customer-order").textContent=state.order?`Pedido: ${state.order.itemName}`:"Todos os clientes foram atendidos.";
   $("#restaurant-feedback").textContent=state.message;
@@ -40,6 +40,7 @@ $("#open-bar-button").addEventListener("click",()=>{
   restaurant.beginShift(lastDiveFish);restaurantElapsed=0;
   cancelAnimationFrame(restaurantFrame);animateRestaurant();
 });
+$("#restock-tea-button").addEventListener("click",()=>restaurant.restockTea());
 $("#next-dive-button").addEventListener("click",()=>{
   const progress=restaurant.progress;progress.day+=1;restaurant.save();
   cancelAnimationFrame(restaurantFrame);restaurantPanel.hidden=true;gamePanel.hidden=false;

@@ -121,3 +121,11 @@ test("décor upgrade costs coins and persists its level", () => {
   assert.equal(manager.progress.coins, 0);
   assert.equal(readProgress().decorLevel, 2);
 });
+
+
+test("expanded menu includes rare-fish dishes and additional teas", () => {
+  const manager = setup();
+  const ids = manager.getState().menu.map(item => item.id);
+  for (const id of ["puffer-tempura", "moonfish-sashimi", "lantern-nigiri", "koi-signature", "genmaicha", "yuzu-tea"]) assert.ok(ids.includes(id));
+  assert.ok(manager.progress.teaStock.genmaicha >= 0);
+});

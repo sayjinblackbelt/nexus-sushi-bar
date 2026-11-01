@@ -87,8 +87,11 @@ Save integrity, ingredient restocking, settings, control preferences, reduced mo
 - Legendary species are meaningfully rarer than common species.
 - Fishing XP rewards scale with catch rarity: 10 / 15 / 22 / 32 / 45.
 
-### V1.2 — Catch quality and supply chain (planned)
-Freshness, catch condition and quality-aware ingredient stock.
+### V1.2 — Catch quality (implemented; device QA pending)
+- Catch condition reflects remaining oxygen: Impecável, Fresco or Regular.
+- Premium and fresh catches grant a coin multiplier bonus.
+- Quality totals persist in the save and are independent from species discovery.
+- Expedition summary reports quality bonus separately from base catch value.
 
 ### V1.3 — Advanced expedition progression (planned)
 Equipment specializations, biome challenges and mastery objectives.
@@ -101,6 +104,13 @@ More biomes, recipes, teas and customers; seasonal events; audio; economy balanc
 
 ### V2.0 — Complete core experience
 Dive, collect ingredients, return, manage stock, open the Zen cyberpunk sushi and tea bar, fulfill orders, earn revenue, improve equipment and restaurant, unlock content and repeat.
+
+## V1.2 acceptance criteria
+
+- [x] Catch quality is determined by oxygen remaining at capture.
+- [x] Premium and fresh catches grant transparent value bonuses.
+- [x] Quality totals persist across sessions.
+- [x] Base catch value, quality bonus and mission reward remain separate in the summary.
 
 ## V1.1 acceptance criteria
 

@@ -42,7 +42,7 @@ $("#open-bar-button").addEventListener("click",()=>{
 });
 $("#restock-tea-button").addEventListener("click",()=>restaurant.restockTea());
 $("#next-dive-button").addEventListener("click",()=>{
-  const progress=restaurant.progress;progress.day+=1;restaurant.save();
+  const progress=restaurant.progress;progress.day+=1;restaurant.save();game.coins=progress.coins;game.updateHud();
   cancelAnimationFrame(restaurantFrame);restaurantPanel.hidden=true;gamePanel.hidden=false;
   game.resetDive();game.start();
 });

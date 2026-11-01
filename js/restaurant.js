@@ -14,6 +14,7 @@ export class RestaurantManager {
     this.preparation = null;
     this.clock = 0;
     this.customerSerial = 0;
+    this.shiftStats = { served: 0, lost: 0, revenue: 0, tips: 0 };
     this.patienceMax = 1;
   }
 
@@ -25,6 +26,8 @@ export class RestaurantManager {
       this.progress.fishStock[id] = (this.progress.fishStock[id] || 0) + 1;
     });
     this.served = 0;
+    this.customerSerial = 0;
+    this.shiftStats = { served: 0, lost: 0, revenue: 0, tips: 0 };
     this.closed = false;
     this.queue = [];
     this.preparation = null;
@@ -37,7 +40,8 @@ export class RestaurantManager {
   createCustomer() {
     const profile = CUSTOMER_PROFILES[Math.floor(Math.random() * CUSTOMER_PROFILES.length)];
     this.customerSerial += 1;
-    return { name: profile.name, favorites: [...profile.favorites], patience: profile.patience + Math.max(0, this.progress.barLevel - 1) * 3 };
+    const vip = this.progress.day % 5 === 0 && this.customerSerial === 1;
+    return { name: vip ? "Visitante VIP" : profile.name, favorites: [...profile.favorites], patience: profile.patience + Math.max(0, this.progress.barLevel - 1) * 3 + (this.progress.decorLevel - 1) * 2 + (vip ? 18 : 0), vip };
   }
 
   availableItems() {
@@ -61,7 +65,7 @@ export class RestaurantManager {
     const preferred = available.filter(item => customer.favorites.includes(item.id));
     const pool = preferred.length ? preferred : available;
     const item = pool[Math.floor(Math.random() * pool.length)];
-    this.order = { itemId: item.id, customer: customer.name, itemName: item.name, favorites: customer.favorites };
+    this.order = { itemId: item.id, customer: customer.name, itemName: item.name, favorites: customer.favorites, vip: !!customer.vip };
     this.patienceMax = customer.patience;
     this.patience = customer.patience;
     this.message = `${customer.name} chegou ao balcão. Preferências: ${customer.favorites.map(id => RESTAURANT_MENU.find(item => item.id === id)?.name).filter(Boolean).join(" ou ")}.`;
@@ -125,6 +129,7 @@ export class RestaurantManager {
     if (this.patience <= 0) {
       const departed = this.order.customer;
       this.progress.reputation = Math.max(0, this.progress.reputation - 1);
+      this.shiftStats.lost += 1;
       this.message = `${departed} perdeu a paciência e foi embora. Reputação -1.`;
       this.preparation = null;
       this.save();
@@ -144,11 +149,14 @@ export class RestaurantManager {
     if (!(stock[stockKey] > 0)) { this.message = "Ingrediente em falta."; this.emit(); return false; }
     stock[stockKey] -= 1;
     const patienceRatio = this.patience / this.patienceMax;
-    const tip = patienceRatio > .65 ? 3 : patienceRatio > .3 ? 1 : 0;
+    const tip = (patienceRatio > .65 ? 3 : patienceRatio > .3 ? 1 : 0) + (this.order.vip ? 5 : 0);
     this.progress.coins += item.price + tip;
     this.progress.reputation += 1;
     this.served += 1;
     this.progress.customersServed += 1;
+    this.shiftStats.served += 1;
+    this.shiftStats.revenue += item.price;
+    this.shiftStats.tips += tip;
     this.message = `Pedido servido! +${item.price} moedas${tip ? ` + ${tip} gorjeta` : ""} · ${item.name}`;
     this.save();
     this.nextOrder();
@@ -163,6 +171,15 @@ export class RestaurantManager {
       this.emit(); return false;
     }
     return this.completeService(itemId);
+  }
+
+  decorUpgradeCost() { return 120 * this.progress.decorLevel; }
+  upgradeDecor() {
+    const cost = this.decorUpgradeCost();
+    if (this.progress.decorLevel >= 3 || this.progress.coins < cost) return false;
+    this.progress.coins -= cost; this.progress.decorLevel += 1;
+    this.message = `Ambiente aprimorado para o nível ${this.progress.decorLevel}. A decoração acolhe melhor os clientes.`;
+    this.save(); this.emit(); return true;
   }
 
   barUpgradeCost() { return 100 * this.progress.barLevel; }
@@ -207,6 +224,8 @@ export class RestaurantManager {
       coins: this.progress.coins, canRestockTea: this.progress.coins >= 30,
       canUpgradeBar: this.progress.barLevel < 5 && this.progress.coins >= this.barUpgradeCost(),
       canUpgradeGear: this.progress.equipmentLevel < 5 && this.progress.coins >= this.gearUpgradeCost(),
+      canUpgradeDecor: this.progress.decorLevel < 3 && this.progress.coins >= this.decorUpgradeCost(),
+      decorLevel: this.progress.decorLevel, decorUpgradeCost: this.decorUpgradeCost(),
       barUpgradeCost: this.barUpgradeCost(), gearUpgradeCost: this.gearUpgradeCost(),
       barLevel: this.progress.barLevel, equipmentLevel: this.progress.equipmentLevel,
       reputation: this.progress.reputation, day: this.progress.day,
@@ -215,7 +234,7 @@ export class RestaurantManager {
       shiftTarget: this.shiftTarget, message: this.message, closed: this.closed,
       menu: RESTAURANT_MENU, stations: KITCHEN_STATIONS, queue: this.queue.map(customer => customer.name),
       patience: this.patience || 0, patienceMax: this.patienceMax || 1,
-      preparation: this.preparation ? { ...this.preparation, steps: this.preparation.steps.map(step => ({ ...step })), currentStep: this.preparation.steps[this.preparation.stepIndex] || null } : null
+      shiftStats: { ...this.shiftStats }, eventActive: this.progress.day % 5 === 0, preparation: this.preparation ? { ...this.preparation, steps: this.preparation.steps.map(step => ({ ...step })), currentStep: this.preparation.steps[this.preparation.stepIndex] || null } : null
     };
   }
 

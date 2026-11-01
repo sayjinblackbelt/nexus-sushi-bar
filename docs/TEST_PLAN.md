@@ -31,3 +31,17 @@ Automated syntax validation runs in GitHub Actions. The following checks require
 - [ ] A browser with legacy nexus-coins values imports those values into the versioned save.
 - [ ] Existing coins are not reset by the migration.
 - [ ] Storage-disabled browsing remains playable for the current session.
+
+
+## Restaurant phase — V0.4
+- [ ] Finish a dive and open the Sushi Bar.
+- [ ] Confirm caught fish appear in pantry stock.
+- [ ] Confirm a customer and requested menu item appear.
+- [ ] Select the wrong menu item; order and stock must remain unchanged.
+- [ ] Serve the requested sushi; matching fish stock decreases by one.
+- [ ] Serve the requested tea; matching tea stock decreases by one.
+- [ ] Confirm coins and reputation increase after correct service.
+- [ ] Buy tea restock for 30 coins; confirm 3 Matcha, 3 Hojicha and 2 Lotus are added.
+- [ ] Complete five guests and start the next dive.
+- [ ] Reload the page and confirm coins, inventory, tea stock and reputation persist.
+- [ ] Test restaurant layout in portrait and landscape on a touch device.

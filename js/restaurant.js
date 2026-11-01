@@ -79,6 +79,28 @@ export class RestaurantManager {
     return true;
   }
 
+  restockTea() {
+    const cost = 30;
+    if (this.progress.coins < cost) {
+      this.message = `São necessárias ${cost} moedas para reabastecer os chás.`;
+      this.emit();
+      return false;
+    }
+    this.progress.coins -= cost;
+    this.progress.teaStock.matcha = (this.progress.teaStock.matcha || 0) + 3;
+    this.progress.teaStock.hojicha = (this.progress.teaStock.hojicha || 0) + 3;
+    this.progress.teaStock.lotus = (this.progress.teaStock.lotus || 0) + 2;
+    this.message = "Chás reabastecidos. A casa está pronta para receber.";
+    this.save();
+    if (this.closed && !this.order) {
+      this.closed = false;
+      this.served = 0;
+      this.nextOrder();
+    }
+    this.emit();
+    return true;
+  }
+
   save() {
     this.progress = writeProgress(this.progress);
   }
@@ -86,6 +108,7 @@ export class RestaurantManager {
   getState() {
     return {
       coins: this.progress.coins,
+      canRestockTea: this.progress.coins >= 30,
       reputation: this.progress.reputation,
       day: this.progress.day,
       fishStock: { ...this.progress.fishStock },

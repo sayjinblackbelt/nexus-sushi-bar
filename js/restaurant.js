@@ -237,7 +237,7 @@ export class RestaurantManager {
       shiftTarget: this.shiftTarget, message: this.message, closed: this.closed,
       menu: RESTAURANT_MENU, stations: KITCHEN_STATIONS, queue: this.queue.map(customer => customer.name),
       patience: this.patience || 0, patienceMax: this.patienceMax || 1,
-      shiftStats: { ...this.shiftStats }, eventActive: this.progress.day % 5 === 0, preparation: this.preparation ? { ...this.preparation, steps: this.preparation.steps.map(step => ({ ...step })), currentStep: this.preparation.steps[this.preparation.stepIndex] || null } : null
+      shiftStats: { ...this.shiftStats }, satisfaction: this.shiftStats.served + this.shiftStats.lost ? Math.round(this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) * 100) : 100, rating: this.shiftStats.served + this.shiftStats.lost === 0 ? 5 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .9 ? 5 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .75 ? 4 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .6 ? 3 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .4 ? 2 : 1, eventActive: this.progress.day % 5 === 0, preparation: this.preparation ? { ...this.preparation, steps: this.preparation.steps.map(step => ({ ...step })), currentStep: this.preparation.steps[this.preparation.stepIndex] || null } : null
     };
   }
 

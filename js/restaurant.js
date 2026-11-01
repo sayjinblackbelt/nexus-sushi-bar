@@ -1,4 +1,4 @@
-import { RESTAURANT_MENU, CUSTOMER_PROFILES } from "./data/menu.js";
+import { RESTAURANT_MENU, CUSTOMER_PROFILES, KITCHEN_STATIONS } from "./data/menu.js";
 import { readProgress, writeProgress } from "./core/storage.js";
 
 export class RestaurantManager {
@@ -81,8 +81,24 @@ export class RestaurantManager {
     if (!(stock[stockKey] > 0)) {
       this.message = "Ingrediente em falta. Faça uma nova expedição."; this.emit(); return false;
     }
-    this.preparation = { itemId, itemName: item.name, remaining: item.prepSeconds || 3, duration: item.prepSeconds || 3 };
-    this.message = `Preparando ${item.name} com atenção...`;
+    const steps = item.recipe || [{ station: item.category === "tea" ? "tea" : "sushi", label: "Preparar pedido", seconds: item.prepSeconds || 3 }];
+    this.preparation = { itemId, itemName: item.name, steps, stepIndex: 0, remaining: 0, duration: 0, awaitingStation: true, quality: "em preparo" };
+    this.message = `Pedido iniciado: ${steps[0].label}. Escolha a estação correta.`;
+    this.emit(); return true;
+  }
+
+  chooseStation(stationId) {
+    if (!this.preparation || !this.preparation.awaitingStation) return false;
+    const step = this.preparation.steps[this.preparation.stepIndex];
+    const station = KITCHEN_STATIONS.find(entry => entry.id === stationId);
+    if (!station || stationId !== step.station) {
+      this.message = "Estação incorreta. Confira a etapa da receita antes de continuar.";
+      this.emit(); return false;
+    }
+    this.preparation.awaitingStation = false;
+    this.preparation.remaining = step.seconds;
+    this.preparation.duration = step.seconds;
+    this.message = `${station.name}: ${step.label}.`;
     this.emit(); return true;
   }
 
@@ -90,13 +106,20 @@ export class RestaurantManager {
     if (this.closed || !this.order || dt <= 0) return;
     this.clock += dt;
     this.patience = Math.max(0, this.patience - dt);
-    if (this.preparation) {
+    if (this.preparation && !this.preparation.awaitingStation) {
       this.preparation.remaining = Math.max(0, this.preparation.remaining - dt);
       if (this.preparation.remaining <= 0) {
-        const itemId = this.preparation.itemId;
-        this.preparation = null;
-        this.completeService(itemId);
-        return;
+        this.preparation.stepIndex += 1;
+        if (this.preparation.stepIndex >= this.preparation.steps.length) {
+          const itemId = this.preparation.itemId;
+          this.preparation = null;
+          this.completeService(itemId);
+          return;
+        }
+        this.preparation.awaitingStation = true;
+        this.preparation.quality = "etapas concluídas";
+        this.message = `Etapa concluída. Próxima: ${this.preparation.steps[this.preparation.stepIndex].label}.`;
+        this.emit();
       }
     }
     if (this.patience <= 0) {
@@ -190,9 +213,9 @@ export class RestaurantManager {
       fishStock: { ...this.progress.fishStock }, teaStock: { ...this.progress.teaStock },
       order: this.order ? { ...this.order } : null, served: this.served,
       shiftTarget: this.shiftTarget, message: this.message, closed: this.closed,
-      menu: RESTAURANT_MENU, queue: this.queue.map(customer => customer.name),
+      menu: RESTAURANT_MENU, stations: KITCHEN_STATIONS, queue: this.queue.map(customer => customer.name),
       patience: this.patience || 0, patienceMax: this.patienceMax || 1,
-      preparation: this.preparation ? { ...this.preparation } : null
+      preparation: this.preparation ? { ...this.preparation, steps: this.preparation.steps.map(step => ({ ...step })), currentStep: this.preparation.steps[this.preparation.stepIndex] || null } : null
     };
   }
 

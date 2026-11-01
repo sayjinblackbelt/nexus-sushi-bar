@@ -22,6 +22,14 @@ Cozy 16-bit pixel art with readable silhouettes, warm highlights and calm underw
 - Avoid baked-in labels, UI, captions or backgrounds in character sprites.
 - Keep sprite dimensions and frame spacing consistent within each sheet.
 
+## First integrated asset pack (V0.3)
+
+- `assets/sprites/diver.svg`: initial diver sprite, with a transparent background and crisp pixel edges.
+- `assets/sprites/fish.svg`: five species arranged in a horizontal 32 × 32 frame grid, matching the species order in `js/data/fish.js`.
+- The Canvas renderer loads these assets asynchronously and retains its procedural drawing as a fallback while assets load or if loading fails.
+
+This is a foundational placeholder pack, not the final animation set. Distinct swim, catch and directional frames remain scheduled for the next visual pass.
+
 ## Asset production sequence
 
 1. Diver: idle, swim directions, catch action.

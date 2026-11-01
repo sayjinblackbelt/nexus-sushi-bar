@@ -116,11 +116,26 @@ Save integrity, ingredient restocking, settings, control preferences, reduced mo
 - A five-star rating communicates service quality at a glance.
 - Reputation remains the long-term hospitality progression indicator.
 
-### V1.7–V1.9 — Content, balance and polish
-More biomes, recipes, teas and customers; seasonal events; audio; economy balancing; accessibility; regression QA.
+### V1.7 — Seasonal hospitality events (implemented; device QA pending)
+- Weekly Festival of Lanterns every seventh in-game day.
+- Festival guest, additional patience and a special service tip.
+- Restaurant scene receives a warmer event lighting treatment.
+- VIP night and festival schedules do not conflict.
+
+### V1.8 — Accessibility and feedback (planned)
+Audio controls, reduced motion and clearer interaction feedback.
+
+### V1.9 — Economy and regression polish (planned)
+Balance review, save migration checks and full regression coverage.
 
 ### V2.0 — Complete core experience
 Dive, collect ingredients, return, manage stock, open the Zen cyberpunk sushi and tea bar, fulfill orders, earn revenue, improve equipment and restaurant, unlock content and repeat.
+
+## V1.7 acceptance criteria
+
+- [x] Festival event occurs every seventh in-game day.
+- [x] Festival guest and reward are distinct from VIP nights.
+- [x] Event atmosphere is reflected in the restaurant scene.
 
 ## V1.6 acceptance criteria
 

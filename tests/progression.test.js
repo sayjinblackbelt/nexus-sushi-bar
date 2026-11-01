@@ -93,3 +93,13 @@ test("equipment specializations trade capacity, speed and oxygen efficiency", ()
   assert.ok(swift.speed > balanced.speed);
   assert.equal(cargo.capacity, balanced.capacity + 2);
 });
+
+
+test("sound and reduced motion preferences persist independently", async () => {
+  const { readProgress } = await import("../js/core/storage.js");
+  writeProgress({ soundEnabled: false, reducedMotion: true, coins: 77 });
+  const saved = readProgress();
+  assert.equal(saved.soundEnabled, false);
+  assert.equal(saved.reducedMotion, true);
+  assert.equal(saved.coins, 77);
+});

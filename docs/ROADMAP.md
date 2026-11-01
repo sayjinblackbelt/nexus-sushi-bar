@@ -98,14 +98,30 @@ Save integrity, ingredient restocking, settings, control preferences, reduced mo
 - Endurance reduces oxygen consumption by 18%; Swift increases swim speed by 15%; Cargo adds two catch slots.
 - Specialization persists and combines with equipment tier upgrades.
 
-### V1.4–V1.6 — Full sushi and tea restaurant
-Complete day/night transition, recipe preparation, customer queue, preferences, tea ritual, restaurant upgrades, décor, reputation and daily reports.
+### V1.4 — Expanded sushi and tea menu (implemented; device QA pending)
+- Four specialty dishes use rare, epic and legendary catches.
+- Genmaicha and Yuzu join the tea menu.
+- Four additional customer profiles introduce new favorites.
+- Recipe stations and stock consumption apply consistently to the expanded menu.
+
+### V1.5 — Restaurant mastery (planned)
+Menu unlock progression, ingredient sourcing and menu profitability.
+
+### V1.6 — Hospitality and daily operations (planned)
+Full daily summary, service quality and customer satisfaction progression.
 
 ### V1.7–V1.9 — Content, balance and polish
 More biomes, recipes, teas and customers; seasonal events; audio; economy balancing; accessibility; regression QA.
 
 ### V2.0 — Complete core experience
 Dive, collect ingredients, return, manage stock, open the Zen cyberpunk sushi and tea bar, fulfill orders, earn revenue, improve equipment and restaurant, unlock content and repeat.
+
+## V1.4 acceptance criteria
+
+- [x] Rare and high-tier fish have matching specialty dishes.
+- [x] Two additional teas are stocked and restocked.
+- [x] New customer profiles can request expanded menu items.
+- [x] All new dishes use staged kitchen recipes.
 
 ## V1.3 acceptance criteria
 

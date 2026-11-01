@@ -1,0 +1,10 @@
+{
+  "name": "nexus-sushi-bar",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "A cozy pixel-art fishing and sushi restaurant simulation game",
+  "scripts": {
+    "check": "node --check js/main.js && node --check js/game.js && node --check js/core/input.js && node --check js/core/storage.js && node --check js/data/fish.js"
+  }
+}

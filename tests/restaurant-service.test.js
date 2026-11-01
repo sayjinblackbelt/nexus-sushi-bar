@@ -163,3 +163,19 @@ test("customer satisfaction rating reflects successful service and walkouts", ()
   assert.equal(state.satisfaction, 75);
   assert.equal(state.rating, 4);
 });
+
+
+test("festival night introduces a guest and grants a special tip", () => {
+  const manager = setup();
+  manager.progress.day = 7;
+  writeProgress(manager.progress);
+  manager.beginShift([]);
+  assert.equal(manager.order.festival, true);
+  assert.equal(manager.order.customer, "Convidado do Festival");
+  manager.order = { itemId: "matcha", customer: "Convidado do Festival", itemName: "Matcha Sereno", favorites: ["matcha"], festival: true };
+  manager.patienceMax = 40; manager.patience = 40;
+  const before = manager.progress.coins;
+  manager.serve("matcha");
+  assert.equal(manager.progress.coins, before + 18);
+  assert.equal(manager.getState().eventType, "FESTIVAL DAS LANTERNAS");
+});

@@ -209,6 +209,8 @@ export class RestaurantManager {
     this.progress.teaStock.matcha = (this.progress.teaStock.matcha || 0) + 3;
     this.progress.teaStock.hojicha = (this.progress.teaStock.hojicha || 0) + 3;
     this.progress.teaStock.lotus = (this.progress.teaStock.lotus || 0) + 2;
+    this.progress.teaStock.genmaicha = (this.progress.teaStock.genmaicha || 0) + 2;
+    this.progress.teaStock.yuzu = (this.progress.teaStock.yuzu || 0) + 2;
     this.message = "Chás reabastecidos. A casa está pronta para receber.";
     this.save();
     if (this.closed && this.served < this.shiftTarget && !this.order) {

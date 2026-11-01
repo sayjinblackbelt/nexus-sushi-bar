@@ -240,3 +240,7 @@ button{ -webkit-user-select:none; user-select:none; }
 .tutorial-card li{margin:6px 0}
 .tutorial-card p:not(.eyebrow){color:#a9c9ce;font-size:11px;line-height:1.6}
 .tutorial-card .primary-button{width:100%}
+
+/* V1.3 — selectable equipment specializations */
+.specialization-label{display:block;margin:10px 0 5px;color:#9bded5;font:9px "DM Mono",monospace;letter-spacing:.8px}
+.specialization-select{width:100%;min-height:38px;padding:7px;border:1px solid #37e6e077;border-radius:7px;background:#102f46;color:#f4e8cc;font-size:10px}

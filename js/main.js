@@ -36,7 +36,9 @@ function renderBiomePicker(){const level=Math.min(5,Math.floor(readProgress().fi
 document.querySelectorAll("[data-biome]").forEach(button=>button.addEventListener("click",()=>{if(button.disabled)return;selectedBiome=button.dataset.biome;game.setBiome(selectedBiome);renderBiomePicker();}));renderBiomePicker();
 document.querySelectorAll("[data-character]").forEach(button=>button.addEventListener("click",()=>{selectedCharacter=button.dataset.character;document.querySelectorAll("[data-character]").forEach(option=>{const active=option===button;option.classList.toggle("selected",active);option.setAttribute("aria-pressed",String(active));});$("#character-note").textContent=`${characterNames[selectedCharacter]} está pronto para mergulhar.`;}));
 document.querySelectorAll("[data-character]").forEach(button=>{const active=button.dataset.character===selectedCharacter;button.classList.toggle("selected",active);button.setAttribute("aria-pressed",String(active));});$("#character-note").textContent=`${characterNames[selectedCharacter]} está pronto para mergulhar.`;
-$("#start-button").addEventListener("click",()=>{game.character=selectedCharacter;game.setBiome(selectedBiome);writeProgress({...readProgress(),character:selectedCharacter,biome:selectedBiome});startScreen.hidden=true;game.start();$("#player-heading").textContent=`Expedição de ${characterNames[selectedCharacter]}`;});
+function launchDive(){game.start();$("#player-heading").textContent=`Expedição de ${characterNames[selectedCharacter]}`;}
+$("#start-button").addEventListener("click",()=>{game.character=selectedCharacter;game.setBiome(selectedBiome);writeProgress({...readProgress(),character:selectedCharacter,biome:selectedBiome});startScreen.hidden=true;if(!readProgress().tutorialComplete){$("#tutorial-screen").hidden=false;return;}launchDive();});
+$("#tutorial-begin").addEventListener("click",()=>{writeProgress({...readProgress(),tutorialComplete:true});$("#tutorial-screen").hidden=true;launchDive();});
 $("#continue-button").addEventListener("click",()=>{gameOver.hidden=true;game.resetDive();game.start();});
 
 const inputController=new InputController(game,document);

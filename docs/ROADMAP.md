@@ -104,8 +104,11 @@ Save integrity, ingredient restocking, settings, control preferences, reduced mo
 - Four additional customer profiles introduce new favorites.
 - Recipe stations and stock consumption apply consistently to the expanded menu.
 
-### V1.5 — Restaurant mastery (planned)
-Menu unlock progression, ingredient sourcing and menu profitability.
+### V1.5 — Restaurant mastery (implemented; device QA pending)
+- Specialty sushi unlocks at fishing levels 3, 4 and 5.
+- Genmaicha and Yuzu unlock as the restaurant reaches levels 2 and 3.
+- Locked dishes remain visible with clear progression requirements.
+- Customer order generation respects unlocked dishes and available stock.
 
 ### V1.6 — Hospitality and daily operations (planned)
 Full daily summary, service quality and customer satisfaction progression.
@@ -115,6 +118,13 @@ More biomes, recipes, teas and customers; seasonal events; audio; economy balanc
 
 ### V2.0 — Complete core experience
 Dive, collect ingredients, return, manage stock, open the Zen cyberpunk sushi and tea bar, fulfill orders, earn revenue, improve equipment and restaurant, unlock content and repeat.
+
+## V1.5 acceptance criteria
+
+- [x] Rare-fish dishes unlock at their fishing progression thresholds.
+- [x] Specialty teas unlock through restaurant progression.
+- [x] Locked menu items show their unlock requirements.
+- [x] Customer orders are generated only from unlocked, stocked items.
 
 ## V1.4 acceptance criteria
 

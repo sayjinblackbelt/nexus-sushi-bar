@@ -106,6 +106,7 @@ export class RestaurantManager {
       this.preparation = null;
       this.save();
       this.nextOrder();
+      if (!this.closed) { this.message = `${departed} perdeu a paciência e foi embora. Reputação -1.`; this.emit(); }
       return;
     }
     if (this.clock >= 1) { this.clock = 0; this.emit(); }
@@ -128,6 +129,7 @@ export class RestaurantManager {
     this.message = `Pedido servido! +${item.price} moedas${tip ? ` + ${tip} gorjeta` : ""} · ${item.name}`;
     this.save();
     this.nextOrder();
+    if (!this.closed) { this.message = `Pedido servido! +${item.price} moedas${tip ? ` + ${tip} gorjeta` : ""} · ${item.name}`; this.emit(); }
     return true;
   }
 

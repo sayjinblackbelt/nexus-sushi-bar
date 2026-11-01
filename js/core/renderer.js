@@ -1,3 +1,4 @@
+const W=960,H=540;
 export class OceanRenderer {
   constructor(context, width, height) {
     this.ctx = context;

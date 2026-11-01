@@ -82,3 +82,14 @@ test("catch condition rewards careful oxygen management", () => {
   assert.equal(catchQuality(20).id, "standard");
   assert.equal(catchQuality(20).multiplier, 1);
 });
+
+
+test("equipment specializations trade capacity, speed and oxygen efficiency", () => {
+  const balanced = equipmentStats(2, "balanced");
+  const endurance = equipmentStats(2, "endurance");
+  const swift = equipmentStats(2, "swift");
+  const cargo = equipmentStats(2, "cargo");
+  assert.ok(endurance.oxygenDrain < balanced.oxygenDrain);
+  assert.ok(swift.speed > balanced.speed);
+  assert.equal(cargo.capacity, balanced.capacity + 2);
+});

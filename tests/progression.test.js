@@ -41,3 +41,14 @@ test("coins can upgrade the bar and fishing equipment", () => {
   assert.equal(manager.upgradeGear(), true);
   assert.equal(manager.progress.equipmentLevel, 2);
 });
+
+
+test("first-dive tutorial completion is persisted without resetting progression", async () => {
+  const { readProgress } = await import("../js/core/storage.js");
+  writeProgress({ coins: 45, tutorialComplete: false, decorLevel: 2 });
+  assert.equal(readProgress().tutorialComplete, false);
+  writeProgress({ ...readProgress(), tutorialComplete: true });
+  assert.equal(readProgress().tutorialComplete, true);
+  assert.equal(readProgress().coins, 45);
+  assert.equal(readProgress().decorLevel, 2);
+});

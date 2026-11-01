@@ -26,7 +26,7 @@ test("only the requested item can start preparation", () => {
   assert.equal(manager.preparation, null);
   assert.equal(manager.prepare(requested), true);
   assert.equal(manager.preparation.awaitingStation, true);
-  assert.ok(manager.preparation.currentStep.seconds > 0);
+  assert.ok(manager.preparation.steps[manager.preparation.stepIndex].seconds > 0);
 });
 
 test("timed preparation completes service, consumes stock and awards a fast tip", () => {

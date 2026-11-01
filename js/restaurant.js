@@ -92,7 +92,7 @@ export class RestaurantManager {
     this.progress.teaStock.lotus = (this.progress.teaStock.lotus || 0) + 2;
     this.message = "Chás reabastecidos. A casa está pronta para receber.";
     this.save();
-    if (this.closed && !this.order) {
+    if (this.closed && !this.order && this.served < this.shiftTarget) {
       this.closed = false;
       this.served = 0;
       this.nextOrder();

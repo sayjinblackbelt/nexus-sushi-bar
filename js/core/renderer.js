@@ -10,6 +10,7 @@ export class OceanRenderer {
   }
 
   render(game) {
+    this.elapsed = game.elapsed;
     const c = this.ctx;
     c.clearRect(0, 0, this.width, this.height);
     this.drawOcean(c);

@@ -26,7 +26,7 @@ All movement is represented as keys in `OceanGame.keys`. Keyboard and touch cont
 
 ## Persistence model
 
-Coins and best catch are stored as numeric values. Reads and writes are guarded against browser storage errors. When persistent storage is unavailable, a memory fallback keeps the current session usable; it does not promise persistence after closing the tab.
+Coins and best catch are stored in a versioned save object. The first version migrates the prototype's legacy numeric keys without discarding existing progress. Reads and writes are guarded against browser storage errors. When persistent storage is unavailable, an in-memory fallback keeps the current session usable; it does not promise persistence after closing the tab.
 
 ## Game lifecycle
 

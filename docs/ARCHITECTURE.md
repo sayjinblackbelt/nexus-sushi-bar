@@ -2,39 +2,48 @@
 
 ## Runtime
 
-The game is a static web application. GitHub Pages serves the HTML, CSS and native JavaScript ES modules. No framework or bundler is required.
+Static web application served by GitHub Pages using HTML, CSS and native JavaScript ES modules. No framework or bundler is required.
 
 ## Module responsibilities
 
-- `index.html`: semantic page structure and game overlays.
-- `css/style.css`: visual system, responsive layout and touch target sizing.
-- `js/main.js`: DOM integration, HUD updates and screen transitions.
-- `js/game.js`: game loop, world simulation, rules and game lifecycle.
-- `js/core/renderer.js`: Canvas rendering for the underwater world and game entities.
-- `js/core/input.js`: keyboard and pointer input lifecycle.
-- `js/core/storage.js`: guarded persistence access and session fallback.
-- `js/core/canvas.js`: logical canvas dimensions, device-pixel-ratio scaling and pixel-art smoothing.
-- `js/data/fish.js`: fish species definitions and school creation.
+- index.html: page structure, underwater screen and restaurant interface.
+- css/style.css: visual system, responsive layouts and touch targets.
+- js/main.js: DOM integration, HUD, scene transitions and animation scheduling.
+- js/game.js: underwater simulation, movement, oxygen, catch rules and dive lifecycle.
+- js/restaurant.js: customer orders, menu validation, ingredient consumption, rewards and shift lifecycle.
+- js/core/renderer.js: underwater Canvas rendering and sprite animation.
+- js/core/bar-renderer.js: cyberpunk-zen restaurant environment.
+- js/core/input.js: keyboard and pointer input lifecycle.
+- js/core/storage.js: versioned save data, migration and guarded persistence.
+- js/core/canvas.js: logical dimensions and device-pixel-ratio scaling.
+- js/data/fish.js: fish definitions and school generation.
+- js/data/menu.js: sushi and tea catalog, prices and ingredient requirements.
 
 ## Coordinate system
 
-Gameplay uses a fixed logical world of 960 × 540 units. The canvas backing resolution is scaled by device pixel ratio (capped at 2), while gameplay coordinates remain unchanged. CSS controls the displayed size and orientation-specific layout.
+Both scenes use a logical 960 × 540 world. Canvas backing resolution is scaled by device pixel ratio, capped at 2. CSS controls display size and orientation-specific layout.
 
 ## Input model
 
-All movement is represented as keys in `OceanGame.keys`. Keyboard and touch controls feed the same set, so gameplay movement rules remain device-independent. Touch pointers are tracked individually; pointer capture and cancellation cleanup prevent stuck movement and allow diagonal movement.
+Underwater movement is represented as keys in OceanGame.keys. Keyboard and touch controls feed the same set. Touch pointers are tracked individually; pointer capture and cancellation cleanup prevent stuck movement and allow diagonal movement. Restaurant actions use large semantic HTML buttons.
 
 ## Persistence model
 
-Coins and best catch are stored in a versioned save object. The first version migrates the prototype's legacy numeric keys without discarding existing progress. Reads and writes are guarded against browser storage errors. When persistent storage is unavailable, an in-memory fallback keeps the current session usable; it does not promise persistence after closing the tab.
+Save schema v2 stores coins, best catch, fish stock, tea stock, reputation and day. Legacy prototype keys and schema v1 migrate into the current structure. Reads and writes are guarded against browser storage errors; an in-memory fallback keeps the current session usable when persistent storage is unavailable.
 
 ## Game lifecycle
 
-- `start()`: begins the animation loop.
-- `resetDive()`: resets transient dive state without erasing long-term progress.
-- `surface()`: ends the dive, awards coins and persists progress.
-- The animation delta is capped to avoid large simulation jumps after delayed frames.
+- OceanGame.start(): begins the underwater animation loop.
+- OceanGame.resetDive(): resets transient dive state.
+- OceanGame.surface(): ends the dive, awards catch value and emits the caught fish list.
+- RestaurantManager.beginShift(fish): transfers dive catch into stock and generates the first guest order.
+- RestaurantManager.serve(itemId): validates the order, consumes ingredients, awards coins and reputation, and advances the shift.
+- Completing a shift allows the next dive to begin.
+
+## Rendering
+
+Underwater and restaurant scenes use separate renderers and the same logical Canvas dimensions. Sprite sheets load asynchronously; procedural fallback drawing remains available underwater.
 
 ## Validation
 
-GitHub Actions runs `npm run check` on pushes and pull requests. This currently validates JavaScript syntax and module parseability. It is not a substitute for browser gameplay tests on real devices.
+GitHub Actions runs npm run check and npm test on pushes and pull requests. Automated tests cover restaurant order validation and ingredient consumption. They do not replace real-browser testing on desktop and mobile devices.

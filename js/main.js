@@ -8,7 +8,7 @@ onMessage:showToast,onStatus:message=>statusNote.textContent=message,
 onEnd({count,earned,forced}){$("#summary-text").textContent=forced?`Oxygen ran out. You brought back ${count} fish and earned ${earned} coins.`:`Lovely dive! You brought back ${count} fish and earned ${earned} coins.`;gameOver.hidden=false;coinCount.textContent=game.coins;}
 });
 $("#start-button").addEventListener("click",()=>{startScreen.hidden=true;game.start();});
-$("#continue-button").addEventListener("click",()=>{gameOver.hidden=true;game.oxygen=100;game.catch=[];game.fish.forEach(f=>f.caught=false);game.player.x=105;game.player.y=270;game.start();});
+$("#continue-button").addEventListener("click",()=>{gameOver.hidden=true;game.resetDive();game.start();});
 
 const inputController=new InputController(game,document);
 $("#touch-catch").addEventListener("click",()=>game.running&&game.tryCatch());

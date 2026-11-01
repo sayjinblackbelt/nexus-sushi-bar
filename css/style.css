@@ -247,3 +247,10 @@ button{ -webkit-user-select:none; user-select:none; }
 
 /* V1.6 — daily hospitality rating */
 .shift-rating{margin:0 0 9px;color:#ffb86b;font:10px "DM Mono",monospace;letter-spacing:.4px}
+
+/* V1.8 — accessible preferences and reduced motion */
+.topbar-tools{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.utility-toggle{padding:7px 9px;border:1px solid #37e6e066;border-radius:7px;background:#102f46;color:#bdebe3;font:8px "DM Mono",monospace;cursor:pointer}
+.utility-toggle[aria-pressed="true"]{border-color:#ffb86b;color:#fff1d7}
+body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+@media(max-width:520px){.topbar-tools{gap:4px}.utility-toggle{font-size:7px;padding:6px}.version{font-size:7px}}

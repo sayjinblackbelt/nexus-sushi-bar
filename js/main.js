@@ -24,9 +24,9 @@ function renderRestaurantUI(state){
 const restaurant=new RestaurantManager(renderRestaurantUI);
 function animateRestaurant(){if(restaurantPanel.hidden)return;restaurantElapsed+=1/60;barRenderer.render(restaurant.getState(),restaurantElapsed);restaurantFrame=requestAnimationFrame(animateRestaurant);}
 const game=new OceanGame($("#game"),{
-onHud({oxygen,count,capacity,coins,nearby}){oxygenValue.textContent=`${oxygen}%`;oxygenBar.style.width=`${oxygen}%`;oxygenBar.style.background=oxygen<25?"linear-gradient(90deg,#e97865,#f2b17e)":"linear-gradient(90deg,#5fc9b3,#b6e6c4)";catchCount.textContent=`${count} / ${capacity}`;coinCount.textContent=coins;statusNote.textContent=nearby?`Nearby: ${nearby}`:"Explore the lagoon";},
+onHud({oxygen,count,capacity,coins,nearby}){oxygenValue.textContent=`${oxygen}%`;oxygenBar.style.width=`${oxygen}%`;oxygenBar.style.background=oxygen<25?"linear-gradient(90deg,#e97865,#f2b17e)":"linear-gradient(90deg,#5fc9b3,#b6e6c4)";catchCount.textContent=`${count} / ${capacity}`;coinCount.textContent=coins;statusNote.textContent=nearby?`Perto: ${nearby}`:"Explore a lagoa";},
 onMessage:showToast,onStatus:message=>statusNote.textContent=message,
-onEnd({count,earned,forced,fish}){lastDiveFish=fish||[];$("#summary-text").textContent=forced?`Oxygen ran out. You brought back ${count} fish and earned ${earned} coins.`:`Lovely dive! You brought back ${count} fish and earned ${earned} coins.`;gameOver.hidden=false;coinCount.textContent=game.coins;}
+onEnd({count,earned,forced,fish}){lastDiveFish=fish||[];$("#summary-text").textContent=forced?`O oxigênio acabou. Você trouxe ${count} peixes e ganhou ${earned} moedas.`:`Ótimo mergulho! Você trouxe ${count} peixes e ganhou ${earned} moedas.`;gameOver.hidden=false;coinCount.textContent=game.coins;}
 });
 $("#start-button").addEventListener("click",()=>{startScreen.hidden=true;game.start();});
 $("#continue-button").addEventListener("click",()=>{gameOver.hidden=true;game.resetDive();game.start();});

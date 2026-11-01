@@ -50,8 +50,14 @@ Diver sprite sheet with idle, swim and catch rows; two frames for each fish; ani
 ### V0.55 — Technical beta
 Save integrity, ingredient restocking, settings, control preferences, reduced motion, diagnostics and browser QA.
 
-### V0.6–V0.9 — Exploration and content
-Additional ocean biomes, fish, landmarks, equipment upgrades, missions, collection records, restaurant decorations and expanded tea menu.
+### V0.6 — Exploration and fishing loop (implemented; device QA pending)
+- Three selectable biomes: Lagoa Azul, Recife Neon and Abismo Lótus, unlocked at fishing levels 1, 3 and 5.
+- Biome-specific species habitats and distinct ocean palettes/depth labels.
+- Three-fish expedition mission with biome-scaled coin reward.
+- Persistent species discovery journal and species counter.
+
+### V0.7–V0.9 — Exploration and content
+More landmarks, fishing equipment specialization, objectives, collection records, restaurant decorations and expanded tea menu.
 
 ### V1.0 — Complete exploration baseline
 Tutorial, underwater objectives, balanced catch economy, persistent inventory and mobile/desktop quality gates.

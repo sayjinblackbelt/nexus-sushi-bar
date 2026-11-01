@@ -25,7 +25,8 @@ test("only the requested item can start preparation", () => {
   assert.equal(manager.prepare(other), false);
   assert.equal(manager.preparation, null);
   assert.equal(manager.prepare(requested), true);
-  assert.ok(manager.preparation.remaining > 0);
+  assert.equal(manager.preparation.awaitingStation, true);
+  assert.ok(manager.preparation.currentStep.seconds > 0);
 });
 
 test("timed preparation completes service, consumes stock and awards a fast tip", () => {
@@ -36,7 +37,10 @@ test("timed preparation completes service, consumes stock and awards a fast tip"
   const coinsBefore = manager.progress.coins;
   const stockBefore = manager.progress.teaStock.matcha;
   assert.equal(manager.prepare("matcha"), true);
-  manager.tick(2.4);
+  assert.equal(manager.chooseStation("kettle"), true);
+  manager.tick(1.1);
+  assert.equal(manager.chooseStation("tea"), true);
+  manager.tick(1.3);
   assert.equal(manager.served, 1);
   assert.equal(manager.progress.teaStock.matcha, stockBefore - 1);
   assert.equal(manager.progress.coins, coinsBefore + 15);

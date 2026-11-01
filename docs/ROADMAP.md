@@ -110,14 +110,24 @@ Save integrity, ingredient restocking, settings, control preferences, reduced mo
 - Locked dishes remain visible with clear progression requirements.
 - Customer order generation respects unlocked dishes and available stock.
 
-### V1.6 — Hospitality and daily operations (planned)
-Full daily summary, service quality and customer satisfaction progression.
+### V1.6 — Hospitality and daily operations (implemented; device QA pending)
+- Shift report calculates guests served, walkouts, gross sales and tips.
+- Customer satisfaction is calculated from successful services versus walkouts.
+- A five-star rating communicates service quality at a glance.
+- Reputation remains the long-term hospitality progression indicator.
 
 ### V1.7–V1.9 — Content, balance and polish
 More biomes, recipes, teas and customers; seasonal events; audio; economy balancing; accessibility; regression QA.
 
 ### V2.0 — Complete core experience
 Dive, collect ingredients, return, manage stock, open the Zen cyberpunk sushi and tea bar, fulfill orders, earn revenue, improve equipment and restaurant, unlock content and repeat.
+
+## V1.6 acceptance criteria
+
+- [x] Daily report includes served guests, walkouts, sales and tips.
+- [x] Satisfaction percentage responds to service outcomes.
+- [x] Five-star rating is derived from satisfaction thresholds.
+- [x] Reputation persists as the long-term hospitality indicator.
 
 ## V1.5 acceptance criteria
 

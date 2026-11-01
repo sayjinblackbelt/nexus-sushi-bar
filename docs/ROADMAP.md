@@ -76,8 +76,11 @@ Save integrity, ingredient restocking, settings, control preferences, reduced mo
 - Shift analytics: guests served, walkouts, base revenue and tips.
 - Save schema v5 adds persistent décor progression.
 
-### V1.0 — Complete exploration baseline
-Tutorial, underwater objectives, balanced catch economy, persistent inventory and mobile/desktop quality gates.
+### V1.0 — Complete exploration baseline (implemented; device QA pending)
+- First-dive interactive tutorial covers movement, capture, oxygen, return and expedition mission.
+- Tutorial completion persists without overwriting existing progress.
+- Three-fish mission and species journal connect exploration to restaurant supply.
+- Save schema v6 preserves backward migration and tutorial state.
 
 ### V1.1–V1.3 — Fishing progression
 Fish rarity and habitats, ingredient quality, recipe requirements, equipment upgrades and exploration objectives.
@@ -90,6 +93,13 @@ More biomes, recipes, teas and customers; seasonal events; audio; economy balanc
 
 ### V2.0 — Complete core experience
 Dive, collect ingredients, return, manage stock, open the Zen cyberpunk sushi and tea bar, fulfill orders, earn revenue, improve equipment and restaurant, unlock content and repeat.
+
+## V1.0 acceptance criteria
+
+- [x] First-time players receive a guided first-dive tutorial.
+- [x] Tutorial completion persists across reloads.
+- [x] Existing coins, stock and progression remain intact when tutorial state changes.
+- [x] Expedition mission and species discovery feed the restaurant loop.
 
 ## V0.9 acceptance criteria
 

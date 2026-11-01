@@ -40,7 +40,9 @@ Serve the project through a local static web server, then open index.html. Nativ
     │   ├── game.js
     │   ├── core/
     │   │   ├── canvas.js
+    │   │   ├── canvas.js
     │   │   ├── input.js
+    │   │   ├── renderer.js
     │   │   └── storage.js
     │   └── data/
     │       └── fish.js

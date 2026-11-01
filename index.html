@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#102f46">
+  <meta name="description" content="Explore the ocean, catch fish and build a cozy sushi bar.">
+  <title>Nexus Sushi Bar — Underwater Days</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./"><span class="brand-mark">✦</span><span>NEXUS <b>SUSHI BAR</b></span></a>
+      <span class="version">PROTOTYPE 0.1</span>
+    </header>
+    <section class="game-panel" aria-label="Game">
+      <div class="game-heading">
+        <div><p class="eyebrow">DAY 01 · THE BLUE LAGOON</p><h1>Underwater expedition</h1></div>
+        <div class="phase-pill"><span class="pulse"></span> DAYTIME</div>
+      </div>
+      <div class="hud">
+        <div class="hud-card oxygen-card"><div class="hud-label"><span>OXYGEN</span><strong id="oxygen-value">100%</strong></div><div class="meter"><span id="oxygen-bar"></span></div></div>
+        <div class="hud-card"><span class="hud-label">CATCH</span><strong class="hud-number" id="catch-count">0 / 8</strong></div>
+        <div class="hud-card"><span class="hud-label">COINS</span><strong class="hud-number" id="coin-count">0</strong></div>
+      </div>
+      <div class="canvas-wrap">
+        <canvas id="game" width="960" height="540" aria-label="Underwater pixel art game scene"></canvas>
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+        <div class="start-screen" id="start-screen"><div class="start-card"><div class="start-icon">🐟</div><p class="eyebrow">A LITTLE OCEAN, A BIG DREAM</p><h2>Your first dive awaits.</h2><p>Swim around, get close to a fish and catch it. Keep an eye on your oxygen!</p><button class="primary-button" id="start-button">START DIVING <span>→</span></button></div></div>
+        <div class="game-over" id="game-over" hidden><div class="start-card"><div class="start-icon">🫧</div><p class="eyebrow">BACK TO THE SURFACE</p><h2>Dive complete!</h2><p id="summary-text">Your catch is safe.</p><button class="primary-button" id="continue-button">DIVE AGAIN <span>→</span></button></div></div>
+      </div>
+      <div class="controls-row"><div class="control-hint"><kbd>WASD</kbd> <kbd>↑↓←→</kbd> Swim <span class="hint-separator">·</span> <kbd>E</kbd> Catch <span class="hint-separator">·</span> <kbd>R</kbd> Surface</div><div class="status-note" id="status-note">Find a fish to begin</div></div>
+      <div class="mobile-controls" aria-label="Touch controls">
+        <div class="dpad"><button data-move="up" aria-label="Swim up">▲</button><div><button data-move="left" aria-label="Swim left">◀</button><button data-move="down" aria-label="Swim down">▼</button><button data-move="right" aria-label="Swim right">▶</button></div></div>
+        <div class="action-controls"><button id="touch-catch" class="catch-button">CATCH</button><button id="touch-surface" class="surface-button">SURFACE</button></div>
+      </div>
+    </section>
+    <footer class="footer"><span>✦ Take it slow. The ocean is yours to explore.</span><span>NEXUS SUSHI BAR <b>© 2026</b></span></footer>
+  </main>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

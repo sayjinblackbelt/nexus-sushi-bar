@@ -5,6 +5,6 @@
   "type": "module",
   "description": "A cozy pixel-art fishing and sushi restaurant simulation game",
   "scripts": {
-    "check": "node --check js/main.js && node --check js/game.js && node --check js/core/input.js && node --check js/core/storage.js && node --check js/data/fish.js && node --check js/core/canvas.js"
+    "check": "node --check js/main.js && node --check js/game.js && node --check js/core/input.js && node --check js/core/storage.js && node --check js/data/fish.js && node --check js/core/canvas.js && node --check js/core/renderer.js"
   }
 }

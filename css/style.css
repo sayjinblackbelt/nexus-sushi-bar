@@ -204,3 +204,17 @@ button{ -webkit-user-select:none; user-select:none; }
 .expedition-mission strong{color:#ffb86b;white-space:nowrap}
 .expedition-mission span:last-child{color:#a9c9ce}
 @media(max-width:520px){.biome-picker{gap:4px}.biome-option{padding:7px 3px}.biome-option strong{font-size:9px}.biome-option small{font-size:7px}.expedition-mission{flex-wrap:wrap;gap:5px 9px;padding:7px}.expedition-mission span:last-child{width:100%}}
+
+/* V0.7 customer preferences, queue and live kitchen preparation */
+.customer-patience{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px;margin:10px 0;font:9px "DM Mono",monospace;color:#a9c9ce}
+.customer-patience .meter,.preparation-status .meter{height:7px;margin:0}
+.customer-patience strong{color:#ffb86b;min-width:26px;text-align:right}
+.queue-status{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding-top:8px;border-top:1px solid #9b5de544;font:9px "DM Mono",monospace;color:#9b9abb}
+.queue-status strong{color:#37e6e0;font-size:10px}
+.preparation-status{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;align-items:center;margin:10px 0;padding:9px;border:1px solid #37e6e077;border-radius:8px;background:#102f46;font:9px "DM Mono",monospace;color:#37e6e0}
+.preparation-status .meter{grid-column:1/-1}
+.preparation-status strong{color:#ffb86b;text-align:right}
+.menu-instruction{margin:0 0 8px;color:#9bbed0;font-size:10px}
+.menu-item.customer-favorite{border-color:#ffb86b;box-shadow:inset 0 0 0 1px #ffb86b33}
+.menu-item.preparing{border-color:#37e6e0;background:#173d50}
+.menu-item b{font-size:10px}

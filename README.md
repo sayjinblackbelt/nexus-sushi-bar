@@ -33,6 +33,10 @@ Serve the project through a local static web server, then open index.html. Nativ
     nexus-sushi-bar/
     ├── index.html
     ├── README.md
+    ├── assets/
+    │   └── sprites/
+    │       ├── diver.svg
+    │       └── fish.svg
     ├── css/
     │   └── style.css
     ├── js/

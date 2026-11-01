@@ -12,7 +12,7 @@
   <main class="app-shell">
     <header class="topbar">
       <a class="brand" href="./"><span class="brand-mark">✦</span><span>NEXUS <b>SUSHI BAR</b></span></a>
-      <span class="version">PROTÓTIPO 0.6</span>
+      <span class="version">PROTÓTIPO 0.7</span>
     </header>
     <section class="game-panel" aria-label="Jogo">
       <div class="game-heading">
@@ -51,13 +51,13 @@
           <p class="eyebrow">CLIENTE ATUAL</p>
           <h2 id="customer-name">Aguardando cliente</h2>
           <p id="customer-order">Abra o bar para receber seu primeiro pedido.</p>
-          <p class="restaurant-feedback" id="restaurant-feedback" role="status" aria-live="polite">Bem-vindo. Sirva com atenção.</p>
+          <p class="restaurant-feedback" id="restaurant-feedback" role="status" aria-live="polite">Bem-vindo. Sirva com atenção.</p><div class="customer-patience"><span>PACIÊNCIA</span><div class="meter"><span id="customer-patience-bar"></span></div><strong id="customer-patience-value">100%</strong></div><div class="preparation-status" id="preparation-status" hidden><span>PREPARANDO</span><strong id="preparation-name"></strong><div class="meter"><span id="preparation-bar"></span></div></div><div class="queue-status"><span>PRÓXIMOS CLIENTES</span><strong id="customer-queue">—</strong></div>
           <div class="shift-progress"><span id="shift-progress-bar"></span></div>
           <small id="shift-progress-label">0 / 5 clientes atendidos</small>
         </div>
         <div class="menu-card">
           <div class="menu-heading"><div><p class="eyebrow">CARDÁPIO DA CASA</p><h2>Sushi & Chá</h2></div><span class="zen-mark">蓮</span></div>
-          <div class="menu-grid" id="restaurant-menu"></div>
+          <p class="menu-instruction">Escolha o pedido correto para iniciar o preparo.</p><div class="menu-grid" id="restaurant-menu"></div>
         </div>
         <div class="stock-card">
           <p class="eyebrow">ESTOQUE</p>

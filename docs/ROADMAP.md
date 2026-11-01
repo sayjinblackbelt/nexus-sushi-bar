@@ -2,114 +2,78 @@
 
 ## Product vision
 
-A cozy pixel-art simulation built around two complementary rhythms:
-
+A cozy pixel-art simulation with two connected loops:
 - **Day:** dive, explore, catch fish and collect ingredients.
-- **Night:** prepare sushi, serve customers, earn coins and improve the restaurant.
+- **Night:** run a Zen cyberpunk sushi and tea bar, serve guests and improve the business.
 
-Balanced difficulty means light resource management and meaningful progression, not punishing failure. The first release target is a complete, repeatable day/night loop.
+The restaurant is a calm refuge inside a luminous coastal city. Its design combines neon cyan, magenta and violet with wood, bamboo, stone, bonsai, warm lanterns and mindful tea service.
 
 ## Development principles
 
 1. Stabilize the foundation before expanding content.
-2. Keep gameplay systems modular and dependency-light.
-3. Support keyboard, touch, portrait and landscape layouts.
-4. Preserve player progress with versioned, resilient saves.
-5. Make each milestone playable and testable before moving on.
-6. Prefer original art assets and consistent visual language.
-7. Do not claim a release milestone complete until acceptance criteria pass on desktop and mobile.
+2. Keep systems modular and dependency-light.
+3. Support keyboard, touch, portrait and landscape.
+4. Preserve progress through versioned saves.
+5. Make each milestone playable and testable.
+6. Use original pixel-art assets and a documented art pipeline.
+7. Treat Buddhist-inspired themes respectfully: mindfulness, balance, compassion and hospitality, not sacred iconography used as decoration.
+8. Do not claim a release milestone complete until desktop and mobile acceptance criteria pass.
 
 ## Version plan
 
 ### V0.1 — Playable underwater prototype
-- Canvas scene, diver, five fish species.
-- Four-direction movement, proximity catch, oxygen and surface return.
-- Eight-slot catch basket and local coin persistence.
+Canvas scene, diver, five fish, movement, catch, oxygen, surface return and coin persistence.
 
-### V0.2 — Technical foundation (in progress)
-- Dedicated input controller for keyboard and touch.
-- Multi-pointer touch movement and pointer-capture cleanup.
-- Responsive portrait and landscape layouts.
-- Safe persistence abstraction with memory fallback.
-- Encapsulated dive reset lifecycle.
-- Basic lifecycle and edge-case hardening.
+### V0.2 — Technical foundation
+Dedicated keyboard/touch input, multi-pointer movement, responsive layouts, safe persistence, legacy migration and high-DPI Canvas.
 
-### V0.3 — Game architecture
-- Separate game state, world simulation, rendering and UI responsibilities.
-- Centralized configuration and data definitions.
-- Deterministic test hooks and lightweight automated checks.
-- Consistent error handling and save schema.
+### V0.3 — Underwater visual pass (implemented; device QA pending)
+Diver sprite sheet with idle, swim and catch rows; two frames for each fish; animated rendering; lagoon lighting, coral, bubbles and catch particles.
 
-### V0.4 — Performance and accessibility
-- Frame timing and visibility lifecycle review.
-- Canvas scaling and device pixel ratio handling.
-- Reduced-motion option, readable contrast and accessible controls.
-- Mobile browser QA and input edge-case coverage.
+### V0.4 — First restaurant loop (in progress)
+- Dive completion opens the restaurant at night.
+- Caught fish transfer into ingredient stock.
+- Sushi and tea menu: Nigiri Zen, Nigiri Aurora, Nigiri Neon, Matcha Sereno, Hojicha Noturno and Chá Lótus.
+- Customer orders and correct-item service.
+- Coins, stock consumption, reputation and shift summary.
+- Cyberpunk-zen restaurant scene and responsive interface.
+- Save schema v2 with fish stock, tea stock, day and reputation.
+- Automated restaurant economy tests.
 
 ### V0.5 — Technical beta
-- Save migration/versioning.
-- Settings and control preferences.
-- Debug overlay and structured diagnostics.
-- Stable release candidate for visual production.
+Save integrity, ingredient restocking, settings, control preferences, reduced motion, diagnostics and browser QA.
 
-### V0.6–V0.9 — Visual production
-- Original diver and fish sprite sheets.
-- Directional movement and swim/catch animations.
-- Layered ocean environments and parallax.
-- Biome-specific art, particles, lighting and transitions.
-- Cohesive interface, icons, typography and visual feedback.
+### V0.6–V0.9 — Exploration and content
+Additional ocean biomes, fish, landmarks, equipment upgrades, missions, collection records, restaurant decorations and expanded tea menu.
 
-### V1.0 — Visual and interaction baseline
-- Finalized underwater presentation.
-- Tutorial, feedback and accessibility pass.
-- Consistent controls and mobile polish.
-- Art pipeline documented and reusable.
+### V1.0 — Complete exploration baseline
+Tutorial, underwater objectives, balanced catch economy, persistent inventory and mobile/desktop quality gates.
 
-### V1.1–V1.3 — Fishing and progression
-- Fish behavior, rarity, habitat and spawn rules.
-- Inventory, ingredient quality and catch records.
-- Equipment upgrades, oxygen capacity and basket expansion.
-- Currency economy, unlocks and exploration objectives.
+### V1.1–V1.3 — Fishing progression
+Fish rarity and habitats, ingredient quality, recipe requirements, equipment upgrades and exploration objectives.
 
-### V1.4–V1.6 — Sushi restaurant
-- Day-to-night transition and restaurant scene.
-- Recipe catalog and ingredient requirements.
-- Customer queue, preferences, patience and orders.
-- Sushi preparation, serving, revenue and reputation.
-- Restaurant upgrades and daily performance summary.
+### V1.4–V1.6 — Full sushi and tea restaurant
+Complete day/night transition, recipe preparation, customer queue, preferences, tea ritual, restaurant upgrades, décor, reputation and daily reports.
 
 ### V1.7–V1.9 — Content, balance and polish
-- Additional ocean biomes and species.
-- More recipes, customer archetypes and restaurant upgrades.
-- Audio ambience, music and sound effects.
-- Economy and difficulty balancing.
-- Save integrity, regression testing and mobile QA.
+More biomes, recipes, teas and customers; seasonal events; audio; economy balancing; accessibility; regression QA.
 
 ### V2.0 — Complete core experience
-A stable, integrated game loop:
-1. Start a day and choose a dive.
-2. Explore and catch ingredients.
-3. Return to the surface and manage resources.
-4. Open the restaurant and fulfill customer orders.
-5. Earn revenue, improve equipment and restaurant.
-6. Unlock new content and repeat with meaningful progression.
+Dive, collect ingredients, return, manage stock, open the Zen cyberpunk sushi and tea bar, fulfill orders, earn revenue, improve equipment and restaurant, unlock content and repeat.
 
-## Current acceptance criteria
+## V0.4 acceptance criteria
 
-### V0.2
-- Keyboard controls continue to work.
-- Touch controls work in portrait and landscape.
-- Simultaneous directional touches move diagonally.
-- Releasing, cancelling or interrupting a touch does not leave movement stuck.
-- Storage failures do not crash the game.
-- Restarting a dive resets transient state without erasing saved coins.
-- No external framework is required.
+- [ ] Dive results transfer to restaurant fish stock once per shift.
+- [ ] Customer order is clearly visible.
+- [ ] Only the requested menu item completes the order.
+- [ ] Sushi consumes matching fish stock.
+- [ ] Tea consumes matching tea stock.
+- [ ] Correct service awards coins and reputation.
+- [ ] Progress survives a page reload.
+- [ ] Five guests complete the shift and allow the next dive.
+- [ ] Restaurant layout works in portrait and landscape.
+- [ ] No blocking JavaScript errors in desktop and mobile browsers.
 
 ## Release gates
 
-A milestone is complete only after:
-- Code and data paths are reviewed.
-- No obvious syntax or import errors remain.
-- Core acceptance criteria pass.
-- GitHub Pages is checked on a real browser.
-- Known limitations are documented.
+Code review, passing automated checks, gameplay acceptance tests, GitHub Pages verification on real devices and documented limitations.

@@ -21,7 +21,8 @@ export class BarRenderer {
     c.beginPath();c.moveTo(-48,30);c.quadraticCurveTo(0,54,48,30);c.stroke();c.restore();
     // Sign.
     c.strokeStyle="#37e6e0";c.lineWidth=3;c.strokeRect(345,35,270,58);c.shadowColor="#37e6e0";c.shadowBlur=12;c.fillStyle="#eafcff";c.font="bold 27px monospace";c.textAlign="center";c.fillText("NEXUS  茶 BAR",480,73);c.shadowBlur=0;
-    // Lanterns.
+    // Lanterns; the weekly festival adds a warmer glow.
+    if(state.eventType==="FESTIVAL DAS LANTERNAS"){c.fillStyle="rgba(255,184,107,.12)";c.fillRect(0,0,W,H);}
     for(const x of [105,270,690,855]){c.fillStyle="#ffb86b";c.fillRect(x-2,88,4,25);c.fillStyle="#a94e68";c.fillRect(x-16,112,32,55);c.fillStyle="#ffb86b";c.fillRect(x-12,118,24,43);c.fillStyle="rgba(255,184,107,.18)";c.beginPath();c.arc(x,140,42,0,Math.PI*2);c.fill();}
     // Tea cups and sushi display.
     for(let x=250;x<730;x+=95){c.fillStyle="#f4e8cc";c.fillRect(x,320,35,20);c.fillStyle="#37e6e0";c.fillRect(x+4,324,27,10);c.fillStyle="rgba(244,232,204,.6)";c.fillRect(x+13,303+Math.sin(elapsed*2+x)*2,3,13);}

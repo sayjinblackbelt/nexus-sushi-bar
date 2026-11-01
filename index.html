@@ -1,72 +1,72 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#102f46">
   <meta name="description" content="Explore the ocean, catch fish and build a cozy sushi bar.">
-  <title>Nexus Sushi Bar — Underwater Days</title>
+  <title>Nexus Sushi Bar — Mergulho & Chá</title>
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
   <main class="app-shell">
     <header class="topbar">
       <a class="brand" href="./"><span class="brand-mark">✦</span><span>NEXUS <b>SUSHI BAR</b></span></a>
-      <span class="version">PROTOTYPE 0.2</span>
+      <span class="version">PROTÓTIPO 0.4</span>
     </header>
     <section class="game-panel" aria-label="Game">
       <div class="game-heading">
-        <div><p class="eyebrow">DAY 01 · THE BLUE LAGOON</p><h1>Underwater expedition</h1></div>
-        <div class="phase-pill"><span class="pulse"></span> DAYTIME</div>
+        <div><p class="eyebrow">DIA 01 · LAGOA AZUL</p><h1>Expedição submarina</h1></div>
+        <div class="phase-pill"><span class="pulse"></span> DIA</div>
       </div>
       <div class="hud">
-        <div class="hud-card oxygen-card"><div class="hud-label"><span>OXYGEN</span><strong id="oxygen-value">100%</strong></div><div class="meter"><span id="oxygen-bar"></span></div></div>
-        <div class="hud-card"><span class="hud-label">CATCH</span><strong class="hud-number" id="catch-count">0 / 8</strong></div>
+        <div class="hud-card oxygen-card"><div class="hud-label"><span>OXIGÊNIO</span><strong id="oxygen-value">100%</strong></div><div class="meter"><span id="oxygen-bar"></span></div></div>
+        <div class="hud-card"><span class="hud-label">PESCAS</span><strong class="hud-number" id="catch-count">0 / 8</strong></div>
         <div class="hud-card"><span class="hud-label">COINS</span><strong class="hud-number" id="coin-count">0</strong></div>
       </div>
       <div class="canvas-wrap">
         <canvas id="game" width="960" height="540" aria-label="Underwater pixel art game scene"></canvas>
         <div class="toast" id="toast" role="status" aria-live="polite"></div>
-        <div class="start-screen" id="start-screen"><div class="start-card"><div class="start-icon">🐟</div><p class="eyebrow">A LITTLE OCEAN, A BIG DREAM</p><h2>Your first dive awaits.</h2><p>Swim around, get close to a fish and catch it. Keep an eye on your oxygen!</p><button class="primary-button" id="start-button">START DIVING <span>→</span></button></div></div>
-        <div class="game-over" id="game-over" hidden><div class="start-card"><div class="start-icon">🫧</div><p class="eyebrow">BACK TO THE SURFACE</p><h2>Dive complete!</h2><p id="summary-text">Your catch is safe.</p><button class="primary-button" id="open-bar-button">OPEN THE SUSHI BAR <span>→</span></button><button class="secondary-button" id="continue-button">DIVE AGAIN</button></div></div>
+        <div class="start-screen" id="start-screen"><div class="start-card"><div class="start-icon">🐟</div><p class="eyebrow">A LITTLE OCEAN, A BIG DREAM</p><h2>Seu primeiro mergulho espera.</h2><p>Explore, aproxime-se dos peixes e capture. Fique de olho no oxigênio!</p><button class="primary-button" id="start-button">MERGULHAR <span>→</span></button></div></div>
+        <div class="game-over" id="game-over" hidden><div class="start-card"><div class="start-icon">🫧</div><p class="eyebrow">DE VOLTA À SUPERFÍCIE</p><h2>Mergulho concluído!</h2><p id="summary-text">Your catch is safe.</p><button class="primary-button" id="open-bar-button">OPEN THE SUSHI BAR <span>→</span></button><button class="secondary-button" id="continue-button">MERGULHAR NOVAMENTE</button></div></div>
       </div>
-      <div class="controls-row"><div class="control-hint"><kbd>WASD</kbd> <kbd>↑↓←→</kbd> Swim <span class="hint-separator">·</span> <kbd>E</kbd> Catch <span class="hint-separator">·</span> <kbd>R</kbd> Surface</div><div class="status-note" id="status-note">Find a fish to begin</div></div>
+      <div class="controls-row"><div class="control-hint"><kbd>WASD</kbd> <kbd>↑↓←→</kbd> Nadar <span class="hint-separator">·</span> <kbd>E</kbd> Capturar <span class="hint-separator">·</span> <kbd>R</kbd> Superfície</div><div class="status-note" id="status-note">Find a fish to begin</div></div>
       <div class="mobile-controls" aria-label="Touch controls">
-        <div class="dpad"><button data-move="up" aria-label="Swim up">▲</button><div><button data-move="left" aria-label="Swim left">◀</button><button data-move="down" aria-label="Swim down">▼</button><button data-move="right" aria-label="Swim right">▶</button></div></div>
-        <div class="action-controls"><button id="touch-catch" class="catch-button">CATCH</button><button id="touch-surface" class="surface-button">SURFACE</button></div>
+        <div class="dpad"><button data-move="up" aria-label="Nadar up">▲</button><div><button data-move="left" aria-label="Nadar left">◀</button><button data-move="down" aria-label="Nadar down">▼</button><button data-move="right" aria-label="Nadar right">▶</button></div></div>
+        <div class="action-controls"><button id="touch-catch" class="catch-button">PESCAS</button><button id="touch-surface" class="surface-button">SURFACE</button></div>
       </div>
     </section>
     <section class="restaurant-panel" id="restaurant-panel" hidden aria-label="Nexus Sushi Bar restaurant">
       <div class="restaurant-heading">
-        <div><p class="eyebrow">NIGHT 01 · MINDFUL SERVICE</p><h1>Nexus Sushi & Tea Bar</h1></div>
+        <div><p class="eyebrow">NOITE 01 · HOSPITALIDADE ZEN</p><h1>Nexus Sushi & Chá</h1></div>
         <div class="restaurant-balance"><span>◉</span> <strong id="restaurant-coins">0</strong> coins</div>
       </div>
       <div class="restaurant-scene">
         <canvas id="restaurant-scene" width="960" height="540" aria-label="Cyberpunk Zen sushi and tea bar"></canvas>
-        <div class="scene-caption">A quiet moment in the neon city</div>
+        <div class="scene-caption">Um momento de calma na cidade neon</div>
       </div>
       <div class="restaurant-workspace">
         <div class="order-card">
-          <p class="eyebrow">CURRENT GUEST</p>
-          <h2 id="customer-name">Waiting for a guest</h2>
-          <p id="customer-order">Open the bar to receive your first order.</p>
-          <p class="restaurant-feedback" id="restaurant-feedback" role="status" aria-live="polite">Welcome. Serve with care.</p>
+          <p class="eyebrow">CLIENTE ATUAL</p>
+          <h2 id="customer-name">Aguardando cliente</h2>
+          <p id="customer-order">Abra o bar para receber seu primeiro pedido.</p>
+          <p class="restaurant-feedback" id="restaurant-feedback" role="status" aria-live="polite">Bem-vindo. Sirva com atenção.</p>
           <div class="shift-progress"><span id="shift-progress-bar"></span></div>
           <small id="shift-progress-label">0 / 5 guests served</small>
         </div>
         <div class="menu-card">
-          <div class="menu-heading"><div><p class="eyebrow">HOUSE MENU</p><h2>Sushi & Tea</h2></div><span class="zen-mark">蓮</span></div>
+          <div class="menu-heading"><div><p class="eyebrow">CARDÁPIO DA CASA</p><h2>Sushi & Chá</h2></div><span class="zen-mark">蓮</span></div>
           <div class="menu-grid" id="restaurant-menu"></div>
         </div>
         <div class="stock-card">
-          <p class="eyebrow">PANTRY</p>
+          <p class="eyebrow">ESTOQUE</p>
           <div id="restaurant-stock"></div>
-          <div class="stock-footer"><span>Reputation</span><strong id="restaurant-reputation">0</strong></div>
-          <button class="primary-button next-dive-button" id="next-dive-button" hidden>START NEXT DIVE →</button>
+          <div class="stock-footer"><span>Reputação</span><strong id="restaurant-reputation">0</strong></div>
+          <button class="primary-button next-dive-button" id="next-dive-button" hidden>INICIAR PRÓXIMO MERGULHO →</button>
         </div>
       </div>
     </section>
-    <footer class="footer"><span>✦ Take it slow. The ocean is yours to explore.</span><span>NEXUS SUSHI BAR <b>© 2026</b></span></footer>
+    <footer class="footer"><span>✦ Vá com calma. O oceano é seu para explorar.</span><span>NEXUS SUSHI BAR <b>© 2026</b></span></footer>
   </main>
   <script type="module" src="./js/main.js"></script>
 </body>

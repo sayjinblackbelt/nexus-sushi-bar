@@ -133,6 +133,8 @@ test("expanded menu includes rare-fish dishes and additional teas", () => {
 
 test("specialty menu unlocks follow fishing and bar progression", () => {
   const manager = setup();
+  manager.progress.fishStock.moonfish = 1; manager.progress.fishStock["koi-ray"] = 1;
+  manager.progress.teaStock.genmaicha = 1; manager.progress.teaStock.yuzu = 1;
   let ids = manager.availableItems().map(item => item.id);
   assert.ok(!ids.includes("moonfish-sashimi"));
   assert.ok(!ids.includes("genmaicha"));

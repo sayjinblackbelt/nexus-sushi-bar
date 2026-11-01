@@ -1,5 +1,5 @@
 const SAVE_KEY = "nexus-save";
-const SAVE_VERSION = 9;
+export const SAVE_VERSION = 9;
 const EMPTY_TEA_STOCK = { matcha: 5, hojicha: 5, lotus: 3, genmaicha: 2, yuzu: 2 };
 let memorySave = {
   version: SAVE_VERSION, coins: 0, bestCatch: 0, fishStock: {},
@@ -15,7 +15,7 @@ function safeStock(value, fallback = {}) {
   const source = value && typeof value === "object" ? value : fallback;
   return Object.fromEntries(Object.entries(source).map(([key, count]) => [key, safeCount(count)]));
 }
-function normalizeProgress(data = {}) {
+export function normalizeProgress(data = {}) {
   return {
     version: SAVE_VERSION,
     coins: safeCount(data.coins),

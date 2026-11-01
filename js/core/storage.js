@@ -1,6 +1,6 @@
 const SAVE_KEY = "nexus-save";
 const SAVE_VERSION = 8;
-const EMPTY_TEA_STOCK = { matcha: 5, hojicha: 5, lotus: 3 };
+const EMPTY_TEA_STOCK = { matcha: 5, hojicha: 5, lotus: 3, genmaicha: 2, yuzu: 2 };
 let memorySave = {
   version: SAVE_VERSION, coins: 0, bestCatch: 0, fishStock: {},
   teaStock: { ...EMPTY_TEA_STOCK }, reputation: 0, day: 1,

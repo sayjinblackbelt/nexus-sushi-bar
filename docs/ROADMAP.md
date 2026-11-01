@@ -30,7 +30,7 @@ Dedicated keyboard/touch input, multi-pointer movement, responsive layouts, safe
 ### V0.3 — Underwater visual pass (implemented; device QA pending)
 Diver sprite sheet with idle, swim and catch rows; two frames for each fish; animated rendering; lagoon lighting, coral, bubbles and catch particles.
 
-### V0.4 — First restaurant loop (in progress)
+### V0.4 — First restaurant loop (implemented; device QA pending)
 - Dive completion opens the restaurant at night.
 - Caught fish transfer into ingredient stock.
 - Sushi and tea menu: Nigiri Zen, Nigiri Aurora, Nigiri Neon, Matcha Sereno, Hojicha Noturno and Chá Lótus.

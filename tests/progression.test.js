@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { fishingLevel, fishingRank, barShiftTarget, equipmentStats, CHARACTERS } from "../js/progression.js";
 import { RestaurantManager } from "../js/restaurant.js";
-import { writeProgress } from "../js/core/storage.js";
+import { writeProgress, normalizeProgress, SAVE_VERSION } from "../js/core/storage.js";
 import { chooseFishSpecies, catchQuality, FISH_SPECIES } from "../js/data/fish.js";
 
 test("fishing progression unlocks five ranks at 100 XP intervals", () => {
@@ -102,4 +102,25 @@ test("sound and reduced motion preferences persist independently", async () => {
   assert.equal(saved.soundEnabled, false);
   assert.equal(saved.reducedMotion, true);
   assert.equal(saved.coins, 77);
+});
+
+
+test("save normalization migrates older progress with safe defaults", () => {
+  const migrated = normalizeProgress({ version: 4, coins: 125, fishStock: { sardine: 3 }, teaStock: { matcha: 2 }, equipmentLevel: 3 });
+  assert.equal(migrated.version, SAVE_VERSION);
+  assert.equal(migrated.coins, 125);
+  assert.equal(migrated.fishStock.sardine, 3);
+  assert.equal(migrated.decorLevel, 1);
+  assert.equal(migrated.soundEnabled, true);
+  assert.equal(migrated.reducedMotion, false);
+  assert.equal(migrated.equipmentSpecialization, "balanced");
+});
+
+test("invalid or negative save values normalize to safe gameplay values", () => {
+  const normalized = normalizeProgress({ coins: -99, day: 0, equipmentLevel: 99, barLevel: -3, equipmentSpecialization: "invalid" });
+  assert.equal(normalized.coins, 0);
+  assert.equal(normalized.day, 1);
+  assert.equal(normalized.equipmentLevel, 5);
+  assert.equal(normalized.barLevel, 1);
+  assert.equal(normalized.equipmentSpecialization, "balanced");
 });

@@ -2,19 +2,19 @@
 
 A cozy pixel-art fishing and sushi restaurant simulation game.
 
-Explore the ocean, catch fish and collect ingredients during the day. The restaurant management loop is planned for a later milestone.
+Explore the ocean, catch fish and collect ingredients during the day. Return to the surface, prepare sushi and manage a small restaurant at night.
 
-## Current milestone — V0.1
+## Current milestone — V0.2 Technical Foundation
 
-The first playable prototype focuses on the underwater loop:
+The playable prototype is being hardened before the visual and gameplay expansions.
 
-- Pixel-art inspired underwater scene rendered with HTML5 Canvas.
-- Keyboard and touch movement.
-- Fish swimming with simple autonomous movement.
-- Proximity-based fishing.
-- Oxygen and inventory capacity.
-- Return-to-surface mechanic.
-- Best catch and coins saved locally.
+- HTML5 Canvas rendering with native JavaScript ES modules.
+- Keyboard and touch input handled by a dedicated controller.
+- Responsive mobile layouts in portrait and landscape.
+- Pointer capture and multi-direction touch movement.
+- Resilient local persistence with an in-memory fallback.
+- Centralized dive reset lifecycle.
+- No build step or mandatory external dependencies.
 
 ## Controls
 
@@ -26,31 +26,34 @@ The first playable prototype focuses on the underwater loop:
 
 ## Run locally
 
-Open `index.html` in a modern browser. The game uses native JavaScript ES modules and does not require a build step or external dependencies.
+Serve the project through a local static web server, then open index.html. Native JavaScript ES modules work best over HTTP rather than opening the file directly.
 
 ## Project structure
 
-```text
-nexus-sushi-bar/
-├── index.html
-├── README.md
-├── css/
-│   └── style.css
-├── js/
-│   ├── main.js
-│   ├── game.js
-│   └── data/
-│       └── fish.js
-└── docs/
-    └── ROADMAP.md
-```
+    nexus-sushi-bar/
+    ├── index.html
+    ├── README.md
+    ├── css/
+    │   └── style.css
+    ├── js/
+    │   ├── main.js
+    │   ├── game.js
+    │   ├── core/
+    │   │   ├── input.js
+    │   │   └── storage.js
+    │   └── data/
+    │       └── fish.js
+    └── docs/
+        └── ROADMAP.md
 
 ## Roadmap
 
-- **V0.1:** Underwater exploration and fishing prototype.
-- **V0.2:** Day/night transition, sushi preparation and restaurant service.
-- **V0.3:** Upgrades, recipes, new fish and additional ocean zones.
-- **V1.0:** Content polish, audio, balancing and expanded progression.
+- **V0.2–V0.5:** Technical foundation, input, persistence, performance and responsive behavior.
+- **V0.6–V0.9:** Original art direction, sprites, animation, interface and effects.
+- **V1.0–V1.3:** Fishing loop, inventory, economy, exploration and progression.
+- **V1.4–V1.6:** Sushi recipes, customers, orders and restaurant management.
+- **V1.7–V1.9:** Additional biomes, upgrades, audio, balancing and quality assurance.
+- **V2.0:** Integrated and polished day/night gameplay loop.
 
 ## License
 

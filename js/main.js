@@ -20,7 +20,7 @@ function renderRestaurantUI(state){
   $("#restaurant-menu").querySelectorAll("[data-menu-id]").forEach(button=>button.addEventListener("click",()=>restaurant.prepare(button.dataset.menuId)));
   const fishNames={sardine:"Sardinha",clownfish:"Peixe-palhaço","blue-tang":"Blue tang",pufferfish:"Baiacu",moonfish:"Moonfish",lanternfish:"Peixe-lanterna","koi-ray":"Raia Koi"};
   const rows=Object.entries(state.fishStock).filter(([,n])=>n>0).map(([id,n])=>`<div class="stock-row"><span>${fishNames[id]||id}</span><span>${n}</span></div>`);
-  const teaNames={matcha:"Matcha",hojicha:"Hojicha",lotus:"Lótus"};Object.entries(state.teaStock).forEach(([id,n])=>{if(n>0)rows.push(`<div class="stock-row"><span>Chá ${teaNames[id]||id}</span><span>${n}</span></div>`);});
+  const teaNames={matcha:"Matcha",hojicha:"Hojicha",lotus:"Lótus",genmaicha:"Genmaicha",yuzu:"Yuzu"};Object.entries(state.teaStock).forEach(([id,n])=>{if(n>0)rows.push(`<div class="stock-row"><span>Chá ${teaNames[id]||id}</span><span>${n}</span></div>`);});
   $("#restaurant-stock").innerHTML=rows.length?rows.join(""):"<span>Estoque vazio</span>";
 }
 const restaurant=new RestaurantManager(renderRestaurantUI);

@@ -191,3 +191,16 @@ button{ -webkit-user-select:none; user-select:none; }
 
 /* Character selection and progression */
 .character-picker{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:14px 0 8px}.character-option{display:grid;justify-items:center;gap:3px;padding:10px 6px;border:1px solid #6eaaa566;border-radius:10px;background:#0d3044;color:#f4e8cc;cursor:pointer}.character-option.selected{border-color:#ffb86b;background:#19465a;box-shadow:0 0 0 2px #ffb86b33,0 0 18px #37e6e033}.character-avatar{font-size:29px}.character-option strong{font-size:14px}.character-option small{font-size:9px;color:#a8c9c9}.character-note{min-height:16px!important;color:#9df2d6!important;font-size:10px!important}.bar-level-label{margin:5px 0 0;color:#37e6e0;font:9px "DM Mono",monospace;letter-spacing:1.2px}.secondary-button:disabled{opacity:.4;cursor:not-allowed}@media(max-width:680px){.character-picker{gap:6px;margin:8px 0 4px}.character-option{padding:6px 4px}.character-avatar{font-size:24px}}
+
+/* V0.6 exploration: selectable biomes and expedition mission */
+.biome-picker{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:6px 0}
+.biome-option{display:grid;gap:4px;padding:8px 5px;border:1px solid #37e6e066;border-radius:8px;background:#102f46;color:#f4e8cc;text-align:center;cursor:pointer}
+.biome-option strong{font-size:10px}.biome-option small{font:8px "DM Mono",monospace;color:#9bded5}
+.biome-option.selected{border-color:#ffb86b;background:#19465a;box-shadow:0 0 12px #37e6e033}
+.biome-option:disabled{opacity:.38;filter:grayscale(.8);cursor:not-allowed}
+.biome-picker-label{margin:10px 0 4px!important}
+.expedition-mission{display:flex;align-items:center;gap:10px;margin:8px 0;padding:8px 12px;border:1px solid #37e6e055;border-radius:8px;background:#102f46;color:#cdeee7;font-size:10px}
+.expedition-mission .eyebrow{margin:0;color:#37e6e0;white-space:nowrap}
+.expedition-mission strong{color:#ffb86b;white-space:nowrap}
+.expedition-mission span:last-child{color:#a9c9ce}
+@media(max-width:520px){.biome-picker{gap:4px}.biome-option{padding:7px 3px}.biome-option strong{font-size:9px}.biome-option small{font-size:7px}.expedition-mission{flex-wrap:wrap;gap:5px 9px;padding:7px}.expedition-mission span:last-child{width:100%}}

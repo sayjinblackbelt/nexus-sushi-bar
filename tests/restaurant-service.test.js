@@ -63,3 +63,33 @@ test("restaurant level continues to scale shift capacity", () => {
   manager.beginShift([]);
   assert.equal(manager.shiftTarget, 9);
 });
+
+
+test("recipe workflow requires the correct station at every step", () => {
+  const manager = setup();
+  manager.order = { itemId: "matcha", customer: "Mei", itemName: "Matcha Sereno", favorites: ["matcha"] };
+  assert.equal(manager.prepare("matcha"), true);
+  assert.equal(manager.chooseStation("tea"), false);
+  assert.equal(manager.chooseStation("kettle"), true);
+  manager.tick(1.1);
+  assert.equal(manager.preparation.awaitingStation, true);
+  assert.equal(manager.preparation.stepIndex, 1);
+  assert.equal(manager.chooseStation("tea"), true);
+  const stockBefore = manager.progress.teaStock.matcha;
+  manager.tick(1.3);
+  assert.equal(manager.served, 1);
+  assert.equal(manager.progress.teaStock.matcha, stockBefore - 1);
+});
+
+test("recipe ingredients are not consumed before all stations finish", () => {
+  const manager = setup();
+  manager.order = { itemId: "nigiri-sardine", customer: "Akira", itemName: "Nigiri Zen", favorites: ["nigiri-sardine"] };
+  const stockBefore = manager.progress.fishStock.sardine;
+  manager.prepare("nigiri-sardine");
+  manager.chooseStation("rice");
+  manager.tick(1.4);
+  assert.equal(manager.progress.fishStock.sardine, stockBefore);
+  assert.equal(manager.chooseStation("sushi"), true);
+  manager.tick(1.8);
+  assert.equal(manager.progress.fishStock.sardine, stockBefore - 1);
+});

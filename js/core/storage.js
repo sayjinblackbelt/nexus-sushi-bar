@@ -1,10 +1,10 @@
 const SAVE_KEY = "nexus-save";
-const SAVE_VERSION = 4;
+const SAVE_VERSION = 5;
 const EMPTY_TEA_STOCK = { matcha: 5, hojicha: 5, lotus: 3 };
 let memorySave = {
   version: SAVE_VERSION, coins: 0, bestCatch: 0, fishStock: {},
   teaStock: { ...EMPTY_TEA_STOCK }, reputation: 0, day: 1,
-  character: "kai", fishingXP: 0, equipmentLevel: 1, barLevel: 1, customersServed: 0, biome: "lagoon", speciesCaught: {}
+  character: "kai", fishingXP: 0, equipmentLevel: 1, barLevel: 1, customersServed: 0, biome: "lagoon", speciesCaught: {}, decorLevel: 1
 };
 
 function safeCount(value) {
@@ -30,7 +30,8 @@ function normalizeProgress(data = {}) {
     barLevel: Math.min(5, Math.max(1, safeCount(data.barLevel) || 1)),
     customersServed: safeCount(data.customersServed),
     biome: ["lagoon","reef","abyss"].includes(data.biome) ? data.biome : "lagoon",
-    speciesCaught: safeStock(data.speciesCaught)
+    speciesCaught: safeStock(data.speciesCaught),
+    decorLevel: Math.min(3, Math.max(1, safeCount(data.decorLevel) || 1))
   };
 }
 

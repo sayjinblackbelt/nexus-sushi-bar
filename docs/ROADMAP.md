@@ -93,8 +93,10 @@ Save integrity, ingredient restocking, settings, control preferences, reduced mo
 - Quality totals persist in the save and are independent from species discovery.
 - Expedition summary reports quality bonus separately from base catch value.
 
-### V1.3 — Advanced expedition progression (planned)
-Equipment specializations, biome challenges and mastery objectives.
+### V1.3 — Equipment specializations (implemented; device QA pending)
+- Balanced, Endurance, Swift and Cargo specializations.
+- Endurance reduces oxygen consumption by 18%; Swift increases swim speed by 15%; Cargo adds two catch slots.
+- Specialization persists and combines with equipment tier upgrades.
 
 ### V1.4–V1.6 — Full sushi and tea restaurant
 Complete day/night transition, recipe preparation, customer queue, preferences, tea ritual, restaurant upgrades, décor, reputation and daily reports.
@@ -104,6 +106,12 @@ More biomes, recipes, teas and customers; seasonal events; audio; economy balanc
 
 ### V2.0 — Complete core experience
 Dive, collect ingredients, return, manage stock, open the Zen cyberpunk sushi and tea bar, fulfill orders, earn revenue, improve equipment and restaurant, unlock content and repeat.
+
+## V1.3 acceptance criteria
+
+- [x] Four equipment specializations are selectable.
+- [x] Each specialization has a measurable gameplay effect.
+- [x] Specialization persists across reloads and composes with equipment tiers.
 
 ## V1.2 acceptance criteria
 

@@ -8,4 +8,4 @@ export const RESTAURANT_MENU = [
 ];
 
 export const TEA_STOCK_START = { matcha: 5, hojicha: 5, lotus: 3 };
-export const CUSTOMER_NAMES = ["Akira", "Mei", "Ren", "Yuna", "Haru", "Sora"];
+export const CUSTOMER_NAMES = ["Akira", "Mei", "Ren", "Yuna", "Haru", "Sora", "Aiko", "Takeshi", "Mika", "Daichi", "Emi", "Riku", "Hana", "Kento", "Noa", "Renji", "Akari"];

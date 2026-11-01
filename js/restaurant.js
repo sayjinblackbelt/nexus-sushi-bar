@@ -40,8 +40,9 @@ export class RestaurantManager {
   createCustomer() {
     const profile = CUSTOMER_PROFILES[Math.floor(Math.random() * CUSTOMER_PROFILES.length)];
     this.customerSerial += 1;
-    const vip = this.progress.day % 5 === 0 && this.customerSerial === 1;
-    return { name: vip ? "Visitante VIP" : profile.name, favorites: [...profile.favorites], patience: profile.patience + Math.max(0, this.progress.barLevel - 1) * 3 + (this.progress.decorLevel - 1) * 2 + (vip ? 18 : 0), vip };
+    const vip = this.progress.day % 5 === 0 && this.progress.day % 7 !== 0 && this.customerSerial === 1;
+    const festival = this.progress.day % 7 === 0 && this.customerSerial === 1;
+    return { name: vip ? "Visitante VIP" : festival ? "Convidado do Festival" : profile.name, favorites: [...profile.favorites], patience: profile.patience + Math.max(0, this.progress.barLevel - 1) * 3 + (this.progress.decorLevel - 1) * 2 + (vip ? 18 : festival ? 12 : 0), vip, festival };
   }
 
   availableItems() {
@@ -66,7 +67,7 @@ export class RestaurantManager {
     const preferred = available.filter(item => customer.favorites.includes(item.id));
     const pool = preferred.length ? preferred : available;
     const item = pool[Math.floor(Math.random() * pool.length)];
-    this.order = { itemId: item.id, customer: customer.name, itemName: item.name, favorites: customer.favorites, vip: !!customer.vip };
+    this.order = { itemId: item.id, customer: customer.name, itemName: item.name, favorites: customer.favorites, vip: !!customer.vip, festival: !!customer.festival };
     this.patienceMax = customer.patience;
     this.patience = customer.patience;
     this.message = `${customer.name} chegou ao balcão. Preferências: ${customer.favorites.map(id => RESTAURANT_MENU.find(item => item.id === id)?.name).filter(Boolean).join(" ou ")}.`;
@@ -150,7 +151,7 @@ export class RestaurantManager {
     if (!(stock[stockKey] > 0)) { this.message = "Ingrediente em falta."; this.emit(); return false; }
     stock[stockKey] -= 1;
     const patienceRatio = this.patience / this.patienceMax;
-    const tip = (patienceRatio > .65 ? 3 : patienceRatio > .3 ? 1 : 0) + (this.order.vip ? 5 : 0);
+    const tip = (patienceRatio > .65 ? 3 : patienceRatio > .3 ? 1 : 0) + (this.order.vip ? 5 : 0) + (this.order.festival ? 3 : 0);
     this.progress.coins += item.price + tip;
     this.progress.reputation += 1;
     this.served += 1;
@@ -237,7 +238,7 @@ export class RestaurantManager {
       shiftTarget: this.shiftTarget, message: this.message, closed: this.closed,
       menu: RESTAURANT_MENU, stations: KITCHEN_STATIONS, queue: this.queue.map(customer => customer.name),
       patience: this.patience || 0, patienceMax: this.patienceMax || 1,
-      shiftStats: { ...this.shiftStats }, satisfaction: this.shiftStats.served + this.shiftStats.lost ? Math.round(this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) * 100) : 100, rating: this.shiftStats.served + this.shiftStats.lost === 0 ? 5 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .9 ? 5 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .75 ? 4 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .6 ? 3 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .4 ? 2 : 1, eventActive: this.progress.day % 5 === 0, preparation: this.preparation ? { ...this.preparation, steps: this.preparation.steps.map(step => ({ ...step })), currentStep: this.preparation.steps[this.preparation.stepIndex] || null } : null
+      shiftStats: { ...this.shiftStats }, satisfaction: this.shiftStats.served + this.shiftStats.lost ? Math.round(this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) * 100) : 100, rating: this.shiftStats.served + this.shiftStats.lost === 0 ? 5 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .9 ? 5 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .75 ? 4 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .6 ? 3 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .4 ? 2 : 1, eventActive: this.progress.day % 5 === 0 || this.progress.day % 7 === 0, eventType: this.progress.day % 7 === 0 ? "FESTIVAL DAS LANTERNAS" : this.progress.day % 5 === 0 ? "NOITE VIP" : null, preparation: this.preparation ? { ...this.preparation, steps: this.preparation.steps.map(step => ({ ...step })), currentStep: this.preparation.steps[this.preparation.stepIndex] || null } : null
     };
   }
 

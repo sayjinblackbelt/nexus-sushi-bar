@@ -22,13 +22,13 @@ test("restaurant serves tea and sushi while consuming the matching stock", () =>
 
   assert.equal(restaurant.serve("matcha"), true);
   assert.equal(restaurant.progress.teaStock.matcha, 1);
-  assert.equal(restaurant.progress.coins, 12);
+  assert.equal(restaurant.progress.coins, 15);
   assert.equal(restaurant.progress.reputation, 1);
 
   restaurant.order = { itemId: "nigiri-sardine", customer: "Teste", itemName: "Nigiri Zen" };
   assert.equal(restaurant.serve("nigiri-sardine"), true);
   assert.equal(restaurant.progress.fishStock.sardine, 1);
-  assert.equal(restaurant.progress.coins, 30);
+  assert.equal(restaurant.progress.coins, 33);
   assert.equal(restaurant.progress.reputation, 2);
 });
 

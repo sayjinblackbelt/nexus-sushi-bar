@@ -17,7 +17,7 @@ function renderRestaurantUI(state){
   $("#next-dive-button").hidden=!state.closed;
   $("#restaurant-menu").innerHTML=state.menu.map(item=>{const stock=item.category==="tea"?(state.teaStock[item.teaId]||0):(state.fishStock[item.fishId]||0);return `<button class="menu-item" data-menu-id="${item.id}" ${stock<1||state.closed?"disabled":""}><span><strong>${item.name}</strong><small>${item.category==="tea"?"Chá":"Sushi"} · estoque ${stock}</small></span><b>${item.price} ◉</b></button>`;}).join("");
   $("#restaurant-menu").querySelectorAll("[data-menu-id]").forEach(button=>button.addEventListener("click",()=>restaurant.serve(button.dataset.menuId)));
-  const fishNames={sardine:"Sardinha",clownfish:"Peixe-palhaço","blue-tang":"Blue tang",pufferfish:"Baiacu",moonfish:"Moonfish"};
+  const fishNames={sardine:"Sardinha",clownfish:"Peixe-palhaço","blue-tang":"Blue tang",pufferfish:"Baiacu",moonfish:"Moonfish",lanternfish:"Peixe-lanterna","koi-ray":"Raia Koi"};
   const rows=Object.entries(state.fishStock).filter(([,n])=>n>0).map(([id,n])=>`<div class="stock-row"><span>${fishNames[id]||id}</span><span>${n}</span></div>`);
   const teaNames={matcha:"Matcha",hojicha:"Hojicha",lotus:"Lótus"};Object.entries(state.teaStock).forEach(([id,n])=>{if(n>0)rows.push(`<div class="stock-row"><span>Chá ${teaNames[id]||id}</span><span>${n}</span></div>`);});
   $("#restaurant-stock").innerHTML=rows.length?rows.join(""):"<span>Estoque vazio</span>";

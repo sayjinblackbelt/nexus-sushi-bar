@@ -34,6 +34,9 @@ export class BarRenderer {
     if(state.barLevel>=3){c.fillStyle="#34213d";c.fillRect(808,405,130,97);c.fillStyle="#37e6e0";c.fillRect(808,403,130,3);c.fillStyle="#ffb86b";c.fillRect(825,425,96,4);}
     if(state.barLevel>=4){c.fillStyle="#65c18c";c.fillRect(42,300,24,30);c.fillRect(894,300,24,30);}
     if(state.barLevel>=5){c.fillStyle="#9b5de5";c.fillRect(430,190,100,4);c.fillStyle="#37e6e0";c.fillRect(440,198,80,3);}
+    // Décor progression: each tier adds a calmer, more welcoming detail.
+    if((state.decorLevel||1)>=2){c.fillStyle="#65c18c";c.fillRect(72,330,7,24);c.fillRect(60,338,30,4);c.fillStyle="#9b5de5";c.fillRect(66,322,18,8);}
+    if((state.decorLevel||1)>=3){c.fillStyle="#ffb86b";c.beginPath();c.arc(480,185,18,0,Math.PI*2);c.fill();c.fillStyle="#37e6e0";c.fillRect(477,185,6,28);}
     // Floor reflection and calm water-garden accent.
     c.fillStyle="rgba(55,230,224,.13)";c.fillRect(0,530,W,3);c.fillStyle="#65c18c";c.fillRect(28,345,5,18);c.fillRect(20,350,20,3);
   }

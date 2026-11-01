@@ -1,9 +1,10 @@
+import{readProgress,writeProgress}from"./core/storage.js";
 import{InputController}from"./core/input.js";
 import{OceanGame}from"./game.js";
 import{configureCanvas}from"./core/canvas.js";
 import{BarRenderer}from"./core/bar-renderer.js";
 import{RestaurantManager}from"./restaurant.js";
-const $=s=>document.querySelector(s),oxygenValue=$("#oxygen-value"),oxygenBar=$("#oxygen-bar"),catchCount=$("#catch-count"),coinCount=$("#coin-count"),startScreen=$("#start-screen"),gameOver=$("#game-over"),toast=$("#toast"),statusNote=$("#status-note");let toastTimer,lastDiveFish=[],restaurantFrame=0,restaurantElapsed=0,selectedCharacter="kai";
+const $=s=>document.querySelector(s),oxygenValue=$("#oxygen-value"),oxygenBar=$("#oxygen-bar"),catchCount=$("#catch-count"),coinCount=$("#coin-count"),startScreen=$("#start-screen"),gameOver=$("#game-over"),toast=$("#toast"),statusNote=$("#status-note");let toastTimer,lastDiveFish=[],restaurantFrame=0,restaurantElapsed=0,selectedCharacter=readProgress().character;
 function showToast(message){toast.textContent=message;toast.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove("show"),1800);}
 const restaurantPanel=$("#restaurant-panel"),gamePanel=document.querySelector(".game-panel"),barCanvas=$("#restaurant-scene"),barContext=configureCanvas(barCanvas,960,540),barRenderer=new BarRenderer(barContext,960,540);
 function renderRestaurantUI(state){
@@ -24,13 +25,14 @@ function renderRestaurantUI(state){
 const restaurant=new RestaurantManager(renderRestaurantUI);
 function animateRestaurant(){if(restaurantPanel.hidden)return;restaurantElapsed+=1/60;barRenderer.render(restaurant.getState(),restaurantElapsed);restaurantFrame=requestAnimationFrame(animateRestaurant);}
 const game=new OceanGame($("#game"),{
-onHud({oxygen,count,capacity,coins,nearby}){oxygenValue.textContent=`${oxygen}%`;oxygenBar.style.width=`${oxygen}%`;oxygenBar.style.background=oxygen<25?"linear-gradient(90deg,#e97865,#f2b17e)":"linear-gradient(90deg,#5fc9b3,#b6e6c4)";catchCount.textContent=`${count} / ${capacity}`;coinCount.textContent=coins;const xp=restaurant.progress.fishingXP||0;const level=Math.min(5,Math.floor(xp/100)+1);$("#player-level-label").textContent=`NÍVEL ${level} · ${["PESCADOR INICIANTE","PESCADOR APRENDIZ","PESCADOR EXPERIENTE","PESCADOR ESPECIALISTA","MESTRE DAS MARÉS"][level-1]}`;statusNote.textContent=nearby?`Perto: ${nearby}`:"Explore a lagoa";},
+onHud({oxygen,count,capacity,coins,nearby}){oxygenValue.textContent=`${oxygen}%`;oxygenBar.style.width=`${oxygen}%`;oxygenBar.style.background=oxygen<25?"linear-gradient(90deg,#e97865,#f2b17e)":"linear-gradient(90deg,#5fc9b3,#b6e6c4)";catchCount.textContent=`${count} / ${capacity}`;coinCount.textContent=coins;const xp=readProgress().fishingXP||0;const level=Math.min(5,Math.floor(xp/100)+1);$("#player-level-label").textContent=`NÍVEL ${level} · ${["PESCADOR INICIANTE","PESCADOR APRENDIZ","PESCADOR EXPERIENTE","PESCADOR ESPECIALISTA","MESTRE DAS MARÉS"][level-1]}`;statusNote.textContent=nearby?`Perto: ${nearby}`:"Explore a lagoa";},
 onMessage:showToast,onStatus:message=>statusNote.textContent=message,
 onEnd({count,earned,forced,fish}){lastDiveFish=fish||[];$("#summary-text").textContent=forced?`O oxigênio acabou. Você trouxe ${count} peixes e ganhou ${earned} moedas.`:`Ótimo mergulho! Você trouxe ${count} peixes e ganhou ${earned} moedas.`;gameOver.hidden=false;coinCount.textContent=game.coins;}
 });
 const characterNames={kai:"Kai",yuna:"Yuna"};
 document.querySelectorAll("[data-character]").forEach(button=>button.addEventListener("click",()=>{selectedCharacter=button.dataset.character;document.querySelectorAll("[data-character]").forEach(option=>{const active=option===button;option.classList.toggle("selected",active);option.setAttribute("aria-pressed",String(active));});$("#character-note").textContent=`${characterNames[selectedCharacter]} está pronto para mergulhar.`;}));
-$("#start-button").addEventListener("click",()=>{game.character=selectedCharacter;startScreen.hidden=true;game.start();$("#player-heading").textContent=`Expedição de ${characterNames[selectedCharacter]}`;});
+document.querySelectorAll("[data-character]").forEach(button=>{const active=button.dataset.character===selectedCharacter;button.classList.toggle("selected",active);button.setAttribute("aria-pressed",String(active));});$("#character-note").textContent=`${characterNames[selectedCharacter]} está pronto para mergulhar.`;
+$("#start-button").addEventListener("click",()=>{game.character=selectedCharacter;writeProgress({...readProgress(),character:selectedCharacter});startScreen.hidden=true;game.start();$("#player-heading").textContent=`Expedição de ${characterNames[selectedCharacter]}`;});
 $("#continue-button").addEventListener("click",()=>{gameOver.hidden=true;game.resetDive();game.start();});
 
 const inputController=new InputController(game,document);

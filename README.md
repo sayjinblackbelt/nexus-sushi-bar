@@ -12,7 +12,7 @@ The playable prototype is being hardened before the visual and gameplay expansio
 - Keyboard and touch input handled by a dedicated controller.
 - Responsive mobile layouts in portrait and landscape.
 - Pointer capture and multi-direction touch movement.
-- Resilient local persistence with an in-memory fallback.
+- Versioned save data with legacy progress migration and an in-memory fallback.
 - Centralized dive reset lifecycle.
 - No build step or mandatory external dependencies.
 
@@ -40,7 +40,6 @@ Serve the project through a local static web server, then open index.html. Nativ
     │   ├── game.js
     │   ├── core/
     │   │   ├── canvas.js
-    │   │   ├── canvas.js
     │   │   ├── input.js
     │   │   ├── renderer.js
     │   │   └── storage.js
@@ -48,7 +47,8 @@ Serve the project through a local static web server, then open index.html. Nativ
     │       └── fish.js
     └── docs/
         ├── ARCHITECTURE.md
-        └── ROADMAP.md
+        ├── ROADMAP.md
+        └── TEST_PLAN.md
 
 ## Roadmap
 

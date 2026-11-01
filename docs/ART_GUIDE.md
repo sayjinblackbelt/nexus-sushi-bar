@@ -1,10 +1,10 @@
 # Art Direction — Nexus Sushi Bar
 
-## Visual identity
+## Overall visual identity
 
-Cozy 16-bit pixel art with readable silhouettes, warm highlights and calm underwater colors. The world should feel inviting and handcrafted rather than realistic or high-contrast.
+Pixel art with readable silhouettes and expressive environments. The game moves between a luminous, tranquil underwater world by day and a cozy Zen refuge in a cyberpunk city by night.
 
-## Core palette
+## Underwater palette
 
 - Deep ocean: #102F46
 - Ocean teal: #176B72
@@ -13,36 +13,34 @@ Cozy 16-bit pixel art with readable silhouettes, warm highlights and calm underw
 - Cream: #F4E8CC
 - Coral accent: #E98C65
 
+## Restaurant palette — Zen Cyberpunk
+
+- Midnight ink: #090D22
+- Deep indigo: #171B3D
+- Neon cyan: #37E6E0
+- Neon magenta: #FF4FA3
+- Violet: #9B5DE5
+- Lantern amber: #FFB86B
+- Bamboo jade: #65C18C
+- Warm rice: #F4E8CC
+
+## Restaurant visual language
+
+Cyberpunk uses restrained neon signs, holographic menu panels, luminous reflections and a night skyline. Zen uses wood, bamboo, stone, bonsai, water, warm lanterns, tea ceremony and calm geometry. Food presentation is precise, with ceramic cups, steam and preparation feedback.
+
+The Buddhist-inspired theme communicates mindfulness, balance, compassion and intentional hospitality. Sacred figures, mantras and religious symbols are not used as generic decoration.
+
 ## Sprite standards
 
-- Transparent PNG assets where practical.
-- Pixel-art edges; no anti-aliased vector-like outlines.
-- Consistent top-left light source and restrained shadow palette.
-- Strong silhouette at small display sizes.
-- Avoid baked-in labels, UI, captions or backgrounds in character sprites.
-- Keep sprite dimensions and frame spacing consistent within each sheet.
+Transparent backgrounds where practical, crisp pixel edges, consistent light direction, strong silhouettes at small sizes, no baked-in labels or UI, and consistent frame spacing.
 
-## First integrated asset pack (V0.3)
+## Integrated underwater sprite pack
 
-- `assets/sprites/diver.svg`: initial diver sprite, with a transparent background and crisp pixel edges.
-- `assets/sprites/fish.svg`: five species arranged in a horizontal 32 × 32 frame grid, matching the species order in `js/data/fish.js`.
-- The Canvas renderer loads these assets asynchronously and retains its procedural drawing as a fallback while assets load or if loading fails.
+- assets/sprites/diver.svg: 192 × 144 sheet; 48 × 48 frames, four columns and three rows (idle, swim, catch).
+- assets/sprites/fish.svg: 160 × 64 sheet; 32 × 32 frames, five species columns and two animation rows.
+- Renderer animates frames based on elapsed time and player state.
+- Procedural fallback remains available while assets load or if loading fails.
 
-This is a foundational placeholder pack, not the final animation set. Distinct swim, catch and directional frames remain scheduled for the next visual pass.
+## Restaurant scene
 
-## Asset production sequence
-
-1. Diver: idle, swim directions, catch action.
-2. Fish: five starter species with distinct silhouettes and color patterns.
-3. Underwater environment: seabed, rocks, seaweed, coral, bubbles and light shafts.
-4. Restaurant: counter, sushi preparation station, tables and warm interior props.
-5. Food: sushi pieces, plates and ingredients.
-6. Customers: a small set of readable silhouettes and simple expressions.
-
-## Integration rules
-
-- Keep original source images in assets/source.
-- Export runtime-ready sprites to assets/sprites.
-- Use a documented frame grid and avoid manual per-frame offsets where possible.
-- Keep game logic independent from asset file paths; renderers consume asset definitions.
-- Provide Canvas-drawn fallbacks until each asset is integrated and verified.
+The first Canvas scene uses a neon city backdrop, botanical lotus motif, warm counter, bamboo, lanterns, sushi display and guest silhouettes. This is a procedural visual foundation; dedicated sprites and layered background art remain planned.

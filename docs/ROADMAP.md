@@ -56,8 +56,15 @@ Save integrity, ingredient restocking, settings, control preferences, reduced mo
 - Three-fish expedition mission with biome-scaled coin reward.
 - Persistent species discovery journal and species counter.
 
-### V0.7–V0.9 — Exploration and content
-More landmarks, fishing equipment specialization, objectives, collection records, restaurant decorations and expanded tea menu.
+### V0.7 — Living restaurant and service loop (implemented; device QA pending)
+- Customer profiles with favorite menu items and individualized patience.
+- A visible waiting queue and automatic customer arrivals.
+- Timed sushi and tea preparation instead of instant serving.
+- Patience meter, service tips for fast delivery and reputation loss when a customer leaves.
+- Shift progression and customer service counts remain connected to restaurant level.
+
+### V0.8–V0.9 — Restaurant depth
+More recipes, kitchen stations, ingredient quality, customer events, decorations and service analytics.
 
 ### V1.0 — Complete exploration baseline
 Tutorial, underwater objectives, balanced catch economy, persistent inventory and mobile/desktop quality gates.
@@ -73,6 +80,14 @@ More biomes, recipes, teas and customers; seasonal events; audio; economy balanc
 
 ### V2.0 — Complete core experience
 Dive, collect ingredients, return, manage stock, open the Zen cyberpunk sushi and tea bar, fulfill orders, earn revenue, improve equipment and restaurant, unlock content and repeat.
+
+## V0.7 acceptance criteria
+
+- [ ] Customer profiles influence requested items.
+- [ ] Queue displays waiting guests.
+- [ ] Correct menu choice starts a timed preparation.
+- [ ] Patience decreases and affects tips/reputation.
+- [ ] Shift ends after the target number of served guests or stock exhaustion.
 
 ## V0.5 acceptance criteria
 

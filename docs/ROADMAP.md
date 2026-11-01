@@ -40,7 +40,14 @@ Diver sprite sheet with idle, swim and catch rows; two frames for each fish; ani
 - Save schema v2 with fish stock, tea stock, day and reputation.
 - Automated restaurant economy tests.
 
-### V0.5 — Technical beta
+### V0.5 — Character and progression foundation (implemented; device QA pending)
+- Choose Kai or Yuna before the first dive.
+- Fishing XP and five fishing ranks.
+- Five equipment tiers improve capacity, swim speed and oxygen efficiency.
+- Five restaurant tiers; higher tiers increase guests per shift.
+- Coins fund bar and equipment upgrades; progression persists in save schema v3.
+
+### V0.55 — Technical beta
 Save integrity, ingredient restocking, settings, control preferences, reduced motion, diagnostics and browser QA.
 
 ### V0.6–V0.9 — Exploration and content
@@ -60,6 +67,14 @@ More biomes, recipes, teas and customers; seasonal events; audio; economy balanc
 
 ### V2.0 — Complete core experience
 Dive, collect ingredients, return, manage stock, open the Zen cyberpunk sushi and tea bar, fulfill orders, earn revenue, improve equipment and restaurant, unlock content and repeat.
+
+## V0.5 acceptance criteria
+
+- [ ] Character choice is available before the first dive.
+- [ ] Fishing XP advances rank.
+- [ ] Equipment upgrades improve measurable dive attributes.
+- [ ] Bar upgrades increase guest count per shift.
+- [ ] Upgrade purchases persist and enforce coin costs.
 
 ## V0.4 acceptance criteria
 

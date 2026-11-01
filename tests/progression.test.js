@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { fishingLevel, fishingRank, barShiftTarget, equipmentStats, CHARACTERS } from "../js/progression.js";
 import { RestaurantManager } from "../js/restaurant.js";
 import { writeProgress } from "../js/core/storage.js";
-import { chooseFishSpecies, FISH_SPECIES } from "../js/data/fish.js";
+import { chooseFishSpecies, catchQuality, FISH_SPECIES } from "../js/data/fish.js";
 
 test("fishing progression unlocks five ranks at 100 XP intervals", () => {
   assert.equal(fishingLevel(0), 1);
@@ -72,4 +72,13 @@ test("rare catches award more fishing experience than common catches", () => {
   assert.ok(commonXP.legendary > commonXP.epic);
   assert.ok(commonXP.epic > commonXP.rare);
   assert.ok(commonXP.rare > commonXP.common);
+});
+
+
+test("catch condition rewards careful oxygen management", () => {
+  assert.equal(catchQuality(90).id, "premium");
+  assert.equal(catchQuality(90).multiplier, 1.25);
+  assert.equal(catchQuality(60).id, "fresh");
+  assert.equal(catchQuality(20).id, "standard");
+  assert.equal(catchQuality(20).multiplier, 1);
 });

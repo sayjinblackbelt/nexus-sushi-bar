@@ -88,16 +88,29 @@
         });
         note.textContent = names[id] + " está pronto para mergulhar.";
       }
-      picker.querySelectorAll("button[data-character]").forEach(button => {
-        button.addEventListener("click", event => {
-          event.preventDefault();
-          choose(button.dataset.character);
-        });
-      });
-      start.addEventListener("click", event => {
+      function handleCharacterTap(event) {
+        const button = event.target && event.target.closest
+          ? event.target.closest(".character-option[data-character]") : null;
+        if (!button || !picker.contains(button)) return;
         event.preventDefault();
+        event.stopPropagation();
+        choose(button.dataset.character);
+      }
+      // Capture touch/pointer input at document level for iOS Safari and embedded browsers.
+      document.addEventListener("pointerup", handleCharacterTap, true);
+      document.addEventListener("touchend", handleCharacterTap, { capture: true, passive: false });
+      document.addEventListener("click", handleCharacterTap, true);
+      function handleStartTap(event) {
+        const target = event.target && event.target.closest
+          ? event.target.closest("#start-button") : null;
+        if (!target) return;
+        event.preventDefault();
+        event.stopPropagation();
         start.dispatchEvent(new CustomEvent("nexus:start"));
-      }, true);
+      }
+      document.addEventListener("pointerup", handleStartTap, true);
+      document.addEventListener("touchend", handleStartTap, { capture: true, passive: false });
+      document.addEventListener("click", handleStartTap, true);
       window.addEventListener("error", event => {
         note.textContent = "Erro ao carregar o jogo: " + (event.message || "falha no JavaScript");
       });

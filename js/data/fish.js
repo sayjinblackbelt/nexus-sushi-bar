@@ -6,7 +6,12 @@ export const FISH_SPECIES=[
 {id:"pufferfish",name:"Pufferfish",value:15,rarity:"rare",spawnWeight:2.5,biomes:["lagoon","reef"],color:"#e7cf83",size:29,speed:19},
 {id:"moonfish",name:"Moonfish",value:22,rarity:"rare",spawnWeight:2.5,biomes:["reef","abyss"],color:"#c3b4e7",size:30,speed:24,unlockLevel:3},
 {id:"lanternfish",name:"Lanternfish",value:30,rarity:"epic",spawnWeight:1,biomes:["reef","abyss"],color:"#70e8dc",size:25,speed:46,unlockLevel:4},
-{id:"koi-ray",name:"Koi Ray",value:42,rarity:"legendary",spawnWeight:.35,biomes:["abyss"],color:"#ff9acb",size:34,speed:31,unlockLevel:5},\n{id:"sea-dragon",name:"Dragão-marinho",value:48,rarity:"epic",spawnWeight:.8,biomes:["kelp"],color:"#8bd4a6",size:35,speed:22,unlockLevel:6},\n{id:"glass-jelly",name:"Água-viva de cristal",value:55,rarity:"legendary",spawnWeight:.45,biomes:["kelp","thermal"],color:"#9deaff",size:31,speed:18,unlockLevel:6},\n{id:"vent-crab",name:"Caranguejo das fontes",value:58,rarity:"epic",spawnWeight:.7,biomes:["thermal"],color:"#f08a65",size:28,speed:16,unlockLevel:7},\n{id:"star-eel",name:"Enguia estelar",value:72,rarity:"legendary",spawnWeight:.25,biomes:["thermal","abyss"],color:"#e2b6ff",size:38,speed:39,unlockLevel:7},\n{id:"abyss-whale",name:"Baleia abissal",value:90,rarity:"legendary",spawnWeight:.12,biomes:["thermal"],color:"#80a9dc",size:44,speed:14,unlockLevel:7}
+{id:"koi-ray",name:"Koi Ray",value:42,rarity:"legendary",spawnWeight:.35,biomes:["abyss"],color:"#ff9acb",size:34,speed:31,unlockLevel:5},
+{id:"sea-dragon",name:"Dragão-marinho",value:48,rarity:"epic",spawnWeight:.8,biomes:["kelp"],color:"#8bd4a6",size:35,speed:22,unlockLevel:6},
+{id:"glass-jelly",name:"Água-viva de cristal",value:55,rarity:"legendary",spawnWeight:.45,biomes:["kelp","thermal"],color:"#9deaff",size:31,speed:18,unlockLevel:6},
+{id:"vent-crab",name:"Caranguejo das fontes",value:58,rarity:"epic",spawnWeight:.7,biomes:["thermal"],color:"#f08a65",size:28,speed:16,unlockLevel:7},
+{id:"star-eel",name:"Enguia estelar",value:72,rarity:"legendary",spawnWeight:.25,biomes:["thermal","abyss"],color:"#e2b6ff",size:38,speed:39,unlockLevel:7},
+{id:"abyss-whale",name:"Baleia abissal",value:90,rarity:"legendary",spawnWeight:.12,biomes:["thermal"],color:"#80a9dc",size:44,speed:14,unlockLevel:7}
 ];
 export function catchQuality(oxygen){if(oxygen>70)return {id:"premium",label:"Impecável",multiplier:1.25};if(oxygen>35)return {id:"fresh",label:"Fresco",multiplier:1.1};return {id:"standard",label:"Regular",multiplier:1};}
 export function chooseFishSpecies(pool,random=Math.random){const total=pool.reduce((sum,species)=>sum+(species.spawnWeight||1),0);let roll=random()*total;for(const species of pool){roll-=species.spawnWeight||1;if(roll<0)return species;}return pool[pool.length-1];}

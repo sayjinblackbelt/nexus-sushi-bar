@@ -42,8 +42,8 @@ export class RestaurantManager {
     const profile = CUSTOMER_PROFILES[Math.floor(Math.random() * CUSTOMER_PROFILES.length)];
     this.customerSerial += 1;
     const vip = this.progress.day % 5 === 0 && this.progress.day % 7 !== 0 && this.customerSerial === 1;
-    const festival = this.progress.day % 7 === 0 && this.customerSerial === 1;
-    return { name: vip ? "Visitante VIP" : festival ? "Convidado do Festival" : profile.name, favorites: [...profile.favorites], patience: profile.patience + Math.max(0, this.progress.barLevel - 1) * 3 + (this.progress.decorLevel - 1) * 2 + (vip ? 18 : festival ? 12 : 0), vip, festival };
+    const festival = this.progress.day % 7 === 0 && this.customerSerial === 1;\n    const tide = this.progress.day % 10 === 0 && this.customerSerial === 1;
+    return { name: vip ? "Visitante VIP" : festival ? "Convidado do Festival" : tide ? "Astra, cartógrafa" : profile.name, favorites: [...profile.favorites], patience: profile.patience + Math.max(0, this.progress.barLevel - 1) * 3 + (this.progress.decorLevel - 1) * 2 + (vip ? 18 : festival ? 12 : tide ? 16 : 0), vip, festival, tide };
   }
 
   availableItems() {
@@ -227,7 +227,7 @@ export class RestaurantManager {
 
   getState() {
     return {
-      coins: this.progress.coins, fishingLevel: Math.min(5, Math.floor(this.progress.fishingXP / 100) + 1), canRestockTea: this.progress.coins >= 30,
+      coins: this.progress.coins, fishingLevel: Math.min(7, Math.floor(this.progress.fishingXP / 100) + 1), canRestockTea: this.progress.coins >= 30,
       canUpgradeBar: this.progress.barLevel < 5 && this.progress.coins >= this.barUpgradeCost(),
       canUpgradeGear: this.progress.equipmentLevel < 5 && this.progress.coins >= this.gearUpgradeCost(),
       canUpgradeDecor: this.progress.decorLevel < 3 && this.progress.coins >= this.decorUpgradeCost(),
@@ -240,7 +240,7 @@ export class RestaurantManager {
       shiftTarget: this.shiftTarget, message: this.message, closed: this.closed,
       menu: RESTAURANT_MENU, stations: KITCHEN_STATIONS, queue: this.queue.map(customer => customer.name),
       patience: this.patience || 0, patienceMax: this.patienceMax || 1,
-      shiftStats: { ...this.shiftStats }, satisfaction: this.shiftStats.served + this.shiftStats.lost ? Math.round(this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) * 100) : 100, rating: this.shiftStats.served + this.shiftStats.lost === 0 ? 5 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .9 ? 5 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .75 ? 4 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .6 ? 3 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .4 ? 2 : 1, eventActive: this.progress.day % 5 === 0 || this.progress.day % 7 === 0, eventType: this.progress.day % 7 === 0 ? "FESTIVAL DAS LANTERNAS" : this.progress.day % 5 === 0 ? "NOITE VIP" : null, preparation: this.preparation ? { ...this.preparation, steps: this.preparation.steps.map(step => ({ ...step })), currentStep: this.preparation.steps[this.preparation.stepIndex] || null } : null
+      shiftStats: { ...this.shiftStats }, satisfaction: this.shiftStats.served + this.shiftStats.lost ? Math.round(this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) * 100) : 100, rating: this.shiftStats.served + this.shiftStats.lost === 0 ? 5 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .9 ? 5 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .75 ? 4 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .6 ? 3 : this.shiftStats.served / (this.shiftStats.served + this.shiftStats.lost) >= .4 ? 2 : 1, eventActive: this.progress.day % 5 === 0 || this.progress.day % 7 === 0 || this.progress.day % 10 === 0, eventType: this.progress.day % 7 === 0 ? "FESTIVAL DAS LANTERNAS" : this.progress.day % 10 === 0 ? "MARÉ ASTRAL" : this.progress.day % 5 === 0 ? "NOITE VIP" : null, decorTheme: this.progress.decorTheme || "neon", preparation: this.preparation ? { ...this.preparation, steps: this.preparation.steps.map(step => ({ ...step })), currentStep: this.preparation.steps[this.preparation.stepIndex] || null } : null
     };
   }
 

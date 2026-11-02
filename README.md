@@ -4,7 +4,7 @@
 
 **Explore by day. Create a cozy sushi & tea experience by night.**
 
-[▶ PLAY THE GAME](https://sayjinblackbelt.github.io/nexus-sushi-bar/) · [Repository](https://github.com/sayjinblackbelt/nexus-sushi-bar) · **Version 2.0.0**
+[▶ PLAY THE GAME](https://sayjinblackbelt.github.io/nexus-sushi-bar/) · [Repository](https://github.com/sayjinblackbelt/nexus-sushi-bar) · **Version 2.2.0**
 
 [Português](#português) · [English](#english) · [Español](#español)
 
@@ -22,7 +22,7 @@ Nexus Sushi Bar é um jogo de simulação em pixel art que combina exploração 
 
 ### Destaques
 
-- **Exploração:** três biomas, sete espécies de peixes, raridades e missões.
+- **Exploração:** três biomas, sete espécies de peixes, raridades, missões e desafios diários e semanais.
 - **Pesca:** oxigênio, qualidade das capturas, experiência e especializações de equipamento.
 - **Restaurante:** clientes com preferências, fila, paciência, reputação e gorjetas.
 - **Cozinha:** receitas em etapas com estações específicas para sushi e chá.
@@ -45,8 +45,8 @@ HTML5 Canvas, CSS, JavaScript ES Modules, LocalStorage e GitHub Pages. Não requ
 
 ### Desenvolvimento e qualidade
 
-- Versão atual: **2.0.0**.
-- Testes automatizados: **36 aprovados** na última validação do CI.
+- Versão atual: **2.2.0**.
+- Testes automatizados: **44 aprovados** na última validação do CI.
 - A validação manual em dispositivos reais permanece pendente.
 
 Documentação: [Roadmap](docs/ROADMAP.md) · [Balanceamento](docs/BALANCE.md) · [Notas da versão 2.0](docs/RELEASE_NOTES_2.0.md)
@@ -63,7 +63,7 @@ Nexus Sushi Bar is a pixel-art simulation game that combines underwater explorat
 
 ### Features
 
-- **Exploration:** three biomes, seven fish species, rarity tiers and missions.
+- **Exploration:** three biomes, seven fish species, rarity tiers, missions and rotating daily/weekly challenges.
 - **Fishing:** oxygen management, catch quality, experience and equipment specializations.
 - **Restaurant:** customers with preferences, a waiting queue, patience, reputation and tips.
 - **Kitchen:** multi-step recipes with dedicated sushi and tea stations.
@@ -86,8 +86,8 @@ HTML5 Canvas, CSS, JavaScript ES Modules, LocalStorage and GitHub Pages. No fram
 
 ### Development and quality
 
-- Current version: **2.0.0**.
-- Automated tests: **36 passed** in the latest CI validation.
+- Current version: **2.2.0**.
+- Automated tests: **44 passed** in the latest CI validation.
 - Hands-on testing on real devices is still pending.
 
 Documentation: [Roadmap](docs/ROADMAP.md) · [Balance reference](docs/BALANCE.md) · [Version 2.0 release notes](docs/RELEASE_NOTES_2.0.md)
@@ -127,7 +127,7 @@ HTML5 Canvas, CSS, JavaScript ES Modules, LocalStorage y GitHub Pages. No requie
 
 ### Desarrollo y calidad
 
-- Versión actual: **2.0.0**.
+- Versión actual: **2.2.0**.
 - Pruebas automatizadas: **36 aprobadas** en la última validación de CI.
 - Las pruebas manuales en dispositivos reales siguen pendientes.
 
@@ -137,7 +137,7 @@ Documentación: [Hoja de ruta](docs/ROADMAP.md) · [Balance del juego](docs/BALA
 
 <div align="center">
 
-**NEXUS SUSHI BAR · VERSION 2.0.0**
+**NEXUS SUSHI BAR · VERSION 2.2.0**
 
 [▶ Abrir el juego](https://sayjinblackbelt.github.io/nexus-sushi-bar/)
 

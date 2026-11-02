@@ -142,6 +142,23 @@ Save integrity, ingredient restocking, settings, control preferences, reduced mo
 - Automated syntax, gameplay, economy, recipe and migration regression tests.
 - README, balance reference and release checklist updated.
 
+### V2.1 — Localization and long-term progression (implemented in code; device QA pending)
+- PT-BR, English and Spanish language selector; selected locale persists in save schema v11.
+- Dynamic gameplay feedback, recipe stages and underwater Canvas prompts use locale dictionaries.
+- Lifetime dive and catch counters persist without resetting existing player progress.
+- Species journal shows discovery state and catch counts for all seven current species.
+- Eight milestone achievements track exploration, collection, fishing rank and restaurant service.
+- Automated tests cover achievement milestones and translation of dynamic messages.
+- Remaining release gate: visual review of all three locales on desktop and mobile; refine any untranslated Canvas or generated text.
+
+## V2.1 acceptance criteria
+- [x] Language preference persists across reloads.
+- [x] PT-BR, EN and ES dictionaries cover core interface and common gameplay feedback.
+- [x] Lifetime expedition and catch totals persist in the versioned save.
+- [x] Species journal and achievement milestones render from saved progress.
+- [ ] Complete manual review of every screen and generated message in all three languages.
+- [ ] Verify layout and text overflow on iPhone and desktop.
+
 ## V2.0 acceptance criteria\n\n- [x] The core dive-to-restaurant loop is connected end to end in code.\n- [x] Progression, inventory, upgrades and preferences persist through the versioned save.\n- [x] Automated checks cover recipes, economy, progression and save normalization.\n- [x] README, roadmap, balance reference and release notes describe the current build.\n- [ ] Verify the full loop on desktop and iPhone/iPad browsers.\n- [ ] Confirm GitHub Pages runtime behavior after deployment.\n\n## V1.9 acceptance criteria
 
 - [x] Legacy save data normalizes to the current schema.

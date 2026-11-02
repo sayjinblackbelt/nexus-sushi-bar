@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { recordActiveDay, activitySummary } from "../js/activity.js";
-const date = value => new Date(value + "T12:00:00.000Z");
+const date = value => new Date(value.includes("T") ? value : value + "T12:00:00.000Z");
 test("activity days accumulate without resetting after a pause", () => {
   let p = { coins: 0 };
   p = recordActiveDay(p, date("2026-11-01"));

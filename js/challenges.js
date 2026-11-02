@@ -25,10 +25,10 @@ function makeChallenge(definition) { return { ...definition, progress: 0, comple
 export function ensureChallenges(progress, now = new Date()) {
   const date = dayKey(now), week = weekKey(now);
   const daily = progress.dailyChallenge?.period === date
-    ? progress.dailyChallenge
+    ? { ...progress.dailyChallenge, challenge: { ...progress.dailyChallenge.challenge } }
     : { period: date, challenge: makeChallenge(pick(DAILY, date)) };
   const weekly = progress.weeklyChallenge?.period === week
-    ? progress.weeklyChallenge
+    ? { ...progress.weeklyChallenge, challenge: { ...progress.weeklyChallenge.challenge } }
     : { period: week, challenge: makeChallenge(pick(WEEKLY, week)) };
   return { ...progress, dailyChallenge: daily, weeklyChallenge: weekly };
 }

@@ -42,7 +42,8 @@ export class RestaurantManager {
     const profile = CUSTOMER_PROFILES[Math.floor(Math.random() * CUSTOMER_PROFILES.length)];
     this.customerSerial += 1;
     const vip = this.progress.day % 5 === 0 && this.progress.day % 7 !== 0 && this.customerSerial === 1;
-    const festival = this.progress.day % 7 === 0 && this.customerSerial === 1;\n    const tide = this.progress.day % 10 === 0 && this.customerSerial === 1;
+    const festival = this.progress.day % 7 === 0 && this.customerSerial === 1;
+    const tide = this.progress.day % 10 === 0 && this.customerSerial === 1;
     return { name: vip ? "Visitante VIP" : festival ? "Convidado do Festival" : tide ? "Astra, cartógrafa" : profile.name, favorites: [...profile.favorites], patience: profile.patience + Math.max(0, this.progress.barLevel - 1) * 3 + (this.progress.decorLevel - 1) * 2 + (vip ? 18 : festival ? 12 : tide ? 16 : 0), vip, festival, tide };
   }
 

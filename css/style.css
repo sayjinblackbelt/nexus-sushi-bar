@@ -315,3 +315,8 @@ body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{an
     pointer-events:auto;
   }
 }
+
+/* Ensure the mobile start overlay can be hidden after starting the journey */
+#start-screen[hidden]{
+  display:none!important;
+}

@@ -143,3 +143,12 @@ test("achievement progress unlocks from expedition, collection and service miles
   assert.equal(progress.find(a=>a.id==="deep-sea").unlocked,true);
   assert.equal(progress.find(a=>a.id==="grand-opening").unlocked,false);
 });
+
+
+test("localization dictionaries translate dynamic gameplay and journal strings", async () => {
+  const { translate } = await import("../js/i18n.js");
+  assert.equal(translate("Lagoa Azul", "en"), "Blue Lagoon");
+  assert.equal(translate("Missão da expedição concluída!", "es"), "¡Misión de expedición completada!");
+  assert.equal(translate("Primeiro mergulho", "en"), "First dive");
+  assert.equal(translate("PROFUNDIDADE", "es"), "PROFUNDIDAD");
+});

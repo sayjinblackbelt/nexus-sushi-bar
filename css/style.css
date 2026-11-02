@@ -285,3 +285,19 @@ body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{an
 
 /* Character picker touch reliability */
 .character-picker{position:relative;z-index:2;pointer-events:auto}.character-option{position:relative;z-index:1;touch-action:manipulation;-webkit-tap-highlight-color:rgba(255,184,107,.22);user-select:none;-webkit-user-select:none}.character-option:focus-visible{outline:3px solid #ffb86b;outline-offset:3px}
+
+/* Fix: allow the complete start dialog to scroll on short mobile viewports */
+@media(max-width:680px){
+  .start-screen{
+    display:block;
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding:10px 0;
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-y;
+  }
+  .start-card{
+    margin:0 auto;
+    max-height:none;
+  }
+}

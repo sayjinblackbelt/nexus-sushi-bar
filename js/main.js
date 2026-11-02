@@ -70,7 +70,8 @@ $("#open-bar-button").addEventListener("click",()=>{
 });
 $("#restock-tea-button").addEventListener("click",()=>restaurant.restockTea());
 $("#upgrade-bar-button").addEventListener("click",()=>restaurant.upgradeBar());
-$("#upgrade-decor-button").addEventListener("click",()=>restaurant.upgradeDecor());\n$("#decor-theme-select").addEventListener("change",event=>{const progress=writeProgress({...readProgress(),decorTheme:event.target.value});restaurant.progress=progress;restaurant.emit();});
+$("#upgrade-decor-button").addEventListener("click",()=>restaurant.upgradeDecor());
+$("#decor-theme-select").addEventListener("change",event=>{const progress=writeProgress({...readProgress(),decorTheme:event.target.value});restaurant.progress=progress;restaurant.emit();});
 $("#upgrade-gear-button").addEventListener("click",()=>{if(restaurant.upgradeGear()){game.equipmentLevel=restaurant.progress.equipmentLevel;game.refreshEquipment();}});
 $("#equipment-specialization").addEventListener("change",event=>{writeProgress({...readProgress(),equipmentSpecialization:event.target.value});game.refreshEquipment();showToast(`Especialização aplicada: ${event.target.selectedOptions[0].textContent}`);});
 $("#next-dive-button").addEventListener("click",()=>{

@@ -1,6 +1,6 @@
 {
   "name": "nexus-sushi-bar",
-  "version": "2.0.0",
+  "version": "2.2.0",
   "private": true,
   "type": "module",
   "description": "A cozy pixel-art fishing and sushi restaurant simulation game",

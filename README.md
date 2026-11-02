@@ -46,7 +46,7 @@ HTML5 Canvas, CSS, JavaScript ES Modules, LocalStorage e GitHub Pages. Não requ
 ### Desenvolvimento e qualidade
 
 - Versão atual: **3.0.0**.
-- Testes automatizados: **50 aprovados** na última validação do CI.
+- Testes automatizados: **47 aprovados** na última validação do CI.
 - A validação manual em dispositivos reais permanece pendente.
 
 Documentação: [Roadmap](docs/ROADMAP.md) · [Balanceamento](docs/BALANCE.md) · [Notas da versão 2.0](docs/RELEASE_NOTES_2.0.md)
@@ -87,10 +87,10 @@ HTML5 Canvas, CSS, JavaScript ES Modules, LocalStorage and GitHub Pages. No fram
 ### Development and quality
 
 - Current version: **3.0.0**.
-- Automated tests: **50 passed** in the latest CI validation.
+- Automated tests: **47 passed** in the latest CI validation.
 - Hands-on testing on real devices is still pending.
 
-Documentation: [Roadmap](docs/ROADMAP.md) · [Balance reference](docs/BALANCE.md) · [Version 2.0 release notes](docs/RELEASE_NOTES_2.0.md)
+Documentation: [Roadmap](docs/ROADMAP.md) · [Balance reference](docs/BALANCE.md) · [Version 3.0 release notes](docs/RELEASE_NOTES_3.0.md)
 
 ---
 
@@ -104,7 +104,7 @@ Nexus Sushi Bar es un juego de simulación en pixel art que combina la exploraci
 
 ### Características
 
-- **Exploración:** tres biomas, siete especies de peces, niveles de rareza y misiones.
+- **Exploración:** cinco biomas, doce especies de peces, niveles de rareza y misiones.
 - **Pesca:** gestión del oxígeno, calidad de las capturas, experiencia y especializaciones del equipo.
 - **Restaurante:** clientes con preferencias, cola de espera, paciencia, reputación y propinas.
 - **Cocina:** recetas por etapas con estaciones específicas para sushi y té.
@@ -128,10 +128,10 @@ HTML5 Canvas, CSS, JavaScript ES Modules, LocalStorage y GitHub Pages. No requie
 ### Desarrollo y calidad
 
 - Versión actual: **3.0.0**.
-- Pruebas automatizadas: **50 aprobadas** en la última validación de CI.
+- Pruebas automatizadas: **47 aprobadas** en la última validación de CI.
 - Las pruebas manuales en dispositivos reales siguen pendientes.
 
-Documentación: [Hoja de ruta](docs/ROADMAP.md) · [Balance del juego](docs/BALANCE.md) · [Notas de la versión 2.0](docs/RELEASE_NOTES_2.0.md)
+Documentación: [Hoja de ruta](docs/ROADMAP.md) · [Balance del juego](docs/BALANCE.md) · [Notas de la versión 3.0](docs/RELEASE_NOTES_3.0.md)
 
 ---
 

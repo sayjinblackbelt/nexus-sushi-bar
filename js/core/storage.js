@@ -1,10 +1,10 @@
 const SAVE_KEY = "nexus-save";
-export const SAVE_VERSION = 9;
+export const SAVE_VERSION = 10;
 const EMPTY_TEA_STOCK = { matcha: 5, hojicha: 5, lotus: 3, genmaicha: 2, yuzu: 2 };
 let memorySave = {
   version: SAVE_VERSION, coins: 0, bestCatch: 0, fishStock: {},
   teaStock: { ...EMPTY_TEA_STOCK }, reputation: 0, day: 1,
-  character: "kai", fishingXP: 0, equipmentLevel: 1, barLevel: 1, customersServed: 0, biome: "lagoon", speciesCaught: {}, decorLevel: 1, tutorialComplete: false, qualityCaught: {}, equipmentSpecialization: "balanced", soundEnabled: true, reducedMotion: false
+  character: "kai", fishingXP: 0, equipmentLevel: 1, barLevel: 1, customersServed: 0, biome: "lagoon", speciesCaught: {}, decorLevel: 1, tutorialComplete: false, qualityCaught: {}, equipmentSpecialization: "balanced", soundEnabled: true, reducedMotion: false, language: "pt-BR"
 };
 
 function safeCount(value) {
@@ -36,7 +36,8 @@ export function normalizeProgress(data = {}) {
     qualityCaught: safeStock(data.qualityCaught),
     equipmentSpecialization: ["balanced", "endurance", "swift", "cargo"].includes(data.equipmentSpecialization) ? data.equipmentSpecialization : "balanced",
     soundEnabled: data.soundEnabled !== false,
-    reducedMotion: data.reducedMotion === true
+    reducedMotion: data.reducedMotion === true,
+    language: ["pt-BR", "en", "es"].includes(data.language) ? data.language : "pt-BR"
   };
 }
 

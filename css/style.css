@@ -254,3 +254,10 @@ button{ -webkit-user-select:none; user-select:none; }
 .utility-toggle[aria-pressed="true"]{border-color:#ffb86b;color:#fff1d7}
 body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 @media(max-width:520px){.topbar-tools{gap:4px}.utility-toggle{font-size:7px;padding:6px}.version{font-size:7px}}
+
+
+/* Language selector */
+.topbar-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.language-control{display:flex;align-items:center;gap:5px;color:#8bb4bd;font:9px "DM Mono",monospace;letter-spacing:1px}
+.language-control select{padding:6px 7px;border:1px solid #5a9994;border-radius:7px;background:#173d52;color:#f4e8cc;font:10px "DM Mono",monospace}
+@media(max-width:680px){.topbar-tools{gap:5px}.utility-toggle{font-size:8px}.language-control{font-size:8px}.language-control select{padding:5px}}

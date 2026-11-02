@@ -282,3 +282,6 @@ body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{an
 
 /* V4.0 — long-term species mastery */
 .mastery-heading{display:flex;justify-content:space-between;gap:10px;margin:22px 0 8px;color:#a9f0c0;font:10px "DM Mono",monospace;letter-spacing:.7px}.mastery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.mastery-entry{padding:10px;border:1px solid #65c18c33;border-radius:8px;background:#0b2238;color:#d9eee5;font:10px "DM Mono",monospace;opacity:.62}.mastery-entry.active{opacity:1;border-color:#37e6e066}.mastery-entry strong,.mastery-entry small{display:block}.mastery-entry small{margin-top:5px;color:#9db9bb;font-size:9px;line-height:1.4}.mastery-entry .achievement-meter span{background:linear-gradient(90deg,#65c18c,#37e6e0)}@media(max-width:680px){.mastery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Character picker touch reliability */
+.character-picker{position:relative;z-index:2;pointer-events:auto}.character-option{position:relative;z-index:1;touch-action:manipulation;-webkit-tap-highlight-color:rgba(255,184,107,.22);user-select:none;-webkit-user-select:none}.character-option:focus-visible{outline:3px solid #ffb86b;outline-offset:3px}

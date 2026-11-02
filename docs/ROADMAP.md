@@ -25,3 +25,12 @@
 - [x] Progressão, desafios, coleção e biomas ampliados.
 - [x] Testes automatizados e documentação de lançamento.
 - [ ] Teste manual em celular e desktop.
+
+
+## V4.0 — Maestria marinha
+- [x] Progressão individual de domínio para cada espécie.
+- [x] Marcos de 1, 5 e 15 capturas com recompensas únicas.
+- [x] Diário de maestria com nível, progresso e próximo marco.
+- [x] Migração de save para schema 14.
+- [x] Testes automatizados do sistema de maestria.
+- [ ] Revisão manual em celular e desktop.

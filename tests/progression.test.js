@@ -124,3 +124,11 @@ test("invalid or negative save values normalize to safe gameplay values", () => 
   assert.equal(normalized.barLevel, 1);
   assert.equal(normalized.equipmentSpecialization, "balanced");
 });
+
+
+test("language preference accepts the three supported locales and defaults safely", async () => {
+  const { normalizeProgress } = await import("../js/core/storage.js");
+  assert.equal(normalizeProgress({ language: "en" }).language, "en");
+  assert.equal(normalizeProgress({ language: "es" }).language, "es");
+  assert.equal(normalizeProgress({ language: "fr" }).language, "pt-BR");
+});

@@ -6,6 +6,7 @@ import{BarRenderer}from"./core/bar-renderer.js";
 import{RestaurantManager}from"./restaurant.js";
 import{BIOMES,unlockedBiomes}from"./data/biomes.js";
 import{AudioManager}from"./core/audio.js";
+import{applyLanguage,setLanguage,observeTranslations}from"./i18n.js";
 const audio=new AudioManager(readProgress().soundEnabled),$=s=>document.querySelector(s),oxygenValue=$("#oxygen-value"),oxygenBar=$("#oxygen-bar"),catchCount=$("#catch-count"),coinCount=$("#coin-count"),startScreen=$("#start-screen"),gameOver=$("#game-over"),toast=$("#toast"),statusNote=$("#status-note");let toastTimer,lastDiveFish=[],restaurantFrame=0,restaurantElapsed=0,selectedCharacter=readProgress().character;
 function showToast(message){audio.play("click");toast.textContent=message;toast.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove("show"),1800);}
 const restaurantPanel=$("#restaurant-panel"),gamePanel=document.querySelector(".game-panel"),barCanvas=$("#restaurant-scene"),barContext=configureCanvas(barCanvas,960,540),barRenderer=new BarRenderer(barContext,960,540);
@@ -26,6 +27,10 @@ function renderRestaurantUI(state){
 }
 const restaurant=new RestaurantManager(renderRestaurantUI);
 const preferences=readProgress();
+let currentLanguage=applyLanguage(preferences.language);
+const languageSelector=$("#language-select");
+if(languageSelector){languageSelector.value=currentLanguage;languageSelector.addEventListener("change",()=>{currentLanguage=setLanguage(languageSelector.value);});}
+observeTranslations(()=>currentLanguage);
 function applyPreferences(){document.body.classList.toggle("reduce-motion",preferences.reducedMotion);$("#sound-toggle").setAttribute("aria-pressed",String(preferences.soundEnabled));$("#motion-toggle").setAttribute("aria-pressed",String(preferences.reducedMotion));$("#sound-toggle").textContent=preferences.soundEnabled?"SOM: LIGADO":"SOM: DESLIGADO";$("#motion-toggle").textContent=preferences.reducedMotion?"MOVIMENTO: REDUZIDO":"MOVIMENTO: NORMAL";}
 $("#sound-toggle").addEventListener("click",()=>{preferences.soundEnabled=!preferences.soundEnabled;writeProgress({...readProgress(),soundEnabled:preferences.soundEnabled});audio.setEnabled(preferences.soundEnabled);applyPreferences();if(preferences.soundEnabled)audio.play("success");});
 $("#motion-toggle").addEventListener("click",()=>{preferences.reducedMotion=!preferences.reducedMotion;writeProgress({...readProgress(),reducedMotion:preferences.reducedMotion});applyPreferences();});

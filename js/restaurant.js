@@ -1,5 +1,6 @@
 import { RESTAURANT_MENU, CUSTOMER_PROFILES, KITCHEN_STATIONS } from "./data/menu.js";
 import { readProgress, writeProgress } from "./core/storage.js";
+import { recordChallengeEvent } from "./challenges.js";
 
 export class RestaurantManager {
   constructor(onChange = () => {}) {
@@ -156,6 +157,7 @@ export class RestaurantManager {
     this.progress.reputation += 1;
     this.served += 1;
     this.progress.customersServed += 1;
+    this.progress = recordChallengeEvent(this.progress, "service", 1).progress;
     this.shiftStats.served += 1;
     this.shiftStats.revenue += item.price;
     this.shiftStats.tips += tip;

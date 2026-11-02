@@ -3,10 +3,10 @@ import assert from "node:assert/strict";
 import { BIOMES, getBiome, unlockedBiomes } from "../js/data/biomes.js";
 import { FISH_SPECIES, createSchool } from "../js/data/fish.js";
 
-test("three biomes unlock at fishing ranks 1, 3 and 5", () => {
+test("five biomes unlock at fishing ranks 1, 3, 5, 6 and 7", () => {
   assert.deepEqual(unlockedBiomes(1).map(b => b.id), ["lagoon"]);
   assert.deepEqual(unlockedBiomes(3).map(b => b.id), ["lagoon", "reef"]);
-  assert.deepEqual(unlockedBiomes(5).map(b => b.id), ["lagoon", "reef", "abyss"]);
+  assert.deepEqual(unlockedBiomes(5).map(b => b.id), ["lagoon", "reef", "abyss", "kelp", "thermal"]);
 });
 
 test("each biome contains only fish from its habitat and rank", () => {
@@ -20,11 +20,11 @@ test("each biome contains only fish from its habitat and rank", () => {
 });
 
 test("all species have a habitat and a positive reward", () => {
-  assert.equal(FISH_SPECIES.length, 7);
+  assert.equal(FISH_SPECIES.length, 12);
   assert.ok(FISH_SPECIES.every(f => f.biomes.length > 0 && f.value > 0));
   assert.equal(getBiome("unknown").id, "lagoon");
 });
 
 test("expedition mission rewards scale with biome depth", () => {
-  assert.deepEqual(BIOMES.map(b => b.reward), [20, 35, 55]);
+  assert.deepEqual(BIOMES.map(b => b.reward), [20, 35, 55, 65, 85]);
 });

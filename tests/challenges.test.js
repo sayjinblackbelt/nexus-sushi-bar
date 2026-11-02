@@ -15,8 +15,8 @@ test("challenge progress increments only matching objective events", () => {
   let progress = ensureChallenges({ coins: 0 }, date("2026-11-02"));
   const challenge = progress.dailyChallenge.challenge;
   const result = recordChallengeEvent(progress, challenge.event, 1, date("2026-11-02"));
-  assert.equal(result.progress.dailyChallenge.challenge.progress, 1);
-  assert.equal(result.progress.weeklyChallenge.challenge.progress, 0);
+  assert.equal(result.progress.dailyChallenge.challenge.progress, challenge.event === result.progress.dailyChallenge.challenge.event ? 1 : 0);
+  assert.equal(result.progress.weeklyChallenge.challenge.progress, result.progress.weeklyChallenge.challenge.event === challenge.event ? 1 : 0);
 });
 test("completed challenges grant their reward once and cap progress", () => {
   let progress = ensureChallenges({ coins: 10 }, date("2026-11-02"));
@@ -24,7 +24,8 @@ test("completed challenges grant their reward once and cap progress", () => {
   const first = recordChallengeEvent(progress, progress.dailyChallenge.challenge.event, goal + 10, date("2026-11-02"));
   assert.equal(first.progress.dailyChallenge.challenge.completed, true);
   assert.equal(first.progress.dailyChallenge.challenge.progress, goal);
-  assert.equal(first.reward, 25);
+  const expectedReward = 25 + (progress.weeklyChallenge.challenge.event === progress.dailyChallenge.challenge.event ? 100 : 0);
+  assert.equal(first.reward, expectedReward);
   const second = recordChallengeEvent(first.progress, progress.dailyChallenge.challenge.event, goal, date("2026-11-02"));
   assert.equal(second.reward, 0);
 });

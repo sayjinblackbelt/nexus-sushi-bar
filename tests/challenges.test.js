@@ -24,7 +24,7 @@ test("completed challenges grant their reward once and cap progress", () => {
   const first = recordChallengeEvent(progress, progress.dailyChallenge.challenge.event, goal + 10, date("2026-11-02"));
   assert.equal(first.progress.dailyChallenge.challenge.completed, true);
   assert.equal(first.progress.dailyChallenge.challenge.progress, goal);
-  const expectedReward = 25 + (progress.weeklyChallenge.challenge.event === progress.dailyChallenge.challenge.event ? 100 : 0);
+  const expectedReward = 25 + (progress.weeklyChallenge.challenge.event === progress.dailyChallenge.challenge.event && goal + 10 >= progress.weeklyChallenge.challenge.goal ? 100 : 0);
   assert.equal(first.reward, expectedReward);
   const second = recordChallengeEvent(first.progress, progress.dailyChallenge.challenge.event, goal, date("2026-11-02"));
   assert.equal(second.reward, 0);

@@ -132,3 +132,14 @@ test("language preference accepts the three supported locales and defaults safel
   assert.equal(normalizeProgress({ language: "es" }).language, "es");
   assert.equal(normalizeProgress({ language: "fr" }).language, "pt-BR");
 });
+
+
+test("achievement progress unlocks from expedition, collection and service milestones", async () => {
+  const { achievementProgress } = await import("../js/progression.js");
+  const progress = achievementProgress({ totalDives:10,totalFishCaught:100,speciesCaught:{sardine:1,clownfish:1},customersServed:1,fishingXP:400,barLevel:1 });
+  assert.equal(progress.find(a=>a.id==="first-dive").unlocked,true);
+  assert.equal(progress.find(a=>a.id==="ten-dives").unlocked,true);
+  assert.equal(progress.find(a=>a.id==="collector").current,2);
+  assert.equal(progress.find(a=>a.id==="deep-sea").unlocked,true);
+  assert.equal(progress.find(a=>a.id==="grand-opening").unlocked,false);
+});

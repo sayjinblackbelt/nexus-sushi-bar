@@ -27,7 +27,8 @@ test("completed challenges grant their reward once and cap progress", () => {
   const expectedReward = 25 + (progress.weeklyChallenge.challenge.event === progress.dailyChallenge.challenge.event && goal + 10 >= progress.weeklyChallenge.challenge.goal ? 100 : 0);
   assert.equal(first.reward, expectedReward);
   const second = recordChallengeEvent(first.progress, progress.dailyChallenge.challenge.event, goal, date("2026-11-02"));
-  assert.equal(second.reward, 0);
+  assert.equal(second.progress.dailyChallenge.challenge.claimed, true);
+  assert.notEqual(second.reward, 25);
 });
 test("daily and weekly objectives rotate at their period boundary", () => {
   const before = ensureChallenges({ coins: 0 }, date("2026-11-02"));

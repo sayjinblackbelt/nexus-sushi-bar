@@ -29,7 +29,7 @@ export function normalizeProgress(data = {}) {
     equipmentLevel: Math.min(5, Math.max(1, safeCount(data.equipmentLevel) || 1)),
     barLevel: Math.min(5, Math.max(1, safeCount(data.barLevel) || 1)),
     customersServed: safeCount(data.customersServed),
-    biome: ["lagoon","reef","abyss"].includes(data.biome) ? data.biome : "lagoon",
+    biome: ["lagoon","reef","abyss","kelp","thermal"].includes(data.biome) ? data.biome : "lagoon",
     speciesCaught: safeStock(data.speciesCaught),
     decorLevel: Math.min(3, Math.max(1, safeCount(data.decorLevel) || 1)),
     tutorialComplete: data.tutorialComplete === true,

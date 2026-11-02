@@ -6,7 +6,8 @@ import { FISH_SPECIES, createSchool } from "../js/data/fish.js";
 test("five biomes unlock at fishing ranks 1, 3, 5, 6 and 7", () => {
   assert.deepEqual(unlockedBiomes(1).map(b => b.id), ["lagoon"]);
   assert.deepEqual(unlockedBiomes(3).map(b => b.id), ["lagoon", "reef"]);
-  assert.deepEqual(unlockedBiomes(5).map(b => b.id), ["lagoon", "reef", "abyss", "kelp", "thermal"]);
+  assert.deepEqual(unlockedBiomes(5).map(b => b.id), ["lagoon", "reef", "abyss"]);
+  assert.deepEqual(unlockedBiomes(7).map(b => b.id), ["lagoon", "reef", "abyss", "kelp", "thermal"]);
 });
 
 test("each biome contains only fish from its habitat and rank", () => {

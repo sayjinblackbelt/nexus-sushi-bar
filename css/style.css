@@ -261,3 +261,14 @@ body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{an
 .language-control{display:flex;align-items:center;gap:5px;color:#8bb4bd;font:9px "DM Mono",monospace;letter-spacing:1px}
 .language-control select{padding:6px 7px;border:1px solid #5a9994;border-radius:7px;background:#173d52;color:#f4e8cc;font:10px "DM Mono",monospace}
 @media(max-width:680px){.topbar-tools{gap:5px}.utility-toggle{font-size:8px}.language-control{font-size:8px}.language-control select{padding:5px}}
+
+
+/* Long-term collection and achievement journal */
+.collection-panel{margin-top:16px;padding:20px;border:1px solid #65c18c55;border-radius:16px;background:linear-gradient(145deg,#102b35ee,#171b3dee)}
+.collection-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}.collection-heading h2{margin:0;font-size:22px}.collection-count{padding:7px 12px;border:1px solid #65c18c88;border-radius:99px;color:#a9f0c0;font:12px "DM Mono",monospace}
+.collection-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:14px 0}.collection-stats span,.achievement,.species-entry{padding:10px;border:1px solid #65c18c33;border-radius:8px;background:#0b2238;color:#d9eee5;font:11px "DM Mono",monospace}
+.achievement-grid,.species-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:8px}
+.achievement strong,.species-entry strong{display:block;font-size:11px}.achievement small,.species-entry small{display:block;margin-top:5px;color:#9db9bb;font-size:9px;line-height:1.4}
+.achievement.unlocked{border-color:#65c18c99;background:#153b3a}.achievement-meter{height:5px;margin-top:9px;border-radius:9px;background:#203b4b;overflow:hidden}.achievement-meter span{display:block;height:100%;background:#65c18c}
+.species-entry{opacity:.55}.species-entry.discovered{opacity:1;border-color:#37e6e066}
+@media(max-width:680px){.collection-panel{padding:12px}.collection-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.achievement-grid,.species-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.collection-heading h2{font-size:18px}}

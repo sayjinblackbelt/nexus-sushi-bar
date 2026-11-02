@@ -13,7 +13,7 @@
 - [x] Progressão de pesca ampliada até o nível 7.
 
 ## V2.5 — Eventos e personagens
-- [x] Eventos recorrentes e perfis de clientes ampliados integrados ao calendário do restaurante.
+- [x] Noites VIP (dia 5), Festival das Lanternas (dia 7) e Maré Astral com a visitante Astra (dia 10).
 - [ ] Revisão visual dos eventos em dispositivos reais.
 
 ## V2.6 — Personalização do restaurante

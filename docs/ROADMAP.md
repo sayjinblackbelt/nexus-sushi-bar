@@ -1,22 +1,27 @@
 # Roadmap — Nexus Sushi Bar
 
 ## V2.2 — Desafios rotativos
+- [x] Desafios diários e semanais com rotação previsível, progresso e recompensas.
 
-- [x] Objetivo diário com rotação por data UTC.
-- [x] Objetivo semanal com rotação por semana ISO.
-- [x] Progresso integrado a capturas, capturas impecáveis e atendimento.
-- [x] Recompensas automáticas creditadas uma única vez por desafio.
-- [x] Persistência compatível com saves anteriores.
-- [x] Testes automatizados de rotação, progresso, limite e recompensa.
-- [ ] Revisão visual e funcional em dispositivos reais.
+## V2.3 — Progressão acolhedora
+- [x] Dias ativos acumulativos e bônus por marcos de 3, 5 e 7 dias.
+- [x] Pausas não zeram a sequência; uma data só conta uma vez.
 
-## Próximas etapas
+## V2.4 — Expansão oceânica
+- [x] Floresta Esmeralda e Fendas Termais.
+- [x] Cinco novas espécies, com habitats e níveis de desbloqueio.
+- [x] Progressão de pesca ampliada até o nível 7.
 
-1. V2.3 — recompensas por sequência de progresso, sem penalizar pausas.
-2. V2.4 — expansão de biomas e espécies.
-3. V2.5 — eventos especiais e personagens.
-4. V2.6 — expansão e personalização do restaurante.
+## V2.5 — Eventos e personagens
+- [x] Eventos recorrentes e perfis de clientes ampliados integrados ao calendário do restaurante.
+- [ ] Revisão visual dos eventos em dispositivos reais.
 
-## Qualidade
+## V2.6 — Personalização do restaurante
+- [x] Temas visuais alternativos para o ambiente.
+- [x] Tema salvo entre sessões.
 
-A validação automatizada cobre sintaxe e regras de negócio. A experiência em navegador móvel e desktop ainda requer teste manual.
+## V3.0 — Consolidação
+- [x] Save schema atualizado com migração compatível.
+- [x] Progressão, desafios, coleção e biomas ampliados.
+- [x] Testes automatizados e documentação de lançamento.
+- [ ] Teste manual em celular e desktop.

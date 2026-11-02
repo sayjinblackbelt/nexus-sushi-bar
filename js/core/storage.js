@@ -1,10 +1,10 @@
 const SAVE_KEY = "nexus-save";
-export const SAVE_VERSION = 12;
+export const SAVE_VERSION = 13;
 const EMPTY_TEA_STOCK = { matcha: 5, hojicha: 5, lotus: 3, genmaicha: 2, yuzu: 2 };
 let memorySave = {
   version: SAVE_VERSION, coins: 0, bestCatch: 0, fishStock: {},
   teaStock: { ...EMPTY_TEA_STOCK }, reputation: 0, day: 1,
-  character: "kai", fishingXP: 0, equipmentLevel: 1, barLevel: 1, customersServed: 0, biome: "lagoon", speciesCaught: {}, decorLevel: 1, tutorialComplete: false, qualityCaught: {}, equipmentSpecialization: "balanced", soundEnabled: true, reducedMotion: false, language: "pt-BR", totalDives: 0, totalFishCaught: 0, dailyChallenge: null, weeklyChallenge: null
+  character: "kai", fishingXP: 0, equipmentLevel: 1, barLevel: 1, customersServed: 0, biome: "lagoon", speciesCaught: {}, decorLevel: 1, tutorialComplete: false, qualityCaught: {}, equipmentSpecialization: "balanced", soundEnabled: true, reducedMotion: false, language: "pt-BR", totalDives: 0, totalFishCaught: 0, dailyChallenge: null, weeklyChallenge: null, activityDays: [], streakRewards: {}, decorTheme: 'neon'
 };
 
 function safeCount(value) {
@@ -38,7 +38,7 @@ export function normalizeProgress(data = {}) {
     soundEnabled: data.soundEnabled !== false,
     reducedMotion: data.reducedMotion === true,
     language: ["pt-BR", "en", "es"].includes(data.language) ? data.language : "pt-BR",
-    totalDives: safeCount(data.totalDives), totalFishCaught: safeCount(data.totalFishCaught), dailyChallenge: data.dailyChallenge && typeof data.dailyChallenge === 'object' ? data.dailyChallenge : null, weeklyChallenge: data.weeklyChallenge && typeof data.weeklyChallenge === 'object' ? data.weeklyChallenge : null
+    totalDives: safeCount(data.totalDives), totalFishCaught: safeCount(data.totalFishCaught), dailyChallenge: data.dailyChallenge && typeof data.dailyChallenge === 'object' ? data.dailyChallenge : null, weeklyChallenge: data.weeklyChallenge && typeof data.weeklyChallenge === 'object' ? data.weeklyChallenge : null, activityDays: Array.isArray(data.activityDays) ? [...new Set(data.activityDays.filter(x => /^\\d{4}-\\d{2}-\\d{2}$/.test(x)))].slice(-365) : [], streakRewards: safeStock(data.streakRewards), decorTheme: ['neon','garden','lantern'].includes(data.decorTheme) ? data.decorTheme : 'neon'
   };
 }
 

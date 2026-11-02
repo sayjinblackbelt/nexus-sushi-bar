@@ -1,85 +1,144 @@
-# Nexus Sushi Bar 🍣
+<div align="center">
 
-A pixel-art simulation combining underwater exploration with a Zen sushi and tea bar in a neon cyberpunk city.
+# 🍣 Nexus Sushi Bar
 
-Dive by day, catch ingredients, return to the surface and serve sushi and Japanese tea at night.
+**Explore by day. Create a cozy sushi & tea experience by night.**
 
-## Current milestone — V2.0 Core experience
+[▶ PLAY THE GAME](https://sayjinblackbelt.github.io/nexus-sushi-bar/) · [Repository](https://github.com/sayjinblackbelt/nexus-sushi-bar) · **Version 2.0.0**
 
-- HTML5 Canvas and native JavaScript ES modules.
-- Keyboard and multi-touch controls, portrait and landscape.
-- Animated diver, seven fish species, rarity-weighted spawning and three biomes.
-- Fishing progression, catch quality, oxygen-aware value bonuses and equipment specializations.
-- Persistent species journal, expedition missions and guided first-dive tutorial.
-- Underwater ambient lighting, coral and catch particles.
-- Versioned save schema with safe migration, fish and tea stock, coins, reputation, décor, settings and progression.
-- Full restaurant loop with customer profiles, queue, patience, VIP nights and Lantern Festival events.
-- Multi-stage sushi and tea recipes with dedicated kitchen stations.
-- Expanded menu, progression unlocks, restaurant décor, satisfaction ratings and shift analytics.
-- Optional sound effects and reduced-motion accessibility preference.
-- Cyberpunk-zen restaurant scene and responsive service interface.
-- Automated syntax checks and restaurant economy tests.
+[Português](#português) · [English](#english) · [Español](#español)
 
-## Controls
+</div>
+
+---
+
+## Português
+
+### Um pequeno oceano, um grande sonho
+
+Nexus Sushi Bar é um jogo de simulação em pixel art que combina exploração submarina durante o dia com a administração de um sushi bar e casa de chá à noite. Explore biomas, capture peixes, gerencie recursos, prepare receitas e desenvolva seu estabelecimento em uma cidade de estética cyberpunk com atmosfera Zen.
+
+**[▶ JOGAR NEXUS SUSHI BAR](https://sayjinblackbelt.github.io/nexus-sushi-bar/)**
+
+### Destaques
+
+- **Exploração:** três biomas, sete espécies de peixes, raridades e missões.
+- **Pesca:** oxigênio, qualidade das capturas, experiência e especializações de equipamento.
+- **Restaurante:** clientes com preferências, fila, paciência, reputação e gorjetas.
+- **Cozinha:** receitas em etapas com estações específicas para sushi e chá.
+- **Progressão:** cardápio desbloqueável, melhorias, decoração, noites VIP e Festival das Lanternas.
+- **Acessibilidade:** tutorial inicial, efeitos sonoros opcionais e opção de movimento reduzido.
+- **Persistência:** progresso salvo localmente, com migração de versões anteriores.
+
+### Controles
+
+| Ação | Teclado | Toque |
+|---|---|---|
+| Nadar | WASD / Setas | Direcional |
+| Capturar peixe | E / Espaço | Capturar |
+| Voltar à superfície | R | Superfície |
+| Preparar pedido | Selecionar item e estações indicadas | Toque nos controles da cozinha |
+
+### Tecnologias
+
+HTML5 Canvas, CSS, JavaScript ES Modules, LocalStorage e GitHub Pages. Não requer frameworks.
+
+### Desenvolvimento e qualidade
+
+- Versão atual: **2.0.0**.
+- Testes automatizados: **36 aprovados** na última validação do CI.
+- A validação manual em dispositivos reais permanece pendente.
+
+Documentação: [Roadmap](docs/ROADMAP.md) · [Balanceamento](docs/BALANCE.md) · [Notas da versão 2.0](docs/RELEASE_NOTES_2.0.md)
+
+---
+
+## English
+
+### A small ocean, a big dream
+
+Nexus Sushi Bar is a pixel-art simulation game that combines underwater exploration by day with running a sushi and tea bar at night. Explore different biomes, catch fish, manage ingredients, prepare recipes and grow your restaurant in a cyberpunk city with a calm Zen atmosphere.
+
+**[▶ PLAY NEXUS SUSHI BAR](https://sayjinblackbelt.github.io/nexus-sushi-bar/)**
+
+### Features
+
+- **Exploration:** three biomes, seven fish species, rarity tiers and missions.
+- **Fishing:** oxygen management, catch quality, experience and equipment specializations.
+- **Restaurant:** customers with preferences, a waiting queue, patience, reputation and tips.
+- **Kitchen:** multi-step recipes with dedicated sushi and tea stations.
+- **Progression:** unlockable menu items, upgrades, décor, VIP nights and the Lantern Festival.
+- **Accessibility:** first-time tutorial, optional sound effects and reduced-motion setting.
+- **Persistence:** local save data with migration from earlier versions.
+
+### Controls
 
 | Action | Keyboard | Touch |
 |---|---|---|
-| Move | WASD / Arrow keys | Direction pad |
-| Catch fish | E / Space | Capturar |
-| Return to surface | R | Superfície |
-| Prepare an order | — | Select the requested menu item, then use the indicated kitchen stations |
+| Swim | WASD / Arrow keys | Direction pad |
+| Catch fish | E / Space | Catch |
+| Return to surface | R | Surface |
+| Prepare an order | Select the requested item and required stations | Tap kitchen controls |
 
-## Run locally
+### Technology
 
-Serve the project through a local static web server, then open index.html. Native JavaScript ES modules work best over HTTP.
+HTML5 Canvas, CSS, JavaScript ES Modules, LocalStorage and GitHub Pages. No framework required.
 
-## Project structure
+### Development and quality
 
-    nexus-sushi-bar/
-    ├── index.html
-    ├── README.md
-    ├── package.json
-    ├── assets/sprites/
-    │   ├── diver.svg
-    │   └── fish.svg
-    ├── css/style.css
-    ├── js/
-    │   ├── main.js
-    │   ├── game.js
-    │   ├── restaurant.js
-    │   ├── core/
-    │   │   ├── bar-renderer.js
-    │   │   ├── canvas.js
-    │   │   ├── input.js
-    │   │   ├── renderer.js
-    │   │   └── storage.js
-    │   └── data/
-    │       ├── fish.js
-    │       └── menu.js
-    ├── tests/restaurant.test.js\n    ├── tests/restaurant-service.test.js\n    ├── tests/progression.test.js\n    ├── tests/balance.test.js
-    └── docs/
-        ├── ARCHITECTURE.md
-        ├── ART_GUIDE.md
-        ├── RESTAURANT_DESIGN.md
-        ├── ROADMAP.md
-        └── TEST_PLAN.md
+- Current version: **2.0.0**.
+- Automated tests: **36 passed** in the latest CI validation.
+- Hands-on testing on real devices is still pending.
 
-## Roadmap
+Documentation: [Roadmap](docs/ROADMAP.md) · [Balance reference](docs/BALANCE.md) · [Version 2.0 release notes](docs/RELEASE_NOTES_2.0.md)
 
-- **V0.3:** Diver and fish animations, underwater lighting and visual feedback.
-- **V0.4:** First playable dive-to-restaurant loop.
-- **V0.5:** Inventory, save integrity, settings and technical beta.
-- **V0.6–V0.9:** Additional biomes, assets, progression and missions.
-- **V1.0–V1.3:** Fishing economy and exploration progression.
-- **V1.4–V1.6:** Full restaurant management, recipes, customers and upgrades.
-- **V1.7–V1.9:** Content, events, reputation, balancing and QA.
-- **V2.0:** Integrated core experience; real-device acceptance remains a release gate.
+---
 
-## Quality checks
+## Español
 
-- npm run check — JavaScript syntax and module checks.
-- npm test — restaurant inventory and service tests.
+### Un pequeño océano, un gran sueño
 
-## License
+Nexus Sushi Bar es un juego de simulación en pixel art que combina la exploración submarina durante el día con la gestión de un sushi bar y una casa de té por la noche. Explora diferentes biomas, captura peces, administra ingredientes, prepara recetas y desarrolla tu restaurante en una ciudad cyberpunk con una atmósfera Zen.
 
-MIT — see LICENSE.
+**[▶ JUGAR NEXUS SUSHI BAR](https://sayjinblackbelt.github.io/nexus-sushi-bar/)**
+
+### Características
+
+- **Exploración:** tres biomas, siete especies de peces, niveles de rareza y misiones.
+- **Pesca:** gestión del oxígeno, calidad de las capturas, experiencia y especializaciones del equipo.
+- **Restaurante:** clientes con preferencias, cola de espera, paciencia, reputación y propinas.
+- **Cocina:** recetas por etapas con estaciones específicas para sushi y té.
+- **Progresión:** menú desbloqueable, mejoras, decoración, noches VIP y Festival de los Faroles.
+- **Accesibilidad:** tutorial inicial, efectos de sonido opcionales y opción de movimiento reducido.
+- **Persistencia:** progreso guardado localmente, con migración desde versiones anteriores.
+
+### Controles
+
+| Acción | Teclado | Pantalla táctil |
+|---|---|---|
+| Nadar | WASD / Flechas | Control direccional |
+| Capturar peces | E / Espacio | Capturar |
+| Volver a la superficie | R | Superficie |
+| Preparar un pedido | Seleccionar el producto y las estaciones indicadas | Tocar los controles de cocina |
+
+### Tecnología
+
+HTML5 Canvas, CSS, JavaScript ES Modules, LocalStorage y GitHub Pages. No requiere frameworks.
+
+### Desarrollo y calidad
+
+- Versión actual: **2.0.0**.
+- Pruebas automatizadas: **36 aprobadas** en la última validación de CI.
+- Las pruebas manuales en dispositivos reales siguen pendientes.
+
+Documentación: [Hoja de ruta](docs/ROADMAP.md) · [Balance del juego](docs/BALANCE.md) · [Notas de la versión 2.0](docs/RELEASE_NOTES_2.0.md)
+
+---
+
+<div align="center">
+
+**NEXUS SUSHI BAR · VERSION 2.0.0**
+
+[▶ Abrir el juego](https://sayjinblackbelt.github.io/nexus-sushi-bar/)
+
+</div>

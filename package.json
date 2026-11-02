@@ -5,7 +5,7 @@
   "type": "module",
   "description": "A cozy pixel-art fishing and sushi restaurant simulation game",
   "scripts": {
-    "check": "node --check js/main.js && node --check js/i18n.js && node --check js/game.js && node --check js/core/input.js && node --check js/core/storage.js && node --check js/core/audio.js && node --check js/data/fish.js && node --check js/core/canvas.js && node --check js/core/renderer.js && node --check js/restaurant.js && node --check js/core/bar-renderer.js && node --check js/data/menu.js && node --check js/progression.js && node --check js/challenges.js && node --check js/activity.js && node --check tests/progression.test.js && node --check tests/balance.test.js && node --check js/data/biomes.js && node --check tests/activity.test.js && node --check tests/challenges.test.js",
+    "check": "node --check js/main.js && node --check js/i18n.js && node --check js/game.js && node --check js/core/input.js && node --check js/core/storage.js && node --check js/core/audio.js && node --check js/data/fish.js && node --check js/core/canvas.js && node --check js/core/renderer.js && node --check js/restaurant.js && node --check js/core/bar-renderer.js && node --check js/data/menu.js && node --check js/progression.js && node --check js/challenges.js && node --check js/activity.js && node --check js/mastery.js && node --check tests/mastery.test.js && node --check tests/progression.test.js && node --check tests/balance.test.js && node --check js/data/biomes.js && node --check tests/activity.test.js && node --check tests/challenges.test.js",
     "test": "node --test tests/*.test.js"
   }
 }

@@ -12,7 +12,17 @@ import{challengeCards,ensureChallenges}from"./challenges.js";
 import{activitySummary}from"./activity.js";
 import{FISH_SPECIES}from"./data/fish.js";
 import{masterySummary}from"./mastery.js";
-const audio=new AudioManager(readProgress().soundEnabled),$=s=>document.querySelector(s),oxygenValue=$("#oxygen-value"),oxygenBar=$("#oxygen-bar"),catchCount=$("#catch-count"),coinCount=$("#coin-count"),startScreen=$("#start-screen"),gameOver=$("#game-over"),toast=$("#toast"),statusNote=$("#status-note");let toastTimer,lastDiveFish=[],restaurantFrame=0,restaurantElapsed=0,selectedCharacter=window.__nexusSelectedCharacter||readProgress().character;
+const audio=new AudioManager(readProgress().soundEnabled),$=s=>document.querySelector(s),oxygenValue=$("#oxygen-value"),oxygenBar=$("#oxygen-bar"),catchCount=$("#catch-count"),coinCount=$("#coin-count"),startScreen=$("#start-screen"),gameOver=$("#game-over"),toast=$("#toast"),statusNote=$("#status-note");
+const startButton=$("#start-button");
+startButton.addEventListener("nexus:start",()=>{
+  selectedCharacter=window.__nexusSelectedCharacter||selectedCharacter;
+  game.character=selectedCharacter;
+  game.setBiome(selectedBiome);
+  writeProgress({...readProgress(),character:selectedCharacter,biome:selectedBiome});
+  startScreen.hidden=true;
+  if(!readProgress().tutorialComplete){$("#tutorial-screen").hidden=false;return;}
+  launchDive();
+});let toastTimer,lastDiveFish=[],restaurantFrame=0,restaurantElapsed=0,selectedCharacter=window.__nexusSelectedCharacter||readProgress().character;
 function showToast(message){audio.play("click");toast.textContent=message;toast.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove("show"),1800);}
 const restaurantPanel=$("#restaurant-panel"),gamePanel=document.querySelector(".game-panel"),barCanvas=$("#restaurant-scene"),barContext=configureCanvas(barCanvas,960,540),barRenderer=new BarRenderer(barContext,960,540);
 function renderRestaurantUI(state){renderChallenges();
@@ -65,7 +75,7 @@ characterPicker.querySelectorAll("button[data-character]").forEach(button=>{
 });
 selectCharacter(selectedCharacter);
 function launchDive(){game.start();$("#player-heading").textContent=`Expedição de ${characterNames[selectedCharacter]}`;}
-$("#start-button").addEventListener("nexus:start",()=>{selectedCharacter=window.__nexusSelectedCharacter||selectedCharacter;game.character=selectedCharacter;game.setBiome(selectedBiome);writeProgress({...readProgress(),character:selectedCharacter,biome:selectedBiome});startScreen.hidden=true;if(!readProgress().tutorialComplete){$("#tutorial-screen").hidden=false;return;}launchDive();});
+
 $("#tutorial-begin").addEventListener("click",()=>{writeProgress({...readProgress(),tutorialComplete:true});$("#tutorial-screen").hidden=true;launchDive();});
 $("#continue-button").addEventListener("click",()=>{gameOver.hidden=true;game.resetDive();game.start();});
 

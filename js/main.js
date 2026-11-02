@@ -7,6 +7,8 @@ import{RestaurantManager}from"./restaurant.js";
 import{BIOMES,unlockedBiomes}from"./data/biomes.js";
 import{AudioManager}from"./core/audio.js";
 import{applyLanguage,setLanguage,observeTranslations}from"./i18n.js";
+import{achievementProgress}from"./progression.js";
+import{FISH_SPECIES}from"./data/fish.js";
 const audio=new AudioManager(readProgress().soundEnabled),$=s=>document.querySelector(s),oxygenValue=$("#oxygen-value"),oxygenBar=$("#oxygen-bar"),catchCount=$("#catch-count"),coinCount=$("#coin-count"),startScreen=$("#start-screen"),gameOver=$("#game-over"),toast=$("#toast"),statusNote=$("#status-note");let toastTimer,lastDiveFish=[],restaurantFrame=0,restaurantElapsed=0,selectedCharacter=readProgress().character;
 function showToast(message){audio.play("click");toast.textContent=message;toast.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove("show"),1800);}
 const restaurantPanel=$("#restaurant-panel"),gamePanel=document.querySelector(".game-panel"),barCanvas=$("#restaurant-scene"),barContext=configureCanvas(barCanvas,960,540),barRenderer=new BarRenderer(barContext,960,540);
@@ -26,6 +28,8 @@ function renderRestaurantUI(state){
   $("#restaurant-stock").innerHTML=rows.length?rows.join(""):"<span>Estoque vazio</span>";
 }
 const restaurant=new RestaurantManager(renderRestaurantUI);
+function renderCollection(){const p=readProgress();const achievements=achievementProgress(p);$("#achievement-count").textContent=`${achievements.filter(a=>a.unlocked).length} / ${achievements.length}`;$("#collection-stats").innerHTML=`<span>${p.totalDives} mergulhos</span><span>${p.totalFishCaught} peixes capturados</span><span>${p.customersServed} clientes atendidos</span><span>${p.coins} moedas</span>`;$("#achievement-grid").innerHTML=achievements.map(a=>`<article class="achievement ${a.unlocked?"unlocked":""}"><strong>${a.unlocked?"🏆":"🔒"} ${a.title}</strong><small>${a.description}</small><div class="achievement-meter"><span style="width:${a.percent}%"></span></div><small>${a.current} / ${a.goal}</small></article>`).join("");$("#species-grid").innerHTML=FISH_SPECIES.map(f=>{const count=p.speciesCaught[f.id]||0;return `<article class="species-entry ${count?"discovered":""}"><strong>${count?f.name:"Espécie não descoberta"}</strong><small>${count?`${count} capturas · ${f.rarity}`:"Explore os biomas para encontrar"}</small></article>`;}).join("");}
+renderCollection();
 const preferences=readProgress();
 let currentLanguage=applyLanguage(preferences.language);
 const languageSelector=$("#language-select");
@@ -39,7 +43,7 @@ function animateRestaurant(){if(restaurantPanel.hidden)return;restaurantElapsed+
 const game=new OceanGame($("#game"),{
 onHud({oxygen,count,capacity,coins,nearby,missionCount}){oxygenValue.textContent=`${oxygen}%`;oxygenBar.style.width=`${oxygen}%`;oxygenBar.style.background=oxygen<25?"linear-gradient(90deg,#e97865,#f2b17e)":"linear-gradient(90deg,#5fc9b3,#b6e6c4)";catchCount.textContent=`${count} / ${capacity}`;coinCount.textContent=coins;$("#species-count").textContent=`${Object.keys(readProgress().speciesCaught||{}).length} / 7`;$("#mission-progress").textContent=`${missionCount} / 3 peixes`;const xp=readProgress().fishingXP||0;const level=Math.min(5,Math.floor(xp/100)+1);$("#player-level-label").textContent=`NÍVEL ${level} · ${["PESCADOR INICIANTE","PESCADOR APRENDIZ","PESCADOR EXPERIENTE","PESCADOR ESPECIALISTA","MESTRE DAS MARÉS"][level-1]}`;statusNote.textContent=nearby?`Perto: ${nearby}`:"Explore a lagoa";},
 onMessage:showToast,onStatus:message=>statusNote.textContent=message,
-onEnd({count,earned,forced,fish,missionComplete,missionReward,baseEarned,qualityBonus,biome}){lastDiveFish=fish||[];$("#summary-text").textContent=`${forced?"O oxigênio acabou.":"Ótimo mergulho!"} ${count} peixes em ${biome.name}. ${baseEarned} moedas${qualityBonus?` + ${qualityBonus} qualidade`:""}${missionComplete?` + ${missionReward} de missão`:""}.`;renderBiomePicker();gameOver.hidden=false;coinCount.textContent=game.coins;}
+onEnd({count,earned,forced,fish,missionComplete,missionReward,baseEarned,qualityBonus,biome}){lastDiveFish=fish||[];$("#summary-text").textContent=`${forced?"O oxigênio acabou.":"Ótimo mergulho!"} ${count} peixes em ${biome.name}. ${baseEarned} moedas${qualityBonus?` + ${qualityBonus} qualidade`:""}${missionComplete?` + ${missionReward} de missão`:""}.`;renderBiomePicker();renderCollection();gameOver.hidden=false;coinCount.textContent=game.coins;}
 });
 const characterNames={kai:"Kai",yuna:"Yuna"};
 let selectedBiome=readProgress().biome||"lagoon";

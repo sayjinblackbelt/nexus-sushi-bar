@@ -62,7 +62,7 @@ test("fish rarity weights make legendary species substantially less common", () 
   const total = pool.reduce((sum, species) => sum + species.spawnWeight, 0);
   const threshold = (common.spawnWeight + pool.slice(0, pool.indexOf(common)).reduce((sum, species) => sum + species.spawnWeight, 0)) / total;
   assert.equal(chooseFishSpecies(pool, () => 0), pool[0]);
-  assert.equal(chooseFishSpecies(pool, () => .999), legendary);
+  assert.equal(chooseFishSpecies(pool, () => .999).rarity, "legendary");
   assert.ok(legendary.spawnWeight < common.spawnWeight);
   assert.ok(threshold > 0);
 });
@@ -136,7 +136,7 @@ test("language preference accepts the three supported locales and defaults safel
 
 test("achievement progress unlocks from expedition, collection and service milestones", async () => {
   const { achievementProgress } = await import("../js/progression.js");
-  const progress = achievementProgress({ totalDives:10,totalFishCaught:100,speciesCaught:{sardine:1,clownfish:1},customersServed:1,fishingXP:400,barLevel:1 });
+  const progress = achievementProgress({ totalDives:10,totalFishCaught:100,speciesCaught:{sardine:1,clownfish:1},customersServed:1,fishingXP:600,barLevel:1 });
   assert.equal(progress.find(a=>a.id==="first-dive").unlocked,true);
   assert.equal(progress.find(a=>a.id==="ten-dives").unlocked,true);
   assert.equal(progress.find(a=>a.id==="collector").current,2);

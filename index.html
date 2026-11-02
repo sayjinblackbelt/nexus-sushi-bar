@@ -71,6 +71,42 @@
     <section class="collection-panel" aria-labelledby="collection-title"><div class="collection-heading"><div><p class="eyebrow">PROGRESSO DE LONGO PRAZO</p><h2 id="collection-title">Diário & conquistas</h2></div><span class="collection-count" id="achievement-count">0 / 8</span></div><div class="collection-stats" id="collection-stats"></div><div class="achievement-grid" id="achievement-grid"></div><div class="species-grid" id="species-grid"></div><div class="mastery-heading"><strong>MAESTRIA DAS ESPÉCIES</strong><span id="mastery-count">0 / 12 especialistas</span></div><div class="mastery-grid" id="mastery-grid"></div></section>
     <footer class="footer"><span>✦ Vá com calma. O oceano é seu para explorar.</span><span>NEXUS SUSHI BAR <b>© 2026</b></span></footer>
   </main>
+  <script>
+    (() => {
+      const picker = document.querySelector(".character-picker");
+      const note = document.querySelector("#character-note");
+      const start = document.querySelector("#start-button");
+      const names = { kai: "Kai", yuna: "Yuna" };
+      window.__nexusSelectedCharacter = "kai";
+      function choose(id) {
+        if (!Object.prototype.hasOwnProperty.call(names, id)) return;
+        window.__nexusSelectedCharacter = id;
+        picker.querySelectorAll("[data-character]").forEach(button => {
+          const active = button.dataset.character === id;
+          button.classList.toggle("selected", active);
+          button.setAttribute("aria-pressed", String(active));
+        });
+        note.textContent = names[id] + " está pronto para mergulhar.";
+      }
+      picker.querySelectorAll("button[data-character]").forEach(button => {
+        button.addEventListener("click", event => {
+          event.preventDefault();
+          choose(button.dataset.character);
+        });
+      });
+      start.addEventListener("click", event => {
+        event.preventDefault();
+        start.dispatchEvent(new CustomEvent("nexus:start"));
+      }, true);
+      window.addEventListener("error", event => {
+        note.textContent = "Erro ao carregar o jogo: " + (event.message || "falha no JavaScript");
+      });
+      window.addEventListener("unhandledrejection", event => {
+        note.textContent = "Erro ao iniciar o jogo: " + String(event.reason?.message || event.reason || "falha inesperada");
+      });
+      choose("kai");
+    })();
+  </script>
   <script type="module" src="./js/main.js"></script>
 </body>
 </html>

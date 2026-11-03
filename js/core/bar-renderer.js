@@ -2,6 +2,12 @@ const W=960,H=540;
 export class BarRenderer {
   constructor(context,width,height){this.ctx=context;this.width=width;this.height=height;}
   render(state,elapsed=0){
+    const palettes={
+      neon:["#20183b","#9b5de5","#ff4fa3","#37e6e0","#ffb86b"],
+      garden:["#173b35","#65c18c","#a6ded0","#b6e6c4","#d7e7a3"],
+      lantern:["#382638","#b86b4b","#ffb86b","#f4d08a","#e98c65"]
+    };
+    const theme=palettes[state.decorTheme]||palettes.neon;
     const c=this.ctx;c.clearRect(0,0,W,H);
     const bg=c.createLinearGradient(0,0,0,H);bg.addColorStop(0,"#11152f");bg.addColorStop(.58,"#20183b");bg.addColorStop(1,"#090d22");c.fillStyle=bg;c.fillRect(0,0,W,H);
     // Neon city windows behind the tea bar.
